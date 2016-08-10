@@ -1,1 +1,3 @@
 *.yml
+/log/*.log
+*.pid
