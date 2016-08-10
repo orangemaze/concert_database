@@ -2,6 +2,7 @@ class ConcertVenue < ActiveRecord::Base
   self.table_name = 'concert_venue'
   has_many :concerts, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :venues_names, :primary_key => 'venue_id', :foreign_key => 'venue_id'
+  has_one :venue, :primary_key => 'venue_id', :foreign_key => 'venue_id'
 
   def venue_name
 
@@ -20,10 +21,30 @@ class ConcertVenue < ActiveRecord::Base
         @end_date = ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)
 
         if (@start_date.to_s..@end_date.to_s).cover?(@concert_date)
-          venue_name = @venue_name.to_s + ' / start_date:' + @start_date.to_s + ' / end_date:' + @end_date.to_s + '<br>'
+          venue_name = @venue_name.to_s + ', ' + city_name.to_s + ', ' + state_name.to_s + ' (' + state_abbr.to_s + '), ' + country_name.to_s
         end
       end
     venue_name = venue_name
     end
+  end
+
+  def city_id
+    city_id = venue.present? ? venue.venue_city_id.to_s : venue.inspect
+  end
+
+  def city_name
+    city_name = venue.present? ? venue.city_name.to_s : venue.inspect
+  end
+
+  def state_name
+    state_name = venue.present? ? venue.state_name.to_s : venue.inspect
+  end
+
+  def state_abbr
+    state_abbr = venue.present? ? venue.state_abbr.to_s : venue.inspect
+  end
+
+  def country_name
+    country_name = venue.present? ? venue.country_name.to_s : venue.inspect
   end
 end
