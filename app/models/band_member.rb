@@ -13,10 +13,10 @@ class BandMember < ActiveRecord::Base
         bands_members = bands_members.to_s + f.member_fname.to_s + ' ' + f.member_lname.to_s + '<br>'
       end
     end
-    bands_members = bands_members.html_safe
+    bands_members.html_safe
   end
 
    def concert_id
-     concert_id = concerts.present? ? concerts.concert_id.to_s : concerts.inspect
+     concerts.present? ? concerts.concert_id.to_s : concerts.inspect
    end
 end

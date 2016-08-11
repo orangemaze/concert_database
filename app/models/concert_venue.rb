@@ -24,35 +24,35 @@ class ConcertVenue < ActiveRecord::Base
           venue_name = @venue_name.to_s + ', ' + city_name.to_s + ', ' + state_name.to_s + ' (' + state_abbr.to_s + '), ' + country_name.to_s + '<a href="index.php?list=country&amp;choice='+country_name.to_s+'" class="flag flags flag-'+iso_codes.downcase.to_s+'" title="'+country_name.to_s+'">&nbsp;</a>'
         end
       end
-    venue_name = venue_name.html_safe
+    venue_name.html_safe
     end
   end
 
   def city_id
-    city_id = venue.present? ? venue.venue_city_id.to_s : venue.inspect
+    venue.present? ? venue.venue_city_id.to_s : venue.inspect
   end
 
   def city_name
-    city_name = venue.present? ? venue.city_name.to_s : venue.inspect
+    venue.present? ? venue.city_name.to_s : venue.inspect
   end
 
   def state_name
-    state_name = venue.present? ? venue.state_name.to_s : venue.inspect
+    venue.present? ? venue.state_name.to_s : venue.inspect
   end
 
   def state_abbr
-    state_abbr = venue.present? ? venue.state_abbr.to_s : venue.inspect
+    venue.present? ? venue.state_abbr.to_s : venue.inspect
   end
 
   def country_name
-    country_name = venue.present? ? venue.country_name.to_s : venue.inspect
+    venue.present? ? venue.country_name.to_s : venue.inspect
   end
 
   def flag_location
-    flag_location = venue.present? ? venue.flag_location.to_s : venue.inspect
+    venue.present? ? venue.flag_location.to_s : venue.inspect
   end
 
   def iso_codes
-    iso_codes = venue.present? ? venue.iso_codes.to_s : venue.inspect
+    venue.present? ? venue.iso_codes.to_s : venue.inspect
   end
 end

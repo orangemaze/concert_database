@@ -6,26 +6,26 @@ class Venue < ActiveRecord::Base
   has_one :country, :primary_key => 'venue_country_id', :foreign_key => 'flags_id'
 
   def city_name
-    city_name = city.present? ? city.city_name.to_s : city.inspect
+    city.present? ? city.city_name.to_s : city.inspect
   end
 
   def state_name
-    state_name = state.present? ? state.state_name.to_s : state.inspect
+    state.present? ? state.state_name.to_s : state.inspect
   end
 
   def state_abbr
-    state_abbr = state.present? ? state.state_abbr.to_s : state.inspect
+    state.present? ? state.state_abbr.to_s : state.inspect
   end
 
   def country_name
-    country_name = country.present? ? country.country.to_s : country.inspect
+    country.present? ? country.country.to_s : country.inspect
   end
 
   def flag_location
-    flag_location = country.present? ? country.flag_location.to_s : country.inspect
+    country.present? ? country.flag_location.to_s : country.inspect
   end
 
   def iso_codes
-    iso_codes = country.present? ? country.iso_codes.to_s : country.inspect
+    country.present? ? country.iso_codes.to_s : country.inspect
   end
 end

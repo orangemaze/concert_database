@@ -19,7 +19,7 @@ class Concert < ActiveRecord::Base
         band_name = f.band_name
         data_holder = data_holder.to_s +  + band_name.to_s + ' / ' + bootleg_name.to_s + ' / ' + roio_type.to_s + ' / ' + roio_format.to_s + '<br>'
       end
-      bootleg_name = data_holder.html_safe
+      data_holder.html_safe
     end
   end
 
@@ -39,7 +39,7 @@ class Concert < ActiveRecord::Base
         band_id = band_id + f.band_id.to_s + '<br>'
       end
     end
-    band_id = band_id.html_safe
+    band_id.html_safe
   end
 
 
@@ -50,7 +50,7 @@ class Concert < ActiveRecord::Base
         band_name = band_name + f.band_name.to_s
       end
     end
-    band_name = band_name.html_safe
+    band_name.html_safe
   end
 
   def tour_name
@@ -60,7 +60,7 @@ class Concert < ActiveRecord::Base
         tour_name = tour_name + f.tour_name.to_s
       end
     end
-    tour_name = tour_name.html_safe
+    tour_name.html_safe
   end
 
 end
