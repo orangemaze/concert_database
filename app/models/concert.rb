@@ -3,6 +3,8 @@ class Concert < ActiveRecord::Base
   has_many :roios, :primary_key => 'concert_id'
   belongs_to :concert_venue, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+
   def this_test
     this_test = 'this test'
   end
@@ -50,4 +52,15 @@ class Concert < ActiveRecord::Base
     end
     band_name = band_name.html_safe
   end
+
+  def tour_name
+    tour_name = ''
+    if concert_bands.present?
+      concert_bands.each do |f|
+        tour_name = tour_name + f.tour_name.to_s
+      end
+    end
+    tour_name = tour_name.html_safe
+  end
+
 end

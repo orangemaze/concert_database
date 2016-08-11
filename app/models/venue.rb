@@ -21,4 +21,11 @@ class Venue < ActiveRecord::Base
     country_name = country.present? ? country.country.to_s : country.inspect
   end
 
+  def flag_location
+    flag_location = country.present? ? country.flag_location.to_s : country.inspect
+  end
+
+  def iso_codes
+    iso_codes = country.present? ? country.iso_codes.to_s : country.inspect
+  end
 end

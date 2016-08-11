@@ -1,4 +1,4 @@
-class IndexController < ActionController::Base
+class IndexController < ApplicationController
 
   def index
     puts 'this'.blue

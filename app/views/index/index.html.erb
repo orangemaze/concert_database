@@ -1,12 +1,11 @@
 the concert database  <br><br>
 <table border='1'>
     <tr>
-      <td>concert.concert_id </td>
-      <td>concert.concert_date </td>
-      <td>concert_band.band_name </td>
-      <td>roio.bootleg_name </td>
-      <td>concert_venue.venue_id </td>
-      <td>venues_name.venue_name </td>
+      <td>ID </td>
+      <td>Concert </td>
+      <td>Bands </td>
+      <td>RoIo </td>
+      <td>Venue </td>
     </tr>
 
   <% @roios.each do |roio| %>
@@ -15,7 +14,6 @@ the concert database  <br><br>
      <td><%= roio.concert_date %></td>
      <td style='white-space: nowrap'><%= roio.band_name %></td>
      <td style='white-space: nowrap'><%= roio.bootleg_name %></td>
-     <td><%= roio.venue_id %></td>
      <td style='white-space: nowrap'><%= roio.venue_name %></td>
    </tr>
 <% end %>
