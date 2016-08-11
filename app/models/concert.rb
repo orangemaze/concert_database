@@ -46,7 +46,7 @@ class Concert < ActiveRecord::Base
   def band_name
     band_name = ''
     if concert_bands.present?
-      concert_bands.each do |f|
+      concert_bands.order('band_position').each do |f|
         band_name = band_name + f.band_name.to_s
       end
     end

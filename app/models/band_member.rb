@@ -8,9 +8,9 @@ class BandMember < ActiveRecord::Base
   def bands_members
     bands_members = ''
     if  members.present?
-      members.each do |f|
+      members.order('member_lname').each do |f|
         # need to come up with a filter to just show members from the right band, currently showing all members for each band
-        bands_members = bands_members.to_s + f.member_fname.to_s + ' ' + f.member_lname.to_s + '<br>'
+        bands_members = bands_members.to_s + member_fname.to_s + ' ' + member_lname.to_s
       end
     end
     bands_members.html_safe
@@ -19,4 +19,26 @@ class BandMember < ActiveRecord::Base
    def concert_id
      concerts.present? ? concerts.concert_id.to_s : concerts.inspect
    end
+
+  def member_lname
+    member_lname = ''
+    if members.present?
+      members.each do |f|
+        member_lname = member_lname.to_s + f.member_lname.to_s
+      end
+    end
+    member_lname.html_safe
+  end
+
+  def member_fname
+    member_fname = ''
+    if members.present?
+      members.each do |f|
+        member_fname = member_fname.to_s + f.member_fname.to_s
+      end
+    end
+    member_fname.html_safe
+  end
+
+
 end

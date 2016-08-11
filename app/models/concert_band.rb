@@ -9,7 +9,7 @@ class ConcertBand < ActiveRecord::Base
     band_name = ''
     if  bands.present?
       bands.each do |f|
-        band_name = band_name.to_s + f.band_name.to_s + ' / ' + tour_name + '<ul>' + bands_members.to_s + '</ul>'
+        band_name = band_name.to_s + f.band_name.to_s + ' / ' + tour_name + bands_members.to_s
       end
     end
     band_name.html_safe
@@ -26,14 +26,13 @@ class ConcertBand < ActiveRecord::Base
   end
 
   def bands_members
-    #TODO need to adjust the band order, via concert_band.band_position
     bands_members = ''
     if  bands.present?
       bands.each do |f|
-         if  band_members.present?
-           band_members.each do |g|
+        if  band_members.present?
+          band_members.each do |g|
             if f.band_id == g.band_id
-              bands_members = bands_members.to_s + '<li>' + g.bands_members.to_s + '</li>'
+              bands_members = bands_members.to_s + '<li>' + g.bands_members + '</li>'
             end
 
           end
@@ -41,7 +40,7 @@ class ConcertBand < ActiveRecord::Base
 
       end
     end
-    bands_members.html_safe
+    bands_members = ('<ul>' + bands_members + '</ul>').to_s
   end
 
   def band_id
