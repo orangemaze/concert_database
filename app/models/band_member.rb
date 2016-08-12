@@ -10,7 +10,7 @@ class BandMember < ActiveRecord::Base
     if  members.present?
       members.order('member_lname').each do |f|
         # need to come up with a filter to just show members from the right band, currently showing all members for each band
-        bands_members = bands_members.to_s + member_fname.to_s + ' ' + member_lname.to_s
+        bands_members = "#{bands_members.to_s} #{member_fname.to_s} #{member_lname.to_s}"
       end
     end
     bands_members.html_safe

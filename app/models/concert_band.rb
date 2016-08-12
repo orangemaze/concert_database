@@ -19,7 +19,7 @@ class ConcertBand < ActiveRecord::Base
     tour_name = ''
     if  tours.present?
       tours.each do |f|
-        tour_name = tour_name.to_s + f.tour_name.to_s + ''
+        tour_name = tour_name.to_s + f.tour_name.to_s
       end
     end
     tour_name.html_safe
@@ -32,7 +32,7 @@ class ConcertBand < ActiveRecord::Base
         if  band_members.present?
           band_members.each do |g|
             if f.band_id == g.band_id
-              bands_members = "#{bands_members.to_s}<li>#{g.bands_members}</li>"
+              bands_members = "#{bands_members.to_s}<li>#{g.bands_members}</li>\n"
             end
 
           end
@@ -40,19 +40,16 @@ class ConcertBand < ActiveRecord::Base
 
       end
     end
-    bands_members = ('Members <ul>' + bands_members + '</ul>').to_s
+    bands_members = ("Members <ul>\n#{bands_members}</ul>\n").to_s
   end
 
   def band_id
     band_id = ''
     if  bands.present?
       bands.each do |f|
-        band_id = band_id.to_s + f.band_id.to_s + ''
+        band_id = band_id.to_s + f.band_id.to_s
       end
     end
     band_id.html_safe
   end
-
-
-
 end

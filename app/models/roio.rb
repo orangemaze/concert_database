@@ -3,8 +3,6 @@ class Roio < ActiveRecord::Base
   belongs_to :concert, :foreign_key => 'concert_id'
   belongs_to :band, :foreign_key => 'band_id'
 
-
-
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
   end
