@@ -19,7 +19,7 @@ class ConcertVenue < ActiveRecord::Base
         @end_date = ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)
 
         if (@start_date.to_s..@end_date.to_s).cover?(@concert_date)
-          venue_name = @venue_name.to_s + ', ' + city_name.to_s + ', ' + state_name.to_s + ' (' + state_abbr.to_s + '), ' + country_name.to_s + ' <a href="index.php?list=country&amp;choice='+country_name.to_s+'" class="flag flags flag-'+iso_codes.downcase.to_s+'" title="'+country_name.to_s+'"></a>'
+          venue_name = @venue_name.to_s + ', ' + city_name.to_s + ', ' + state_name.to_s + ' (' + state_abbr.to_s + '), ' + ' <a href="countries/' + country_id.to_s + '" class="flag flags flag-'+iso_codes.downcase.to_s+'" title="'+country_name.to_s+'"></a>'
         end
       end
       venue_name.html_safe
@@ -40,6 +40,10 @@ class ConcertVenue < ActiveRecord::Base
 
   def state_abbr
     venue.present? ? venue.state_abbr.to_s : venue.inspect
+  end
+
+  def country_id
+    venue.present? ? venue.country_id.to_s : venue.inspect
   end
 
   def country_name

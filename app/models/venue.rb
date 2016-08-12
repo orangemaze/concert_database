@@ -4,6 +4,8 @@ class Venue < ActiveRecord::Base
   has_one :city, :primary_key => 'venue_city_id', :foreign_key => 'city_id'
   has_one :state, :primary_key => 'venue_state_id', :foreign_key => 'state_id'
   has_one :country, :primary_key => 'venue_country_id', :foreign_key => 'flags_id'
+  has_many :venue_names, :primary_key => 'venue_id', :foreign_key => 'venue_id'
+
 
   def city_name
     city.present? ? city.city_name.to_s : city.inspect
@@ -15,6 +17,10 @@ class Venue < ActiveRecord::Base
 
   def state_abbr
     state.present? ? state.state_abbr.to_s : state.inspect
+  end
+
+  def country_id
+    country.present? ? country.flags_id.to_s : country.inspect
   end
 
   def country_name
