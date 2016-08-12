@@ -18,7 +18,7 @@ class Concert < ActiveRecord::Base
         roio_type = f.roio_type
         roio_format = f.roio_format
         band_name = f.band_name
-        data_holder = data_holder.to_s + ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small') + band_name.to_s + ' / <a href="/roios/' + bootleg_id.to_s + '">' + bootleg_name.gsub(/\\'/, '\'').to_s + '</a> / ' + roio_type.to_s + ' / ' + roio_format.to_s + '<br>'
+        data_holder = data_holder.to_s + ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small') + ' ' + band_name.to_s + ' / <a href="/roios/' + bootleg_id.to_s + '">' + bootleg_name.gsub(/\\'/, '\'').to_s + '</a> / ' + roio_type.to_s + ' / ' + roio_format.to_s + '<br>'
       end
       data_holder.html_safe
     end
