@@ -10,11 +10,11 @@ the concert database  <br><br>
 
 
   <tr>
-    <td><%= @roios.concert_id %></td>
-    <td><%= @roios.concert_date %></td>
-    <td style='white-space: nowrap'><%= @roios.band_name %></td>
-    <td style='white-space: nowrap'><%= @roios.bootleg_name %></td>
-    <td style='white-space: nowrap'><%= @roios.venue_name %></td>
+    <td><a href='/concerts/<%= @data_result.concert_id %>'><%= @data_result.concert_id %></a></td>
+    <td><%= @data_result.concert_date %></td>
+    <td style='white-space: nowrap'><%= @data_result.band_name %></td>
+    <td style='white-space: nowrap'><%= @data_result.bootleg_name.gsub(/\\'/, '\'') %></td>
+    <td style='white-space: nowrap'><%= @data_result.venue_name %></td>
   </tr>
 
 </table>

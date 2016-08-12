@@ -5,9 +5,7 @@ class ConcertVenue < ActiveRecord::Base
   has_one :venue, :primary_key => 'venue_id', :foreign_key => 'venue_id'
 
   def venue_name
-
     venue_name = ''
-
     if  concerts.present?
       concerts.each do |f|
         @concert_date = ApplicationController.helpers.fix_bad_dates_in_db(f.concert_date)
@@ -24,7 +22,7 @@ class ConcertVenue < ActiveRecord::Base
           venue_name = @venue_name.to_s + ', ' + city_name.to_s + ', ' + state_name.to_s + ' (' + state_abbr.to_s + '), ' + country_name.to_s + ' <a href="index.php?list=country&amp;choice='+country_name.to_s+'" class="flag flags flag-'+iso_codes.downcase.to_s+'" title="'+country_name.to_s+'"></a>'
         end
       end
-    venue_name.html_safe
+      venue_name.html_safe
     end
   end
 

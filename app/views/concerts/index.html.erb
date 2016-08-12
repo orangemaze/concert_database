@@ -8,13 +8,13 @@ the concert database  <br><br>
     <td>Venue </td>
   </tr>
 
-  <% @roios.each do |roio| %>
+  <% @data_result.each do |data_result| %>
       <tr>
-        <td><%= roio.concert_id %></td>
-        <td><a href='/concerts/<%= roio.concert_id %>'><%= roio.concert_date %></a></td>
-        <td style='white-space: nowrap'><%= roio.band_name %></td>
-        <td style='white-space: nowrap'><%= roio.bootleg_name %></td>
-        <td style='white-space: nowrap'><%= roio.venue_name %></td>
+        <td><%= data_result.concert_id %></td>
+        <td><a href='/concerts/<%= data_result.concert_id %>'><%= data_result.concert_date %></a></td>
+        <td style='white-space: nowrap'><%= data_result.band_name %></td>
+        <td style='white-space: nowrap'><%= data_result.bootleg_name %></td>
+        <td style='white-space: nowrap'><%= data_result.venue_name %></td>
       </tr>
   <% end %>
 </table>

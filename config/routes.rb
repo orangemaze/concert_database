@@ -9,9 +9,14 @@ Rails.application.routes.draw do
   root 'index#index'
   get 'index' => 'index#index'
   get 'index/:id' => 'index#show'
+  get 'concerts' => 'concerts#index'
   get 'concerts/:id' => 'concerts#show'
+  get 'roios' => 'roios#index'
   get 'roios/:id' => 'roios#show'
-
+  get 'bands' => 'bands#index'
+  get 'bands/:id' => 'bands#show'
+  get 'countries' => 'countries#index'
+  get 'countries/:id' => 'countries#show'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

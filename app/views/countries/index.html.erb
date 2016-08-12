@@ -1,0 +1,12 @@
+the concert database  <br><br>
+<table border='1'>
+  <tr>
+    <td>Country </td>
+
+  </tr>
+
+  <% @data_result.order('country').each do |data_result| %>
+      <td style='white-space: nowrap'><%= data_result.country.html_safe %></td>
+      </tr>
+  <% end %>
+</table>
