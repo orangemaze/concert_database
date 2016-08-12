@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   resources :concerts
 
   root 'index#index'
+  get 'index' => 'index#index'
   get 'index/:id' => 'index#show'
-
-
+  get 'concerts/:id' => 'concerts#show'
+  get 'roios/:id' => 'roios#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

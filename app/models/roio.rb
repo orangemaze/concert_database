@@ -23,5 +23,4 @@ class Roio < ActiveRecord::Base
   def band_name
     band.band_name
   end
-
 end

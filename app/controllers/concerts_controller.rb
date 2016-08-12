@@ -1,7 +1,7 @@
-class IndexController < ApplicationController
+class ConcertsController < ApplicationController
 
   def index
-    puts 'Index'.blue
+    puts 'Concerts'.blue
     @roios = Concert.all.limit(20) # commented for testing
   end
 
@@ -10,9 +10,9 @@ class IndexController < ApplicationController
   end
 
   private
-    def set_index
-      @roios = Concert.find(params[:id])
-    end
+  def set_index
+    @roios = Concert.find(params[:id])
+  end
 
 
 end

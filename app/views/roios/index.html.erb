@@ -1,0 +1,20 @@
+the concert database  <br><br>
+<table border='1'>
+  <tr>
+    <td>ID </td>
+    <td>Concert </td>
+    <td>Bands </td>
+    <td>RoIo </td>
+    <td>Venue </td>
+  </tr>
+
+  <% @roios.each do |roio| %>
+      <tr>
+        <td><%= roio.concert_id %></td>
+        <td><%= roio.concert_date %></td>
+        <td style='white-space: nowrap'><%= roio.band_name %></td>
+        <td style='white-space: nowrap'><%= roio.bootleg_name %></td>
+        <td style='white-space: nowrap'><%= roio.venue_name %></td>
+      </tr>
+  <% end %>
+</table>

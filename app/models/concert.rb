@@ -13,11 +13,12 @@ class Concert < ActiveRecord::Base
     if roios.present?
       data_holder = ''
       roios.each do |f|
+        bootleg_id = f.bootleg_id
         bootleg_name = f.bootleg_name
         roio_type = f.roio_type
         roio_format = f.roio_format
         band_name = f.band_name
-        data_holder = data_holder.to_s +  + band_name.to_s + ' / ' + bootleg_name.to_s + ' / ' + roio_type.to_s + ' / ' + roio_format.to_s + '<br>'
+        data_holder = data_holder.to_s +  + band_name.to_s + ' / <a href="/roios/' + bootleg_id.to_s + '">' + bootleg_name.to_s + '</a> / ' + roio_type.to_s + ' / ' + roio_format.to_s + '<br>'
       end
       data_holder.html_safe
     end
