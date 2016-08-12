@@ -9,7 +9,7 @@ class ConcertBand < ActiveRecord::Base
     band_name = ''
     if  bands.present?
       bands.each do |f|
-        band_name = '' + band_name.to_s + 'Band<ul><li>' + f.band_name.to_s + '</li>Tour<ul><li>' + tour_name + '</li>' + bands_members.to_s + '</ul></ul>'
+        band_name = "#{band_name.to_s}Band\n<ul>\n<li>#{f.band_name.to_s}</li>\nTour\n<ul>\n<li>#{tour_name}</li>\n</ul>\n#{bands_members.to_s}</ul>\n</ul>\n"
       end
     end
     band_name.html_safe
@@ -32,7 +32,7 @@ class ConcertBand < ActiveRecord::Base
         if  band_members.present?
           band_members.each do |g|
             if f.band_id == g.band_id
-              bands_members = bands_members.to_s + '<li>' + g.bands_members + '</li>'
+              bands_members = "#{bands_members.to_s}<li>#{g.bands_members}</li>"
             end
 
           end
