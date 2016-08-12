@@ -2,7 +2,7 @@ class RoiosController < ApplicationController
 
   def index
     puts 'Roios'.blue
-    @data_result = Roio.all # .limit(20) # commented for testing
+    @data_result = Roio.all.limit(200) # commented for testing
   end
 
   def show

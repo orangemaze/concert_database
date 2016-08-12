@@ -24,4 +24,21 @@ module ApplicationHelper
     end
   end
 
+  def get_image_location(concert_date, bootleg_id, bootleg_name, image_size)
+    image_year = concert_date[0..3]
+    case image_size
+      when /small/
+        image_height = '30px'
+        image_width = '30px'
+      when /normal/
+        image_height = '300px'
+        image_width = '300px'
+      else
+        image_height = '30px'
+        image_width = '30px'
+    end
+    image_locaton = "<img src='http://www.concerts-db.com/art/#{image_year}/#{bootleg_id}/#{concert_date}-cov.jpg' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
+
+  end
+
 end

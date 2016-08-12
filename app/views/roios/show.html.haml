@@ -1,0 +1,7 @@
+%div.row.well
+  %div.col-md-2= link_to(@data_result.concert_date, "/concerts/#{@data_result.concert_id}")
+  %div.col-md-2= @data_result.venue_name
+  %div.col-md-3= @data_result.band_name
+  %div.col-md-5
+    = get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal")
+    %br= @data_result.bootleg_name
