@@ -3,6 +3,7 @@ class Roio < ActiveRecord::Base
   belongs_to :concert, :foreign_key => 'concert_id'
   belongs_to :band, :foreign_key => 'band_id'
   has_many :concert_band, :through => :concert, :source => 'concert_bands', :primary_key => 'concert_id'
+  has_one :user, :foreign_key => 'user_id', :primary_key => 'user_id'
 
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
@@ -21,12 +22,22 @@ class Roio < ActiveRecord::Base
   end
 
   def band_name
-    band_name = ''
-    if concert_band.present?
+    band.present? ? band.band_name : band.inspect
+  end
+
+  def user_name
+    user.present? ? user.user_name : user.inspect
+  end
+
+  def band_details
+    band_details = ''
+    if  concert_band.present?
       concert_band.each do |f|
-        band_name = band_name.to_s + f.band_name.to_s
+        band_details = band_details.to_s + f.band_details.to_s
       end
     end
-    band_name.html_safe
+    band_details.html_safe
   end
+
+
 end
