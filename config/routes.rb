@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'index#index'
   get 'index' => 'index#index'
   get 'index/:id' => 'index#show'
+  get 'about' => 'index#about'
   get 'concerts' => 'concerts#index'
   get 'concerts/:id' => 'concerts#show'
   get 'roios' => 'roios#index'

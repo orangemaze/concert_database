@@ -5,6 +5,7 @@ class Roio < ActiveRecord::Base
   has_many :concert_band, :through => :concert, :source => 'concert_bands', :primary_key => 'concert_id'
   has_one :user, :foreign_key => 'user_id', :primary_key => 'user_id'
   has_many :roio_ratings, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
+  has_many :images, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
 
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
@@ -48,6 +49,10 @@ class Roio < ActiveRecord::Base
       end
     end
     roio_avg_rating = roio_ratings.present? ? (roio_avg_rating.to_f / roio_ratings.count).to_i : 'no ratings'
+  end
+
+  def roio_image_count
+    images.count
   end
 
 end

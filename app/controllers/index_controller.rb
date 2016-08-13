@@ -11,6 +11,10 @@ class IndexController < ApplicationController
     @data_result = Concert.find(params[:id])
   end
 
+  def about
+
+  end
+
   private
   def set_index
     @data_result = Concert.find(params[:id])

@@ -52,14 +52,27 @@ module ApplicationHelper
 
   end
 
+  def get_roio_image_count_icon(image_count)
+    if image_count.to_i == 0
+      "No Images, would you like to add some?"
+    elsif image_count.to_i == 1
+      "<i class='fa fa-film' aria-hidden='true'></i>"
+    elsif image_count.to_i > 1
+      "<i class='fa fa-film fa-lg' aria-hidden='true'></i> <span class='badge'>#{image_count}</span>"
+    else
+      image_count.to_s
+    end
+  end
+
+
   def turn_roio_type_into_icon(roio_type)
     case roio_type.to_s
       when 'roio'
-        '<i class="fa fa-camera" aria-hidden="true"></i>'
+        '<i class="fa fa-file-audio-o" aria-hidden="true"></i>'
       when 'voio'
-        '<i class="fa fa-video-camera" aria-hidden="true"></i>'
+        '<i class="fa fa-file-video-o" aria-hidden="true"></i>'
       else
-        '<i class="fa fa-camera" aria-hidden="true"></i>'
+        '<i class="fa fa-file-audio-o" aria-hidden="true"></i>'
     end
   end
 
