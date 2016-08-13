@@ -20,4 +20,5 @@
       %li= @data_result.taper_location.gsub(/\\'/, '\'')
       %li= @data_result.source_warning.gsub(/\\'/, '\'')
       %li= @data_result.user_name
+      %li= turn_to_ratings_stars(@data_result.roio_avg_rating.to_s).html_safe
       %li= @data_result.md5

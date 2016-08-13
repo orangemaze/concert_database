@@ -41,4 +41,26 @@ module ApplicationHelper
 
   end
 
+  def turn_to_ratings_stars(rating)
+    case rating.to_i
+      when 0..1
+        'no stars'
+      when 2..3
+        '<i class="fa fa-star-half" aria-hidden="true"></i>'
+      when 4..5
+        '<i class="fa fa-star" aria-hidden="true"></i>'
+      when 6..7
+        '<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half" aria-hidden="true"></i>'
+      when 8..9
+        '<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>'
+      when 10..11
+        '<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half" aria-hidden="true"></i>'
+      when 12..13
+        '<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>'
+      when 14..15
+        '<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half" aria-hidden="true"></i>'
+      when 16
+        '<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>'
+    end
+  end
 end
