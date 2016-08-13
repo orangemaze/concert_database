@@ -2,7 +2,9 @@ class IndexController < ApplicationController
 
   def index
     puts 'Index'.blue
-    @data_result = Concert.all.limit(20) # commented for testing
+
+
+
   end
 
   def show

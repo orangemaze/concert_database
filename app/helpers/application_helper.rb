@@ -24,6 +24,17 @@ module ApplicationHelper
     end
   end
 
+  def get_main_image
+    begin
+      main_image = MainImage.all # commented for testing
+      random_number = rand(1..main_image.count)
+      image_name = main_image[random_number].image_name
+      image_url = "//www.pf-db.com/images/main/#{image_name}"
+    rescue
+      image_url = "//www.pf-db.com/images/main/IMAGE_00014.jpg"
+    end
+  end
+
   def get_image_location(concert_date, bootleg_id, bootleg_name, image_size)
     image_year = concert_date[0..3]
     case image_size
