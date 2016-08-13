@@ -3,4 +3,8 @@ class TestuiController < ApplicationController
   def index
 
   end
+
+  def show
+    @data_result = Concert.find(params[:id])
+  end
 end

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'countries/:id' => 'countries#show'
 
   get 'testui' => 'testui#index'
-
+  get 'testui/:id' => 'testui#show'
 
 
 

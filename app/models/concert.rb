@@ -18,8 +18,11 @@ class Concert < ActiveRecord::Base
         roio_type = ApplicationController.helpers.turn_roio_type_into_icon(f.roio_type)
         roio_format = f.roio_format
         band_name = f.band_name
-        data_holder = "#{data_holder.to_s} #{ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small')}
- #{band_name.to_s} / <a href='/roios/#{bootleg_id.to_s}'>#{bootleg_name.to_s}</a> / #{roio_type.to_s}  /  #{roio_format.to_s}<br>"
+        data_holder = "#{data_holder.to_s} <a href='#' class='list-group-item'>#{ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small')}
+        #{roio_type.to_s} #{band_name.to_s} &middot; #{bootleg_name.to_s}
+            <span class='pull-right text-muted small'><em>#{roio_format.to_s}</em></span>
+        </a>"
+
       end
       data_holder.html_safe
     end
@@ -54,6 +57,17 @@ class Concert < ActiveRecord::Base
     end
     band_name.html_safe
   end
+
+  def band_name_plain
+    band_name = ''
+    if concert_bands.present?
+      concert_bands.order('band_position').each do |f|
+        band_name = band_name + f.band_name.to_s
+      end
+    end
+    band_name.html_safe
+  end
+
 
   def tour_name
     tour_name = ''
