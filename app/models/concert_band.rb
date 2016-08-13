@@ -4,12 +4,13 @@ class ConcertBand < ActiveRecord::Base
   has_many :bands, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :tours, :primary_key => 'tours_id', :foreign_key => 'tours_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :roios, :through => :concerts
 
-  def band_name
+  def band_details
     band_name = ''
     if  bands.present?
       bands.each do |f|
-        band_name = "#{band_name.to_s}Band\n<ul>\n<li>#{f.band_name.to_s}</li>\nTour\n<ul>\n<li>#{tour_name}</li>\n</ul>\n#{bands_members.to_s}</ul>\n</ul>\n"
+        band_name = "#{band_name.to_s}Band\n<ul>\n<li><a href='/bands/#{f.band_id.to_s}'>#{f.band_name.to_s}</a></li>\nTour\n<ul>\n<li>#{tour_name}</li>\n</ul>\n#{bands_members.to_s}</ul>\n</ul>\n"
       end
     end
     band_name.html_safe
@@ -52,4 +53,15 @@ class ConcertBand < ActiveRecord::Base
     end
     band_id.html_safe
   end
+
+  def band_name
+    band_name = ''
+    if  bands.present?
+      bands.each do |f|
+        band_name = band_name.to_s + f.band_name.to_s
+      end
+    end
+    band_name.html_safe
+  end
+
 end

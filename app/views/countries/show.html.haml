@@ -1,11 +1,5 @@
-<table class="table table-striped table-bordered">
-  <tr>
-    <td>Country </td>
-  </tr>
-
-
-  <tr>
-    <td style='white-space: nowrap'><%= @data_result.country %></td>
-  </tr>
-
-</table>
+%table.table.table-striped.table-bordered
+  %tr
+    %td Country
+  %tr
+    %td= @data_result.country

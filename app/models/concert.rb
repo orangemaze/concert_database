@@ -49,7 +49,7 @@ class Concert < ActiveRecord::Base
     band_name = ''
     if concert_bands.present?
       concert_bands.order('band_position').each do |f|
-        band_name = band_name + f.band_name.to_s
+        band_name = band_name + f.band_details.to_s
       end
     end
     band_name.html_safe
