@@ -50,5 +50,4 @@ class Roio < ActiveRecord::Base
     roio_avg_rating = roio_ratings.present? ? (roio_avg_rating.to_f / roio_ratings.count).to_i : 'no ratings'
   end
 
-
 end
