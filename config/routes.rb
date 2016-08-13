@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   get 'bands/:id' => 'bands#show'
   get 'countries' => 'countries#index'
   get 'countries/:id' => 'countries#show'
+
+  get 'testui' => 'testui#index'
+
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
