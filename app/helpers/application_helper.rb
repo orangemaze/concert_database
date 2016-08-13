@@ -41,6 +41,18 @@ module ApplicationHelper
 
   end
 
+  def turn_roio_type_into_icon(roio_type)
+    case roio_type.to_s
+      when 'roio'
+        '<i class="fa fa-camera" aria-hidden="true"></i>'
+      when 'voio'
+        '<i class="fa fa-video-camera" aria-hidden="true"></i>'
+      else
+        '<i class="fa fa-camera" aria-hidden="true"></i>'
+    end
+  end
+
+
   def turn_to_ratings_stars(rating)
     case rating.to_i
       when 0..1

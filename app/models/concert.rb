@@ -15,7 +15,7 @@ class Concert < ActiveRecord::Base
       roios.each do |f|
         bootleg_id = f.bootleg_id
         bootleg_name = f.bootleg_name.gsub(/\\'/, '\'')
-        roio_type = f.roio_type
+        roio_type = ApplicationController.helpers.turn_roio_type_into_icon(f.roio_type)
         roio_format = f.roio_format
         band_name = f.band_name
         data_holder = "#{data_holder.to_s} #{ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small')}
