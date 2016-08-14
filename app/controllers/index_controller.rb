@@ -1,5 +1,5 @@
 class IndexController < ApplicationController
-
+  layout 'testui'
   def index
     puts 'Index'.blue
 

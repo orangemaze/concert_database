@@ -100,7 +100,7 @@ class Concert < ActiveRecord::Base
       reviews.order('orig_date').reverse.each do |f|
         get_ui_comments = get_ui_comments + "
         <li class='" + cycle('', 'timeline-inverted') +"'>
-          <div class='timeline-badge'><i class='fa fa-check'></i>
+          <div class='timeline-badge'><i class='fa fa-comments-o'></i>
           </div>
           <div class='timeline-panel'>
             <div class='timeline-heading'>

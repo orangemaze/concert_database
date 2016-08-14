@@ -1,6 +1,8 @@
-%table.table.table-striped.table-bordered
-  %tr
-    %td Country
-  - @data_result.order('country').each do |data_result|
+%div.in#page-wrapper
+  %br
+  %table.table.table-striped.table-bordered
     %tr
-      %td= "#{data_result.country.html_safe}  #{data_result.flag_image.html_safe}".html_safe
+      %td Country
+    - @data_result.order('country').each do |data_result|
+      %tr
+        %td= "#{data_result.country.html_safe}  #{data_result.flag_image.html_safe}".html_safe

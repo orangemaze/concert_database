@@ -1,6 +1,8 @@
-%table.table.table-striped.table-bordered
-  %tr
-    %td Bands
-  - @data_result.order('band_name').each do |data_result|
+%div.in#page-wrapper
+  %br
+  %table.table.table-striped.table-bordered
     %tr
-      %td= link_to("#{data_result.band_name.html_safe}", "bands/#{data_result.band_id.to_s.html_safe}")
+      %td Bands
+    - @data_result.order('band_name').each do |data_result|
+      %tr
+        %td= link_to("#{data_result.band_name.html_safe}", "bands/#{data_result.band_id.to_s.html_safe}")

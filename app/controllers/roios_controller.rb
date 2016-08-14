@@ -1,5 +1,5 @@
 class RoiosController < ApplicationController
-
+  layout 'testui'
   def index
     puts 'Roios'.blue
     @data_result = Roio.all.limit(200) # commented for testing

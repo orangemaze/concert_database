@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-
+  layout 'testui'
   def index
     puts 'Countries'.blue
     @data_result = Country.all # .limit(20) # commented for testing

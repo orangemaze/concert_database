@@ -1,5 +1,5 @@
 = get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal")
-%ul
+%ul.list-unstyled
   %li= @data_result.band_name.to_s.gsub(/\\'/, '\'')
   %li= @data_result.bootleg_name.to_s.gsub(/\\'/, '\'')
   %li= turn_roio_type_into_icon(@data_result.roio_type).html_safe
