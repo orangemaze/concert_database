@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
-
+  get 'testui/roio_details/:id' => 'testui#roio_details'
 
 
 

@@ -43,13 +43,17 @@ class Roio < ActiveRecord::Base
   end
 
   def roio_avg_rating
-    roio_avg_rating = ''
-    if  roio_ratings.present?
-      roio_ratings.each do |f|
-        roio_avg_rating = roio_avg_rating.to_f + f.rating.to_f
+    begin
+      roio_avg_rating = ''
+      if  roio_ratings.present?
+        roio_ratings.each do |f|
+          roio_avg_rating = roio_avg_rating.to_f + f.rating.to_f
+        end
       end
+      roio_avg_rating = roio_ratings.present? ? (roio_avg_rating.to_f / roio_ratings.count).to_i : 'no ratings'
+    rescue
+      roio_avg_rating = ''
     end
-    roio_avg_rating = roio_ratings.present? ? (roio_avg_rating.to_f / roio_ratings.count).to_i : 'no ratings'
   end
 
   def roio_image_count

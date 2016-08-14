@@ -5,7 +5,7 @@ class Concert < ActiveRecord::Base
   belongs_to :concert_venue, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
-  has_many :reviews, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :reviews, :through => :roios, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
 
   def this_test
     this_test = 'this test'
@@ -20,8 +20,8 @@ class Concert < ActiveRecord::Base
         roio_type = ApplicationController.helpers.turn_roio_type_into_icon(f.roio_type)
         roio_format = f.roio_format
         band_name = f.band_name
-        data_holder = "#{data_holder.to_s} <a href='#' class='list-group-item'>#{ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small')}
-        #{roio_type.to_s} #{band_name.to_s} &middot; #{bootleg_name.to_s}
+        data_holder = "#{data_holder.to_s} <a href='#' id='#{bootleg_id.to_s}' class='roio-details list-group-item'>#{ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small')}
+        #{roio_type.to_s} #{band_name.to_s} #{ApplicationController.helpers.turn_to_ratings_stars(f.roio_avg_rating)} &middot; #{bootleg_name.to_s}
             <span class='pull-right text-muted small'><em>#{roio_format.to_s}</em></span>
         </a>"
 
@@ -73,7 +73,9 @@ class Concert < ActiveRecord::Base
   def bootleg_name_plain
     bootleg_name_plain = ''
     if roios.present?
-      bootleg_name.to_s
+      roios.each do |f|
+        bootleg_name_plain = bootleg_name_plain + f.bootleg_name.to_s
+      end
     end
     bootleg_name_plain.html_safe
 
@@ -93,15 +95,16 @@ class Concert < ActiveRecord::Base
 
   def get_ui_comments
     get_ui_comments = ''
+
     if reviews.present?
-      reviews.each do |f|
+      reviews.order('orig_date').reverse.each do |f|
         get_ui_comments = get_ui_comments + "
         <li class='" + cycle('', 'timeline-inverted') +"'>
           <div class='timeline-badge'><i class='fa fa-check'></i>
           </div>
           <div class='timeline-panel'>
             <div class='timeline-heading'>
-              <h4 class='timeline-title'>#{f.nick} #{bootleg_name_plain}</h4>
+              <h4 class='timeline-title'>#{f.bootleg_name} <small>#{f.nick}</small></h4>
               <p><small class='text-muted'><i class='fa fa-clock-o'></i> #{f.review_time}</small>
               </p>
             </div>

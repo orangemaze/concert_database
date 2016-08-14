@@ -7,4 +7,9 @@ class TestuiController < ApplicationController
   def show
     @data_result = Concert.find(params[:id])
   end
+
+  def roio_details
+    @data_result = Roio.find(params[:id])
+    render :layout => false
+  end
 end

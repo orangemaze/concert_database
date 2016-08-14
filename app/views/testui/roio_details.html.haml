@@ -1,0 +1,20 @@
+= get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal")
+%ul
+  %li= @data_result.band_name.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.bootleg_name.to_s.gsub(/\\'/, '\'')
+  %li= turn_roio_type_into_icon(@data_result.roio_type).html_safe
+  %li= @data_result.roio_format
+  %li= @data_result.release_label.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.recorder.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.length
+  %li= @data_result.cd
+  %li= @data_result.taper.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.lineage.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.equipment.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.generation.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.taper_location.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.source_warning.to_s.gsub(/\\'/, '\'')
+  %li= @data_result.user_name
+  %li= turn_to_ratings_stars(@data_result.roio_avg_rating.to_s).html_safe
+  %li= get_roio_image_count_icon(@data_result.roio_image_count).html_safe
+  %li= @data_result.md5

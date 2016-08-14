@@ -315,6 +315,18 @@
 
 <!-- Custom Theme JavaScript -->
 <%= javascript_include_tag 'sb-admin-2' %>
+<script>
+    $(".roio-details").click(function(){
+        var bootleg_id = $(this).attr("id")
+        $.get("roio_details/"+bootleg_id, function(data, status){
+            // roio-details-container
+            $("#roio-details-container").html(data);
+            // alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+</script>
+
+
 </body>
 
 </html>
