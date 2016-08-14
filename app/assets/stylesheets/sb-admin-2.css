@@ -300,7 +300,7 @@ table.dataTable thead .sorting:after {
 }
 
 .text-white {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .panel-green {
