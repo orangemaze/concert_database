@@ -1,9 +1,11 @@
 class Concert < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
   self.table_name = 'concerts'
   has_many :roios, :primary_key => 'concert_id'
   belongs_to :concert_venue, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :reviews, :primary_key => 'concert_id', :foreign_key => 'concert_id'
 
   def this_test
     this_test = 'this test'
@@ -68,6 +70,16 @@ class Concert < ActiveRecord::Base
     band_name.html_safe
   end
 
+  def bootleg_name_plain
+    bootleg_name_plain = ''
+    if roios.present?
+      bootleg_name.to_s
+    end
+    bootleg_name_plain.html_safe
+
+  end
+
+
 
   def tour_name
     tour_name = ''
@@ -77,6 +89,30 @@ class Concert < ActiveRecord::Base
       end
     end
     tour_name.html_safe
+  end
+
+  def get_ui_comments
+    get_ui_comments = ''
+    if reviews.present?
+      reviews.each do |f|
+        get_ui_comments = get_ui_comments + "
+        <li class='" + cycle('', 'timeline-inverted') +"'>
+          <div class='timeline-badge'><i class='fa fa-check'></i>
+          </div>
+          <div class='timeline-panel'>
+            <div class='timeline-heading'>
+              <h4 class='timeline-title'>#{f.nick} #{bootleg_name_plain}</h4>
+              <p><small class='text-muted'><i class='fa fa-clock-o'></i> #{f.review_time}</small>
+              </p>
+            </div>
+            <div class='timeline-body'>
+              <p>#{f.review}</p>
+            </div>
+          </div>
+        </li>"
+      end
+    end
+    get_ui_comments.html_safe
   end
 
 end

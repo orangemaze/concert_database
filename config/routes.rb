@@ -18,9 +18,10 @@ Rails.application.routes.draw do
   get 'bands/:id' => 'bands#show'
   get 'countries' => 'countries#index'
   get 'countries/:id' => 'countries#show'
-
+  get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
+
 
 
 

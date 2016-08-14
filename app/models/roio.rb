@@ -6,6 +6,7 @@ class Roio < ActiveRecord::Base
   has_one :user, :foreign_key => 'user_id', :primary_key => 'user_id'
   has_many :roio_ratings, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :images, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
+  has_many :reviews, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
 
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
