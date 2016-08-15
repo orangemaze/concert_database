@@ -26,14 +26,22 @@ module ApplicationHelper
     end
   end
 
-  def turn_roio_type_into_icon(roio_type)
+  def turn_roio_type_into_icon(roio_type, size)
+    case size.to_s
+      when 'large'
+        font_size = 'fa-lg'
+      else
+        font_size = ''
+    end
+
+
     case roio_type.to_s
       when 'roio'
-        '<i class="fa fa-headphones" aria-hidden="true"></i>'
+        "<i class='fa fa-headphones #{font_size}' aria-hidden='true'></i>"
       when 'voio'
-        '<i class="fa fa-television" aria-hidden="true"></i>'
+        "<i class='fa fa-television #{font_size}' aria-hidden='true'></i>"
       else
-        '<i class="fa fa-headphones" aria-hidden="true"></i>'
+        "<i class='fa fa-headphones #{font_size}' aria-hidden='true'></i>"
     end
   end
 

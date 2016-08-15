@@ -47,7 +47,7 @@
 <%= javascript_include_tag 'jquery.dataTables.min' %>
 <%= javascript_include_tag 'dataTables.bootstrap.min' %>
 <%= javascript_include_tag 'dataTables.responsive' %>
-
+<%= javascript_include_tag 'jquery-ui-1.10.4.custom' %>
 
 <!-- Custom Theme JavaScript -->
 <%= javascript_include_tag 'sb-admin-2' %>
@@ -59,6 +59,60 @@
             $("#roio-details-container").html(data);
             // alert("Data: " + data + "\nStatus: " + status);
         });
+    });
+    function change_search(category){
+        $( "#action_button" ).html(category+" <span class=\"caret\"></span>");
+        if(category == "Concerts"){
+            $("#suggest").attr("placeholder", "yyyy-mm-dd");
+        }
+        else{
+            $("#suggest").attr("placeholder", "");
+        }
+        $( "#action_button" ).val(category);
+    }
+
+    $(function() {
+
+        $(".suggest-user").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/suggest",
+                    dataType: "json",
+                    data: {
+                        term: request.term,
+                        search_action: $("#action_button").val(),
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 4,
+            select: function(event, ui) {
+                var url = ui.item.id;
+                if(url != '#') {
+                    var action = $( "#action_button" ).attr( "value").toLowerCase();
+                    // alert(action)
+                    if (action == 'concerts'){
+                        action = 'testui';
+                    }
+                    location.href = '/'+action+'/' + url;
+                }
+            },
+
+            html: true, // optional (jquery.ui.autocomplete.html.js required)
+
+            // optional (if other layers overlap autocomplete list)
+            open: function(event, ui) {
+                $(".ui-autocomplete").css("z-index", 1000);
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append("<a>" + item.label + "</a>")
+                    .appendTo(ul);
+        };;
+
     });
 </script>
 

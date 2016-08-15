@@ -1,0 +1,21 @@
+[
+<%
+   count = 0
+   @suggest_result.each do|suggestions|
+     if count > 0
+%>,<%
+   end
+
+   if @search_action == 'Venues'
+%>{"id": "<%= suggestions.venue_id %>","value": "<%= suggestions.venue_name %>","label": "<%= suggestions.venue_name %>, <%= suggestions.city_name %>, <%= suggestions.state_name %>, <%= suggestions.country %>, <span class='flag flag-<%= suggestions.iso_codes.downcase %>'></span>"}
+    <%
+       elsif @search_action == 'Concerts'
+    %>{"id": "<%= suggestions.concert_id %>","value": "<%= suggestions.concert_date %>, <%= suggestions.band_name %>, <%= suggestions.venue_name %>","label": "<%= suggestions.concert_date %> <%= suggestions.band_name %>, <%= suggestions.venue_name %>"}
+    <%
+       else
+    %>{"id": "<%= suggestions.band_id %>","value": "<%= suggestions.band_name %>","label": "<%= suggestions.band_name %>"}
+    <%
+       end
+       count = count + 1
+       end %>
+]

@@ -6,6 +6,7 @@ Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( metisMenu.min.css )
 Rails.application.config.assets.precompile += %w( timeline.css )
 Rails.application.config.assets.precompile += %w( sb-admin-2.css )
+Rails.application.config.assets.precompile += %w( jquery-ui-1.10.4.custom.css )
 
 Rails.application.config.assets.precompile += %w( flags.css.scss )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
@@ -15,6 +16,7 @@ Rails.application.config.assets.precompile += %w( sb-admin-2.js )
 Rails.application.config.assets.precompile += %w( jquery.dataTables.min.js )
 Rails.application.config.assets.precompile += %w( dataTables.bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( dataTables.responsive.js )
+Rails.application.config.assets.precompile += %w( jquery-ui-1.10.4.custom.js )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

@@ -2,7 +2,7 @@
 %ul.list-unstyled
   %li= "Band: #{@data_result.band_name.to_s.gsub(/\\'/, '\'')}"
   %li= "Title: #{@data_result.bootleg_name.to_s.gsub(/\\'/, '\'')}"
-  %li= "Type: #{turn_roio_type_into_icon(@data_result.roio_type)}".html_safe
+  %li= "Type: #{turn_roio_type_into_icon(@data_result.roio_type, 'large')}".html_safe
   %li= "Format: #{@data_result.roio_format}"
   %li= "Label: #{@data_result.release_label.to_s.gsub(/\\'/, '\'')}"
   %li= "Recorder: #{@data_result.recorder.to_s.gsub(/\\'/, '\'')}"

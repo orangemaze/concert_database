@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
   get 'testui/roio_details/:id' => 'testui#roio_details'
-
+  get 'suggest' => 'suggest#index'
 
 
   # Example of regular route:
