@@ -1,0 +1,8 @@
+%div.in#page-wrapper
+  %br
+  %table.table.table-striped.table-bordered
+    %tr
+      %td Venue
+    - @data_result.order('venue_name').each do |data_result|
+      %tr
+        %td= "#{data_result.venue_name.html_safe}".html_safe

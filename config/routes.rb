@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   resources :concerts
+  resources :venue
+  resources :venue_name
 
   root 'index#index'
   get 'index' => 'index#index'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
   get 'bands/:id' => 'bands#show'
   get 'countries' => 'countries#index'
   get 'countries/:id' => 'countries#show'
+  get 'venues' => 'venues#index'
+  get 'venues/:id' => 'venues#show'
   get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'

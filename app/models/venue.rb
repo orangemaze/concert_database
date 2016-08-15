@@ -6,6 +6,16 @@ class Venue < ActiveRecord::Base
   has_one :country, :primary_key => 'venue_country_id', :foreign_key => 'flags_id'
   has_many :venue_names, :primary_key => 'venue_id', :foreign_key => 'venue_id'
 
+  def venues_name
+    venues_name = ''
+    if venue_names.present?
+      venue_names.each do |f|
+        venues_name = venues_name + "<tr><td>#{f.venue_name.to_s}</td>\n<td>#{f.start_date.to_s}</td>\n<td>#{f.end_date.to_s}</td>\n</tr>\n"
+      end
+    end
+    venues_name.html_safe
+  end
+
 
   def city_name
     city.present? ? city.city_name.to_s : city.inspect

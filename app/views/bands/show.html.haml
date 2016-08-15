@@ -1,8 +1,18 @@
 %div.row.well
   %div.col-md-2
   %div.col-md-6
-    %table.table.table-striped.table-bordered
-      %tr
-        %td Bands
-      %tr
-        %td= @data_result.band_name
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left
+            = @data_result.band_name
+      %div.panel-footer
+        %span.pull-left
+          %table.table.table-striped.table-bordered
+            %tr
+              %td data...
+
+        %div.clearfix
+
+

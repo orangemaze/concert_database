@@ -93,9 +93,6 @@
                 if(url != '#') {
                     var action = $( "#action_button" ).attr( "value").toLowerCase();
                     // alert(action)
-                    if (action == 'concerts'){
-                        action = 'testui';
-                    }
                     location.href = '/'+action+'/' + url;
                 }
             },
