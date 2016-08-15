@@ -20,11 +20,35 @@
                   %li= link_to "Concerts", concerts_path, :class => "text-white"
                   %li= link_to "Countries", countries_path, :class => "text-white"
                   %li= link_to "Roios", roios_path, :class => "text-white"
+          %a{:href => '#'}
+            %div.panel-footer
+              %span.pull-left View Details
+              %span.pull-right
+                %i.fa.fa-arrow-circle-right
+              %div.clearfix
         %div.panel.panel-red
           %div.panel-heading
             %div.row
-              %div.col-xs-9.text-left more data here
+              %div.col-xs-9.text-left
+                = "There are xxx concerts in the database within 50 miles from #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
+                =# "IP: #{request.remote_ip.to_s}"
+                =# "Lat: #{get_lat_lon_from_ip()[0]}"
+                =# "Lng: #{get_lat_lon_from_ip()[1]}"
+                =# "Location: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
+                =# "Time Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
+          %a{:href => '#'}
+            %div.panel-footer
+              %span.pull-left Don't see a concert you attended? Login / Register and add it, join the Community.
+              %span.pull-right
+                %i.fa.fa-arrow-circle-right
+              %div.clearfix
         %div.panel.panel-yellow
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left and another
+          %a{:href => '#'}
+            %div.panel-footer
+              %span.pull-left View Details
+              %span.pull-right
+                %i.fa.fa-arrow-circle-right
+              %div.clearfix
