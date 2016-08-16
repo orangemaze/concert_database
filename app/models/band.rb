@@ -9,7 +9,7 @@ class Band < ActiveRecord::Base
     tour_name = ''
     if  tours.present?
       tours.order('start_date').each do |f|
-        tour_name = "#{tour_name.to_s} <li><a href='/tour/#{f.tours_id}'>#{f.tour_name.to_s} (#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</a></li>"
+        tour_name = "#{tour_name.to_s} <li><a href='/tour/#{f.tours_id}'>#{f.tour_name.to_s} <span class='text-muted'>(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span></a></li>"
       end
     end
     tour_name.html_safe

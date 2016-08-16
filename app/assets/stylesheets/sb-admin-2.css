@@ -362,3 +362,8 @@ table.dataTable thead .sorting:after {
     vertical-align: middle;
     float: none;
 }
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}

@@ -21,6 +21,10 @@ module ApplicationHelper
         good_date = (bad_date.to_s + '-01-01').to_s
       when /(\d{4})-00-00/
         good_date = (bad_date.to_s.gsub('-00-00', '-01-01')).to_s
+      when /0000-00-00/
+        good_date = '9999-12-31'.to_s
+      when //
+        good_date = '9999-12-31'.to_s
       else
         good_date = '<span style="color:red;font-size:20pt;">' +  bad_date.to_s + '</span>'
     end

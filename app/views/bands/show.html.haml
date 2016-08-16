@@ -6,7 +6,9 @@
       %div.panel-heading
         %div.row
           %div.col-xs-9.text-left
-            = "Details about #{@data_result.band_name} band"
+            %h3.vertical-align
+              %i.fa.fa-microphone.fa-5x
+              &nbsp;Details about #{@data_result.band_name} band
       %div.panel-footer
         %span.pull-left
           %table.table.table-striped.table-bordered
@@ -21,7 +23,7 @@
 
                 %br People that played with #{@data_result.band_name}
 
-                %br Associated bands that members of Kraftwerk have played with #{@data_result.band_name}
+                %br Associated bands that members of #{@data_result.band_name} have played with
 
         %div.clearfix
 
