@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'roios/:id' => 'roios#show'
   get 'bands' => 'bands#index'
   get 'bands/:id' => 'bands#show'
+  get 'tour' => 'tour#index'
+  get 'tour/:id' => 'tour#show'
   get 'countries' => 'countries#index'
   get 'countries/:id' => 'countries#show'
   get 'venues' => 'venues#index'

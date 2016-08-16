@@ -1,0 +1,8 @@
+%div.in#page-wrapper
+  %br
+  %table.table.table-striped.table-bordered
+    %tr
+      %td Tour
+    - @data_result.order('tour_name').each do |data_result|
+      %tr
+        %td= "#{data_result.tour_name.html_safe}".html_safe

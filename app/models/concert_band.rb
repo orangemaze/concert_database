@@ -6,6 +6,27 @@ class ConcertBand < ActiveRecord::Base
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :roios, :through => :concerts
 
+  def concert_date
+    concert_date = ''
+    if  concerts.order('concert_date').present?
+      concerts.each do |f|
+        concert_date = concert_date.to_s + f.concert_date.to_s
+      end
+    end
+    concert_date.html_safe
+  end
+
+  def concert_id
+    concert_id = ''
+    if  concerts.present?
+      concerts.each do |f|
+        concert_id = concert_id.to_s + f.concert_id.to_s
+      end
+    end
+    concert_id.html_safe
+  end
+
+
   def band_details
     band_name = ''
     if  bands.present?
@@ -18,13 +39,35 @@ class ConcertBand < ActiveRecord::Base
 
   def tour_name
     tour_name = ''
-    if  tours.present?
+    if  tours.order('start_date').present?
       tours.each do |f|
         tour_name = tour_name.to_s + f.tour_name.to_s
       end
     end
     tour_name.html_safe
   end
+
+  def tour_start_date
+    tour_start_date = ''
+    if  tours.present?
+      tours.each do |f|
+        tour_start_date = tour_start_date.to_s + f.start_date.to_s
+      end
+    end
+    tour_start_date.html_safe
+  end
+
+  def tour_end_date
+    tour_end_date = ''
+    if  tours.present?
+      tours.each do |f|
+        tour_end_date = tour_end_date.to_s + f.end_date.to_s
+      end
+    end
+    tour_end_date.html_safe
+  end
+
+
 
   def bands_members
     bands_members = ''
