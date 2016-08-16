@@ -15,14 +15,14 @@ module ImageHelper
     image_year = concert_date[0..3]
     case image_size
       when /small/
-        image_height = '30px'
-        image_width = '30px'
+        image_height = '30'
+        image_width = '30'
       when /normal/
-        image_height = '300px'
-        image_width = '300px'
+        image_height = '300'
+        image_width = '300'
       else
-        image_height = '30px'
-        image_width = '30px'
+        image_height = '30'
+        image_width = '30'
     end
     image_locaton = "<img src='http://www.concerts-db.com/art/#{image_year}/#{bootleg_id}/#{concert_date}-cov.jpg' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
 

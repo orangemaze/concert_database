@@ -6,9 +6,9 @@
       %div.panel-heading
         %div.row
           %div.col-xs-9.text-left
-            ="This Venue is located in #{@data_result.city_name}, #{@data_result.state_name}, #{@data_result.country_name}\n".html_safe
+            %h3= "This Venue is located in #{@data_result.city_name}, #{@data_result.state_name}, #{@data_result.country_name}\n".html_safe
             %p
-            %p Names with a start date of 9999-12-31 means these are 'un-official' names or common misspellings of the venue name.
+            %h6 Names with a start date of 9999-12-31 means these are 'un-official' names or common misspellings of the venue name.
       %div.panel-footer
         %span.pull-left
           %table.table.table-striped.table-bordered
@@ -16,6 +16,11 @@
               %td Names Associated with the Venue
               %td Venue Opened
               %td Venue Closed
+              %td Notes
+              %td Capacity
+              %td Address
+              %td Wiki
+              %td URL
             = "#{@data_result.venues_name}\n".html_safe
 
         %div.clearfix
