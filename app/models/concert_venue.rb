@@ -1,7 +1,7 @@
 class ConcertVenue < ActiveRecord::Base
   self.table_name = 'concert_venue'
   has_many :concerts, :primary_key => 'concert_id', :foreign_key => 'concert_id'
-  has_many :venues_names, :primary_key => 'venue_id', :foreign_key => 'venue_id'
+  has_many :venue_names, :primary_key => 'venue_id', :foreign_key => 'venue_id'
   has_one :venue, :primary_key => 'venue_id', :foreign_key => 'venue_id'
 
   def venue_name
@@ -12,8 +12,8 @@ class ConcertVenue < ActiveRecord::Base
       end
     end
 
-    if venues_names.present?
-      venues_names.each do |f|
+    if venue_names.present?
+      venue_names.each do |f|
         @venue_name = f.venue_name
         @start_date = ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)
         @end_date = ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)

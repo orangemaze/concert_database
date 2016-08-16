@@ -9,6 +9,11 @@ class ConcertsController < ApplicationController
     @data_result = Concert.find(params[:id])
   end
 
+  def roio_details
+    @data_result = Roio.find(params[:id])
+    render :layout => false
+  end
+
   private
   def set_index
     @data_result = Concert.find(params[:id])

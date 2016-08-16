@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'about' => 'index#about'
   get 'concerts' => 'concerts#index'
   get 'concerts/:id' => 'concerts#show'
+  get 'concerts/roio_details/:id' => 'concerts#roio_details'
   get 'roios' => 'roios#index'
   get 'roios/:id' => 'roios#show'
   get 'bands' => 'bands#index'
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
   get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
-  get 'testui/roio_details/:id' => 'testui#roio_details'
   get 'suggest' => 'suggest#index'
 
 
