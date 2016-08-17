@@ -19,11 +19,11 @@
                 %br
 
                 %br Years Active
-                %ul.list-unstyled
-                  %li= @data_result.band_concert_dates.html_safe
+                = @data_result.band_years_active.html_safe
 
-
+                %br
                 %br People that played with #{@data_result.band_name}
+                = @data_result.band_members_over_the_years.html_safe
 
                 %br Associated bands that members of #{@data_result.band_name} have played with
 
