@@ -1,22 +1,13 @@
-%div{:id => "page-wrapper"}
-  %div.row
-    %div.col-md-2
-    %div.col-lg-12
-      %h3.page-header Tour Details
-    <!-- /.col-lg-12 -->
-  <!-- /.row -->
-  %div.row
-    %div.col-lg-3.col-md-6
-      %div.panel.panel-info
-        %div.panel-heading
-          %div.row
-            %div.col-xs-3
-              %i.fa.fa-road.fa-5x
-            %div.col-xs-9.text-right
-              %h4 Tour
-              %div
-                = link_to(@data_result.tour_name, "/tour/#{@data_result.tours_id}", :class => 'text-white')
-        %a{:href => "#"}
-          %div.panel-footer
-            = "<ul class='list-unstyled'>\n#{@data_result.tour_dates}</ul>\n".html_safe
-            %div.clearfix
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-success"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left.vertical-align.inline
+            %i.fa.fa-road.fa-5x
+            = "<h3>&nbsp;Details about #{@data_result.tour_name} tour</h3>".html_safe
+      %div.panel-footer
+        = "<ul class='list-unstyled'>\n#{@data_result.tour_dates}</ul>\n".html_safe
+        %div.clearfix
