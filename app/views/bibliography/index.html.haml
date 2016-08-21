@@ -16,9 +16,11 @@
               %tr
                 %td Title
                 %td
+                %td
             %tbody
               - @data_result.each do |k|
                 %tr
                   %td= k.title.html_safe
                   %td= k.bibliography.html_safe
+                  %td= k.amazon_ad.html_safe
         %div.clearfix

@@ -24,3 +24,6 @@ ADD UNIQUE INDEX concert_band_uniqueness (concert_id, band_id, tours_id);
 
 ALTER IGNORE TABLE band_members
 ADD UNIQUE INDEX band_members_uniqueness (concert_id, band_id, member_id);
+
+remove from user
+address, phone, dailyMail, theme, menue
