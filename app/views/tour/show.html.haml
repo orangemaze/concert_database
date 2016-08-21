@@ -9,5 +9,12 @@
             %i.fa.fa-road.fa-5x
             = "<h3>&nbsp;Details about #{@data_result.tour_name} tour</h3>".html_safe
       %div.panel-footer
-        = "<ul class='list-unstyled'>\n#{@data_result.tour_dates}</ul>\n".html_safe
+        %div.table-responsive
+          %table.table.table-striped.table-bordered.table-hover.dataTables
+            %thead
+              %tr
+                %td Concert Date
+                %td Roio Name
+            %tbody
+              = @data_result.tour_dates.html_safe
         %div.clearfix

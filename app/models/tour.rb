@@ -8,10 +8,15 @@ class Tour < ActiveRecord::Base
     tour_dates = ''
     if  concert_bands.present?
       concert_bands.each do |f|
-        tour_dates = "#{tour_dates.to_s} <li><a href='/concerts/#{f.concert_id}'>#{f.concert_date}</a></li>\n"
+        tour_dates = "#{tour_dates.to_s} <tr><td><a href='/concerts/#{f.concert_id}'>#{f.concert_date}</a></td><td>#{bootleg_name}</td></tr>\n"
       end
     end
     tour_dates.html_safe
+  end
+
+  def bootleg_name
+    bootleg_name = ''
+
   end
 
 

@@ -1,0 +1,22 @@
+This file contains the changes that are made to the existing database so it will work with the new rails app.
+
+These changes need to be migrated to the PHP version as well, so both can co-exist.
+
+
+Table columns name changes
+bootlegs.type > bootlegs.roio_type
+bootlegs.format > bootlegs.roio_format
+
+concerts.type > concerts.concert_type
+concerts.concert_date > change to varchar(40)
+
+tours.start_date > change to varchar(30)
+tours.end_date > change to varchar(30)
+
+
+
+ALTER IGNORE TABLE concert_band
+ADD UNIQUE INDEX concert_band_uniqueness (concert_id, band_id, tours_id);
+
+ALTER IGNORE TABLE band_members
+ADD UNIQUE INDEX band_members_uniqueness (concert_id, band_id, member_id);
