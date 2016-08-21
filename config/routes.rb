@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
   get 'suggest' => 'suggest#index'
-
+  get 'bibliography' => 'bibliography#index'
+  get 'bibliography/:id' => 'bibliography#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

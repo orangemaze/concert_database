@@ -8,6 +8,10 @@ bootlegs.type > bootlegs.roio_type
 bootlegs.format > bootlegs.roio_format
 
 concerts.type > concerts.concert_type
+
+
+need to check on impact on below
+
 concerts.concert_date > change to varchar(40)
 
 tours.start_date > change to varchar(30)

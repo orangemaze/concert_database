@@ -4,7 +4,7 @@ class ConcertBand < ActiveRecord::Base
   has_many :bands, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :tours, :primary_key => 'tours_id', :foreign_key => 'tours_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
-  has_many :roios, :through => :concerts
+  has_many :roios, :through => :concerts, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
 
   def concert_date
     concert_date = ''
@@ -25,6 +25,17 @@ class ConcertBand < ActiveRecord::Base
     end
     concert_id.html_safe
   end
+
+  def bootleg_name
+    bootleg_name = ''
+    if  roios.present?
+      roios.each do |f|
+        bootleg_name = bootleg_name.to_s + f.bootleg_name.to_s + "<br>"
+      end
+    end
+    bootleg_name.html_safe
+  end
+
 
 
   def band_details
