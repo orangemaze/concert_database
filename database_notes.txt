@@ -18,6 +18,12 @@ tours.start_date > change to varchar(30)
 tours.end_date > change to varchar(30)
 
 
+update pfdbcom_db_dev.venue_names set start_date = '0001-01-01' where start_date = '0000-00-00'
+
+these need to be changed
+SELECT * FROM pfdbcom_db_dev.venue_names where start_date like '%-00-00';
+
+
 
 ALTER IGNORE TABLE concert_band
 ADD UNIQUE INDEX concert_band_uniqueness (concert_id, band_id, tours_id);
@@ -27,3 +33,4 @@ ADD UNIQUE INDEX band_members_uniqueness (concert_id, band_id, member_id);
 
 remove from user
 address, phone, dailyMail, theme, menue
+

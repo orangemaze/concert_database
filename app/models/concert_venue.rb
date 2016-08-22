@@ -11,7 +11,6 @@ class ConcertVenue < ActiveRecord::Base
         @concert_date = ApplicationController.helpers.fix_bad_dates_in_db(f.concert_date)
       end
     end
-
     if venue_names.present?
       venue_names.each do |f|
         @venue_name = f.venue_name

@@ -1,8 +1,27 @@
-%div.in#page-wrapper
-  %br
-  %table.table.table-striped.table-bordered
-    %tr
-      %td Venue
-    - @data_result.order('venue_name').each do |data_result|
-      %tr
-        %td= "#{data_result.venue_name.html_safe}".html_safe
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-green"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-book.fa-5x
+            = "<h3>&nbsp;Venue</h3>".html_safe
+            %p
+      %div.panel-footer
+        %div.table-responsive
+          %table.table.table-striped.table-bordered.table-hover.dataTables
+            %thead
+              %tr
+                %th Venue
+                %th Venue Opened
+                %th Venue Closed
+                %th Notes
+                %th Capacity
+                %th Address
+                %th Wiki
+                %th URL
+            %tbody
+              - @data_result.where("venue_name != '-'").order('venue_name').each do |data_result|
+                = "#{data_result.venues_name.html_safe}".html_safe

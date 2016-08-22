@@ -1,8 +1,21 @@
-%div.in#page-wrapper
-  %br
-  %table.table.table-striped.table-bordered
-    %tr
-      %td Bands
-    - @data_result.order('band_name').each do |data_result|
-      %tr
-        %td= link_to("#{data_result.band_name.html_safe}", "bands/#{data_result.band_id.to_s.html_safe}")
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-book.fa-5x
+            = "<h3>&nbsp;Bands</h3>".html_safe
+            %p
+      %div.panel-footer
+        %div.table-responsive
+          %table.table.table-striped.table-bordered.table-hover.dataTables
+            %thead
+              %tr
+                %td Bands
+            %tbody
+              - @data_result.order('band_name').each do |data_result|
+                %tr
+                  %td= link_to("#{data_result.band_name.html_safe}", "bands/#{data_result.band_id.to_s.html_safe}")

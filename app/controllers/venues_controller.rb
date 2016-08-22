@@ -2,7 +2,7 @@ class VenuesController < ApplicationController
   layout 'testui'
   def index
     puts 'Roios'.blue
-    @data_result = Venue.all.limit(200) # commented for testing
+    @data_result = Venue.all #.limit(200) # commented for testing
   end
 
   def show

@@ -30,7 +30,7 @@
               %i.fa.fa-ticket.fa-5x
             %div.col-xs-9.text-right
               %h4 Venue
-              %div= @data_result.venue_name
+              %div= @data_result.venue_name.html_safe
         %a{:href => "/venues/#{@data_result.venue_id}"}
           %div.panel-footer
             %span.pull-left View Details
