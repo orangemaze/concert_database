@@ -3,10 +3,10 @@
   = if @bibliography.errors.any?
     %div#error_explanation
       %h2
-        = "#{pluralize(@appointment.errors.count, 'error')} prohibited this appointment from being saved"
+        = "#{pluralize(@bibliography.errors.count, 'error')} prohibited this appointment from being saved"
 
       %ul
-        = @appointment.errors.full_messages.each do |msg|
+        = @bibliography.errors.full_messages.each do |msg|
           %li= msg
 
 
@@ -16,8 +16,8 @@
       = f.text_field :title, :class => 'form-control', :value => :title
 
     %div.form-group
-      = f.label :bibliography, :class => 'sr-only'
-      = f.text_field :bibliography, :class => 'form-control', :value => :bibliography
+      = f.label :bibliography_text, :class => 'sr-only'
+      = f.text_field :bibliography_text, :class => 'form-control', :value => :bibliography
 
     %div.form-group
       = f.label :amazon_ad, :class => 'sr-only'

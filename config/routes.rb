@@ -27,8 +27,8 @@ Rails.application.routes.draw do
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
   get 'suggest' => 'suggest#index'
+  get 'bibliography/new' => 'bibliography#new'
   get 'bibliography' => 'bibliography#index'
-  match 'bibliography/new' => 'bibliography#new', :via => [:get, :post]
   get 'bibliography/:id' => 'bibliography#show'
 
 

@@ -21,6 +21,6 @@
               - @data_result.each do |k|
                 %tr
                   %td= k.title.html_safe
-                  %td= k.bibliography.present? ? k.bibliography.html_safe : ''
+                  %td= k.bibliography_text.present? ? k.bibliography_text.html_safe : ''
                   %td= k.amazon_ad.present? ? k.amazon_ad.html_safe : ''
         %div.clearfix

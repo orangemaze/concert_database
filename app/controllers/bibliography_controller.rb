@@ -9,7 +9,8 @@ class BibliographyController < ApplicationController
   end
 
   def new
-    @bibliography = Bibliography.new(bibliography_params)
+    @bibliography = Bibliography.new
+    puts "new?".blue
   end
 
   def edit
@@ -18,6 +19,8 @@ class BibliographyController < ApplicationController
 
   def create
     @bibliography = Bibliography.new(bibliography_params)
+    puts "create?".blue
+    puts @bibliography
 
     respond_to do |format|
       if @bibliography.save
@@ -33,9 +36,7 @@ class BibliographyController < ApplicationController
   private
 
   def bibliography_params
-    params.permit(:title, :bibliography, :user_id, :time_entered, :amazon_ad)
+    params.require(:bibliography).permit(:title, :bibliography_text, :user_id, :time_entered, :amazon_ad)
   end
-
-
 
 end
