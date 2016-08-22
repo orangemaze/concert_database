@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  resources :concerts
-  resources :venue
-  resources :venue_name
+
 
   root 'index#index'
   get 'index' => 'index#index'
@@ -30,7 +28,15 @@ Rails.application.routes.draw do
   get 'testui/:id' => 'testui#show'
   get 'suggest' => 'suggest#index'
   get 'bibliography' => 'bibliography#index'
+  match 'bibliography/new' => 'bibliography#new', :via => [:get, :post]
   get 'bibliography/:id' => 'bibliography#show'
+
+
+  resources :concerts
+  resources :venue
+  resources :venue_name
+  resources :bibliography
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,29 @@
+= form_for(:bibliography, :url => url_for(:controller => 'bibliography', :action => 'create'), :html => { :class => 'form-inline'}) do |f|
+
+  = if @bibliography.errors.any?
+    %div#error_explanation
+      %h2
+        = "#{pluralize(@appointment.errors.count, 'error')} prohibited this appointment from being saved"
+
+      %ul
+        = @appointment.errors.full_messages.each do |msg|
+          %li= msg
+
+
+  %div.form-group
+    %div.form-group
+      = f.label :title, :class => 'sr-only'
+      = f.text_field :title, :class => 'form-control', :value => :title
+
+    %div.form-group
+      = f.label :bibliography, :class => 'sr-only'
+      = f.text_field :bibliography, :class => 'form-control', :value => :bibliography
+
+    %div.form-group
+      = f.label :amazon_ad, :class => 'sr-only'
+      = f.text_field :amazon_ad, :class => 'form-control', :value => :amazon_ad
+
+
+
+    %div.actions
+      = f.submit 'submit', :tabindex => '20'
