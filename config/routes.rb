@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   get 'bibliography' => 'bibliography#index'
   get 'bibliography/:id' => 'bibliography#show'
 
+  get '/login' => 'login#index'
+
+
 
   resources :concerts
   resources :venue

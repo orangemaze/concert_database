@@ -36,8 +36,8 @@
               %div.col-xs-9.text-left
                 = "There are xxx concerts in the database within 50 miles from #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
                 =# "IP: #{request.remote_ip.to_s}"
-                =# "Lat: #{get_lat_lon_from_ip()[0]}"
-                =# "Lng: #{get_lat_lon_from_ip()[1]}"
+                = "Lat: #{get_lat_lon_from_ip()[0]}"
+                = "Lng: #{get_lat_lon_from_ip()[1]}"
                 =# "Location: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
                 =# "Time Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
           %a{:href => '#'}

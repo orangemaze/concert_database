@@ -8,6 +8,12 @@ body {
     background-color: #f8f8f8;
 }
 
+.navbar-default {
+    background-color: #000000;
+    border-color: #000000;
+}
+
+
 #wrapper {
     width: 100%;
 }

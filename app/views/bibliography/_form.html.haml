@@ -13,15 +13,15 @@
   %div.form-group
     %div.form-group
       = f.label :title, :class => 'sr-only'
-      = f.text_field :title, :class => 'form-control', :value => :title
+      = f.text_area :title, :class => 'form-control', :value => :title, :size =>  "30x10"
 
     %div.form-group
       = f.label :bibliography_text, :class => 'sr-only'
-      = f.text_field :bibliography_text, :class => 'form-control', :value => :bibliography
+      = f.text_area :bibliography_text, :class => 'form-control', :size => "30x10", :value => "<b>Title</b>     by Author<br>    Published by: <i>publisher</i><br>    ISBN: <i>isbn</i><br>"
 
     %div.form-group
       = f.label :amazon_ad, :class => 'sr-only'
-      = f.text_field :amazon_ad, :class => 'form-control', :value => :amazon_ad
+      = f.text_area :amazon_ad, :class => 'form-control', :value => '', :size => "30x10"
 
 
 

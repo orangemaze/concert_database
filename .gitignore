@@ -1,3 +1,4 @@
 *.yml
 /log/*.log
 *.pid
+/app/controllers/login_controller.rb

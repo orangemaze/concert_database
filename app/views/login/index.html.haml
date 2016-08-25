@@ -1,0 +1,15 @@
+%div.row
+    %div.col-md-4.col-md-offset-4
+        %div.login-panel.panel.panel-default
+            %div.panel-heading
+                %h3.panel-title Please Sign In
+            %div.panel-body
+                %form{:role =>"form"}
+                    %fieldset
+                        %div.form-group
+                            %input.form-control{:placeholder => "E-mail", :name => "email", :type => "email", :autofocus}
+                        %div.form-group
+                            %input.form-control{:placeholder => "Password", :name => "password", :type => "password",  :value => ""}
+                        %div.checkbox
+                            %label
+                                %input{:name => "remember", :type => "checkbox", :value => "Remember Me"} Remember Me
