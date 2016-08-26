@@ -4,6 +4,35 @@ $(function() {
 
 });
 
+
+$( "#login" ).click(function() {
+    alert('here');
+    var username = $("#username").val();
+    var password = $("#password").val();
+    if ($("#remember_me").is(':checked')){
+        var remember_me = 'yes';
+    }
+    else{
+        var remember_me = 'no';
+    }
+
+    $.get( "/login/set_cookies?username="+username+"&password="+password+"&remember_me="+remember_me, function( data ) {
+        location.reload();
+        // $( "#sign_in" ).html( data );
+        // $( "#sign_up" ).html("");
+        // $( "#sign_in" ).removeClass( "open" )
+        // alert( "Load was performed." );
+    });
+});
+
+$( "#logout" ).click(function() {
+    $.get( "/login/delete_cookies", function( data ) {
+        location.reload();
+        // $( "#sign_in" ).html( data );
+        // alert( "Load was performed." );
+    });
+});
+
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size

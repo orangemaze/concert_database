@@ -32,7 +32,10 @@ Rails.application.routes.draw do
   get 'bibliography/:id' => 'bibliography#show'
 
   get '/login' => 'login#index'
-
+  get 'login/delete_cookies' => 'login#delete_cookies'
+  get 'login/set_cookies' => 'login#set_cookies'
+  get 'login/check_cookies' => 'login#check_cookies'
+  get 'login/show_cookies' => 'login#show_cookies'
 
 
   resources :concerts
