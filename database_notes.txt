@@ -34,3 +34,12 @@ ADD UNIQUE INDEX band_members_uniqueness (concert_id, band_id, member_id);
 remove from user
 address, phone, dailyMail, theme, menue
 
+
+
+rails generate scaffold album album_name:text album_review:text album_amazon_ad:text
+
+rails generate scaffold album_tour album_id:int tour_id:int
+
+
+
+rails generate scaffold add_release_year_to_albums release_year:string

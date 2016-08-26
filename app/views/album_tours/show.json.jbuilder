@@ -1,0 +1,1 @@
+json.partial! "album_tours/album_tour", album_tour: @album_tour

@@ -2,12 +2,12 @@
   %div.col-md-2
   %div.col-md-6
 
-    %div{:class => "panel panel-success"}
+    %div{:class => 'panel panel-success'}
       %div.panel-heading
         %div.row
           %div.col-xs-9.text-left.vertical-align.inline
             %i.fa.fa-road.fa-5x
-            = "<h3>&nbsp;Details about #{@data_result.tour_name} tour</h3>".html_safe
+            = "<h3>&nbsp;Details about #{@data_result.tour_name}</h3>".html_safe
       %div.panel-footer
         %div.table-responsive
           %table.table.table-striped.table-bordered.table-hover.dataTables
@@ -18,3 +18,17 @@
             %tbody
               = @data_result.tour_dates.html_safe
         %div.clearfix
+
+  %div.col-md-4
+    %div{:class => 'panel panel-success'}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left.vertical-align.inline
+            %h3
+              %span.glyphicon.glyphicon-cd{:aria_hidden => 'true'}
+              Related Official Releases
+      %div.panel-footer
+        %div.table-responsive
+          %table.table.table-striped.table-bordered.table-hover
+            %tbody
+              = @data_result.official_releases_info.html_safe

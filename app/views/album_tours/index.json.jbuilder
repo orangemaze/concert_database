@@ -1,0 +1,1 @@
+json.array! @album_tours, partial: 'album_tours/album_tour', as: :album_tour

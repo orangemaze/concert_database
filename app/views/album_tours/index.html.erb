@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Album Tours</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Album</th>
+      <th>Tour</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @album_tours.each do |album_tour| %>
+      <tr>
+        <td><%= album_tour.album_id %></td>
+        <td><%= album_tour.tour_id %></td>
+        <td><%= link_to 'Show', album_tour %></td>
+        <td><%= link_to 'Edit', edit_album_tour_path(album_tour) %></td>
+        <td><%= link_to 'Destroy', album_tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album tour', new_album_tour_path %>

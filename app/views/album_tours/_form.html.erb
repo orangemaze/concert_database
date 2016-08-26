@@ -1,0 +1,25 @@
+<%= form_for(@album_tour) do |f| %>
+  <% if @album_tour.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album_tour.errors.count, "error") %> prohibited this album_tour from being saved:</h2>
+
+      <ul>
+      <% @album_tour.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :album_id %><br>
+    <%= f.text_field :album_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tour_id %><br>
+    <%= f.text_field :tour_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

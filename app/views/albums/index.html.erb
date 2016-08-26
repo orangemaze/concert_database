@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Albums</h1>
+
+<table class="table table-striped table-bordered table-hover dataTables">
+  <thead>
+    <tr>
+      <th>Album name</th>
+      <th>Album review</th>
+      <th>Album amazon ad</th>
+      <th>Album release year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.album_name %></td>
+        <td><%= album.album_review %></td>
+        <td><%= album.album_amazon_ad.html_safe %></td>
+        <td><%= album.release_year %></td>
+        <td><%= link_to 'Show', album %></td>
+        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to 'Destroy', album, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>
