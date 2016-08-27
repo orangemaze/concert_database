@@ -18,7 +18,7 @@
         <td><%= album_tour.tour_id %></td>
         <td><%= link_to 'Show', album_tour %></td>
         <td><%= link_to 'Edit', edit_album_tour_path(album_tour) %></td>
-        <td><%= link_to 'Destroy', album_tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', album_tour, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

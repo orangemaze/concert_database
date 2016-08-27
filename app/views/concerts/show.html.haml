@@ -99,7 +99,7 @@
         <!-- /.panel-heading -->
         %div.panel-body
           %ul.timeline
-            = sanitize @data_result.get_ui_comments
+            = @data_result.get_ui_comments.html_safe
         <!-- /.panel-body -->
       <!-- /.panel -->
     <!-- /.col-lg-8 -->

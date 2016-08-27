@@ -2,9 +2,12 @@
 
 <h1>Listing Albums</h1>
 
+<%= link_to 'New Album', new_album_path %>
+
 <table class="table table-striped table-bordered table-hover dataTables">
   <thead>
     <tr>
+      <th>Album id</th>
       <th>Album name</th>
       <th>Album review</th>
       <th>Album amazon ad</th>
@@ -14,8 +17,9 @@
   </thead>
 
   <tbody>
-    <% @albums.each do |album| %>
+    <% @albums.order('release_year').each do |album| %>
       <tr>
+        <td><%= album.id %></td>
         <td><%= album.album_name %></td>
         <td><%= album.album_review %></td>
         <td><%= album.album_amazon_ad.html_safe %></td>
