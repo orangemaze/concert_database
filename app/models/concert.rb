@@ -109,7 +109,7 @@ class Concert < ActiveRecord::Base
               </p>
             </div>
             <div class='timeline-body'>
-              <p>#{f.review.html_safe}</p>
+              <p>#{f.review.gsub(/&lt;/, '<').gsub(/&gt;/, '>')}</p>
             </div>
           </div>
         </li>"

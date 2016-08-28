@@ -16,7 +16,7 @@ $( "#login" ).click(function() {
         var remember_me = 'no';
     }
 
-    $.get( "/login/set_cookies?username="+username+"&password="+password+"&remember_me="+remember_me, function( data ) {
+    $.get( "/login/login?username="+username+"&password="+password+"&remember_me="+remember_me, function( data ) {
         location.reload();
         // $( "#sign_in" ).html( data );
         // $( "#sign_up" ).html("");
@@ -26,7 +26,8 @@ $( "#login" ).click(function() {
 });
 
 $( "#logout" ).click(function() {
-    $.get( "/login/delete_cookies", function( data ) {
+    $.get( "/login/logout", function( data ) {
+        alert('logged out');
         location.reload();
         // $( "#sign_in" ).html( data );
         // alert( "Load was performed." );
