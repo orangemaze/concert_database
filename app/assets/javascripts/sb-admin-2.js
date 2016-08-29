@@ -6,9 +6,9 @@ $(function() {
 
 
 $( "#login" ).click(function() {
-    alert('here');
     var username = $("#username").val();
     var password = $("#password").val();
+    var from_what_page = $("#from_what_page").val();
     if ($("#remember_me").is(':checked')){
         var remember_me = 'yes';
     }
@@ -16,19 +16,15 @@ $( "#login" ).click(function() {
         var remember_me = 'no';
     }
 
-    $.get( "/login/login?username="+username+"&password="+password+"&remember_me="+remember_me, function( data ) {
-        location.reload();
-        // $( "#sign_in" ).html( data );
-        // $( "#sign_up" ).html("");
-        // $( "#sign_in" ).removeClass( "open" )
-        // alert( "Load was performed." );
+    $.get( "/login/login?username="+username+"&password="+password+"&remember_me="+remember_me+"&from_what_page="+from_what_page, function( data ) {
+        // alert(data);
+        window.open(data,"_self");
     });
 });
 
 $( "#logout" ).click(function() {
     $.get( "/login/logout", function( data ) {
-        alert('logged out');
-        location.reload();
+        // alert('logged out');
         // $( "#sign_in" ).html( data );
         // alert( "Load was performed." );
     });

@@ -1,5 +1,5 @@
 class AlbumToursController < ApplicationController
-  before_action :set_album_tour, only: [:show, :edit, :update, :destroy]
+  before_action :set_album_tour, :only => [:show, :edit, :update, :destroy]
 
   # GET /album_tours
   # GET /album_tours.json
@@ -28,11 +28,11 @@ class AlbumToursController < ApplicationController
 
     respond_to do |format|
       if @album_tour.save
-        format.html { redirect_to @album_tour, notice: 'Album tour was successfully created.' }
-        format.json { render :show, status: :created, location: @album_tour }
+        format.html { redirect_to @album_tour, :notice => 'Album tour was successfully created.' }
+        format.json { render :show, :status => :created, :location => @album_tour }
       else
         format.html { render :new }
-        format.json { render json: @album_tour.errors, status: :unprocessable_entity }
+        format.json { render :json => @album_tour.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -42,11 +42,11 @@ class AlbumToursController < ApplicationController
   def update
     respond_to do |format|
       if @album_tour.update(album_tour_params)
-        format.html { redirect_to @album_tour, notice: 'Album tour was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album_tour }
+        format.html { redirect_to @album_tour, :notice => 'Album tour was successfully updated.' }
+        format.json { render :show, :status => :ok, :location => @album_tour }
       else
         format.html { render :edit }
-        format.json { render json: @album_tour.errors, status: :unprocessable_entity }
+        format.json { render :json => @album_tour.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -56,7 +56,7 @@ class AlbumToursController < ApplicationController
   def destroy
     @album_tour.destroy
     respond_to do |format|
-      format.html { redirect_to album_tours_url, notice: 'Album tour was successfully destroyed.' }
+      format.html { redirect_to album_tours_url, :notice => 'Album tour was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -13,5 +13,6 @@
             %div.checkbox
               %label
                 %input{:name => "remember", :id => 'remember_me', :type => "checkbox", :value => "Remember Me"} Remember Me
+                %input{:name => "from_what_page", :id => "from_what_page", :type => "hidden", :value => URI(request.referer).path}
             %div.form-group
               %input.btn.btn-primary#login{:style => "clear: left; width: 100%; height: 32px; font-size: 13px;", :type => "button", :name => "commit", :value => "Sign In"}
