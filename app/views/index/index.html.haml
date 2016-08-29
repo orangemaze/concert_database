@@ -52,7 +52,13 @@
               %div.col-xs-9.text-left and another
           %a{:href => '#'}
             %div.panel-footer
-              %span.pull-left View Details
-              %span.pull-right
-                %i.fa.fa-arrow-circle-right
+              - if session[:admin].present?
+                - if session[:admin].to_i < 5
+                  = "Admin Level #{session[:admin]}"
+
+              - if @moderator_band_names.present?
+                %br Moderator of the following bands
+                %ul
+                - @moderator_band_names.each do |k, v|
+                  %li= "#{v}"
               %div.clearfix

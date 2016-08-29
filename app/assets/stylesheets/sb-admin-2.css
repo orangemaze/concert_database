@@ -54,6 +54,12 @@ body {
     min-height: 50px;
 }
 
+.reverse {
+    padding: 15px;
+    min-height: 50px;
+    color: #fff;
+}
+
 .navbar-top-links .dropdown-menu li {
     display: block;
 }

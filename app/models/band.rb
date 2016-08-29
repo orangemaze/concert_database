@@ -6,18 +6,34 @@ class Band < ActiveRecord::Base
   has_many :tours, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :concerts, :through => :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :members, :through => :band_members, :primary_key => 'band_id', :foreign_key => 'band_id'
+  has_many :moderators, :foreign_key => 'band_id', :primary_key => 'band_id'
+
+
+
 
   def tour_name
     tour_name = ''
     if  tours.present?
       tours.order('start_date').each do |f|
         tour_name = "#{tour_name.to_s} <li><a href='/tour/#{f.tours_id}'>#{f.tour_name.to_s} <span class='text-muted'>
-(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span></a></li>"
+(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span></a> </li>"
       end
     end
     tour_name.html_safe
   end
 
+  def is_moderator
+    is_moderator = ''
+    puts 'mod squad'.green
+    puts moderators.inspect.blue
+    if moderators.present?
+      puts = ' --- mods --- '
+      moderators.each do |k, v|
+        is_moderator = is_moderator + k.to_s + " / " + v.to_s
+      end
+    end
+    is_moderator
+  end
 
   def band_years_active
     concert_dates = Hash.new
@@ -88,13 +104,13 @@ class Band < ActiveRecord::Base
 
     tag_id = [] # array
     tags = {}  # hash
-    puts "here1".blue
+    # puts "here1".blue
     # members tag cloud
     if members.present?
       members.select("count(band_members.concert_id) as member_count, CONCAT(members.member_fname,' ',members.member_lname) as full_name,  members.member_id as member_id").where('band_members.member_id = members.member_id').group('member_id').order('members.member_lname').each do |f|
-        puts f.member_count.to_s.red
-        puts f.full_name.to_s.red
-        puts f.member_id.to_s.red
+        # puts f.member_count.to_s.red
+        # puts f.full_name.to_s.red
+        # puts f.member_id.to_s.red
 
         tag_count = f.member_count
         tag_name = f.full_name.to_s
@@ -105,7 +121,7 @@ class Band < ActiveRecord::Base
 
 
 
-    puts 'here2'.blue
+    # puts 'here2'.blue
     @max_size = 36
     @min_size = 9
     @max_qty = tags.max_by{|k,v| v}
@@ -128,12 +144,12 @@ class Band < ActiveRecord::Base
       @spread = 1
     end
 
-    puts "are we here".red
+    # puts "are we here".red
 
     @step = (@max_size.to_f - @min_size.to_f) / (@spread.to_f)
     if tags.empty?
       @here = 'here1'
-      puts "empty".red
+      # puts "empty".red
     else
       puts 'full'.red
       tag_counting = 0
@@ -145,7 +161,7 @@ class Band < ActiveRecord::Base
             @tag_return_members = @tag_return_members.to_s + ' <strong>&middot;</strong> '
           end
 
-          puts 'here'.red
+          # puts 'here'.red
           if v.to_f > 1
             @items = 'listings'
           else

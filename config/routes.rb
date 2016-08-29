@@ -37,12 +37,16 @@ Rails.application.routes.draw do
   get 'login/check_cookies' => 'login#check_cookies'
   get 'login/show_cookies' => 'login#show_cookies'
 
+  #admin type functions
+  get 'albums' => 'albums#index'
+
+
 
   resources :concerts
   resources :venue
   resources :venue_name
   resources :bibliography
-
+  resources :albums
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

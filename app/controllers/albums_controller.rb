@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, :only => [:show, :edit, :update, :destroy]
-
+  layout 'testui'
   # GET /albums
   # GET /albums.json
   def index
@@ -14,11 +14,28 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   def new
-    @album = Album.new
+    if session[:admin].present?
+      if session[:admin].to_i < 5
+        @album = Album.new
+      else
+        redirect_to("/index")
+      end
+    else
+      redirect_to("/index")
+    end
   end
 
   # GET /albums/1/edit
   def edit
+    if session[:admin].present?
+      if session[:admin].to_i < 5
+        # nothing
+      else
+        redirect_to("/index")
+      end
+    else
+      redirect_to("/index")
+    end
   end
 
   # POST /albums

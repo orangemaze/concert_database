@@ -26,8 +26,8 @@
 
     <% else %>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-user fa-fw"></i> <%= cookies[:user_name] %> <i class="fa fa-caret-down"></i>
+          <a class="reverse dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class='reverse'><i class="fa fa-user fa-fw"></i> <%= cookies[:user_name] %> <i class="fa fa-caret-down"></i></span>
           </a>
           <ul class="dropdown-menu dropdown-user">
             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>

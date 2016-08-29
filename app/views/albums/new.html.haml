@@ -1,0 +1,16 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %span.glyphicon.glyphicon-cd{:aria_hidden => "true"}
+              New Album
+            %p
+      %div.panel-footer
+        = render 'form'
+
+        = link_to 'Back', albums_path
