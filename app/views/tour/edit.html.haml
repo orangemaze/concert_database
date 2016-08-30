@@ -1,0 +1,18 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-success"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-road.fa-5x
+            %h2 Editing Tour
+            %p
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Show', @tour
+        |
+        = link_to 'Back', tour_path

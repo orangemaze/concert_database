@@ -22,7 +22,7 @@
                     %li
                       = v.html_safe
                       - if @is_moderator == 'y'
-                        %a.admin_edit{:href => "/tours/edit/#{k}"}
+                        %a.admin_edit{:href => "/tour/#{k}/edit"}
                           %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
                 %br
 

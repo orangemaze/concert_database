@@ -6,22 +6,8 @@
       %div.panel-heading
         %div.row
           %div.col-xs-10.text-left.vertical-align.inline
-            %i.fa.fa-book.fa-5x
-            = "<h3>&nbsp;Venue</h3>".html_safe
+            %i.fa.fa-ticket.fa-5x
+            %h3 &nbsp;Venues
             %p
       %div.panel-footer
-        %div.table-responsive
-          %table.table.table-striped.table-bordered.table-hover.dataTables
-            %thead
-              %tr
-                %th Venue
-                %th Venue Opened
-                %th Venue Closed
-                %th Notes
-                %th Capacity
-                %th Address
-                %th Wiki
-                %th URL
-            %tbody
-              - @data_result.where("venue_name != '-'").order('venue_name').each do |data_result|
-                = "#{data_result.venues_name.html_safe}".html_safe
+        %p To select a venue, choose 'Venues' from the 'Action' drop down, and begin to enter a venue name. The site uses a search suggest feature wherever possible.

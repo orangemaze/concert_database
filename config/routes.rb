@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   resources :bibliography
   resources :albums
   resources :bands
+  resources :tour
+  resources :user
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

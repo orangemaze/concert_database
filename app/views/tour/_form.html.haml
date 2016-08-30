@@ -1,0 +1,26 @@
+= form_for(@tour) do |f|
+  - if @tour.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@tour.errors.count, "error")} prohibited this album from being saved:"
+
+      %ul
+      - @tour.errors.full_messages.each do |message|
+        %li= message
+
+  %div.field
+    = f.label :tour_name
+    = f.text_area :tour_name
+  %div.field
+    = f.label :start_date
+    = f.text_field :start_date, :class => 'datepicker'
+  %div.field
+    = f.label :end_date
+    = f.text_field :end_date, :class => 'datepicker'
+  %div.field
+    = f.label :band_id
+    = f.text_area :band_id
+  %div.field
+    = f.label :total_shows
+    = f.text_area :total_shows
+  %div.actions
+    = f.submit

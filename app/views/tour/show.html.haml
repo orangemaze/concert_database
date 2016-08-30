@@ -7,7 +7,11 @@
         %div.row
           %div.col-xs-9.text-left.vertical-align.inline
             %i.fa.fa-road.fa-5x
-            = "<h3>&nbsp;Details about #{@data_result.tour_name}</h3>".html_safe
+            %h3= "&nbsp;Details about #{@data_result.tour_name} &nbsp;".html_safe
+            - if @is_moderator == 'y'
+              %a.admin_edit{:href => "/tour/#{@data_result.tours_id}/edit"}
+                %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
+
       %div.panel-footer
         %div.table-responsive
           %table.table.table-striped.table-bordered.table-hover.dataTables

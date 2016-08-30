@@ -2,7 +2,7 @@ class ConcertsController < ApplicationController
   layout 'testui'
   def index
     puts 'Concerts'.blue
-    @data_result = Concert.all.limit(20) # commented for testing
+    # @data_result = Concert.all.limit(20) # commented for testing
   end
 
   def show

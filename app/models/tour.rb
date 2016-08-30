@@ -16,6 +16,17 @@ class Tour < ActiveRecord::Base
     tour_dates.html_safe
   end
 
+  def band_name
+    band_name = ''
+    if bands.present?
+      bands.each do |f|
+        band_name = band_name + f.band_name.to_s
+      end
+    end
+    band_name.html_safe
+  end
+
+
   def official_releases_info
     official_releases_info = ''
     if albums.present?
