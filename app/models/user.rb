@@ -16,6 +16,4 @@ class User < ActiveRecord::Base
     band_name.html_safe
   end
 
-
-
 end

@@ -7,32 +7,28 @@ class Band < ActiveRecord::Base
   has_many :concerts, :through => :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :members, :through => :band_members, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :moderators, :foreign_key => 'band_id', :primary_key => 'band_id'
+  has_many :users, :through => :moderators, :primary_key => 'user_id', :foreign_key => 'user_id'
 
-
+  cattr_accessor :current_user
 
 
   def tour_name
-    tour_name = ''
+    tour_name = Hash.new
     if  tours.present?
       tours.order('start_date').each do |f|
-        tour_name = "#{tour_name.to_s} <li><a href='/tour/#{f.tours_id}'>#{f.tour_name.to_s} <span class='text-muted'>
-(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span></a> </li>"
+        tour_name[f.tours_id] = "<a href='/tour/#{f.tours_id}'>#{f.tour_name.to_s} <span class='text-muted'>
+(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span></a>"
       end
     end
-    tour_name.html_safe
+    tour_name
   end
 
   def is_moderator
-    is_moderator = ''
-    puts 'mod squad'.green
-    puts moderators.inspect.blue
-    if moderators.present?
-      puts = ' --- mods --- '
-      moderators.each do |k, v|
-        is_moderator = is_moderator + k.to_s + " / " + v.to_s
-      end
-    end
-    is_moderator
+    puts ' == mod squad =='.blue
+    puts band_id.to_s.red
+    puts Band.inspect.to_s.blue
+    data_result = Moderator.where("md5(user_id) = ? and band_id = ?", Band.current_user, band_id)
+    puts data_result.inspect.blue
   end
 
   def band_years_active

@@ -8,14 +8,19 @@
           %div.col-xs-9.text-left.vertical-align.inline
             %i.fa.fa-microphone.fa-5x
             %h3= "&nbsp;Details about #{@data_result.band_name} &nbsp;".html_safe
-            = @is_moderator
       %div.panel-footer
         %span.pull-left
           %table.table.table-striped.table-bordered
             %tr
               %td
                 Tour Information
-                %ul.list-unstyled #{@data_result.tour_name}
+                %ul.list-unstyled
+                  - @data_result.tour_name.each do |k, v|
+                    %li
+                      = v.html_safe
+                      - if @is_moderator == 'y'
+                        %a{:href => "/tours/edit/#{k}"}
+                          %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
                 %br
 
                 %br Years Active
