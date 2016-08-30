@@ -8,6 +8,9 @@
           %div.col-xs-9.text-left.vertical-align.inline
             %i.fa.fa-microphone.fa-5x
             %h3= "&nbsp;Details about #{@data_result.band_name} &nbsp;".html_safe
+            - if @is_moderator == 'y'
+              %a{:href => "/bands/#{@data_result.band_id}/edit"}
+                %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
       %div.panel-footer
         %span.pull-left
           %table.table.table-striped.table-bordered

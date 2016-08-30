@@ -43,10 +43,11 @@ Rails.application.routes.draw do
 
 
   resources :concerts
-  resources :venue
+  resources :venues
   resources :venue_name
   resources :bibliography
   resources :albums
+  resources :bands
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
