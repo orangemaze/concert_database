@@ -9,9 +9,6 @@ class Band < ActiveRecord::Base
   has_many :moderators, :foreign_key => 'band_id', :primary_key => 'band_id'
   has_many :users, :through => :moderators, :primary_key => 'user_id', :foreign_key => 'user_id'
 
-  cattr_accessor :current_user
-
-
   def tour_name
     tour_name = Hash.new
     if  tours.present?

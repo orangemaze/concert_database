@@ -51,6 +51,11 @@
 <!-- Custom Theme JavaScript -->
 <%= javascript_include_tag 'sb-admin-2' %>
 <script>
+    $("#admin_edit_control").click(function(){
+        $(".admin_edit").toggle();
+        $( "#admin_edit_control" ).toggleClass( "reverse" );
+    });
+
     $(".roio-details").click(function(){
         var bootleg_id = $(this).attr("id")
         $.get("roio_details/"+bootleg_id, function(data, status){

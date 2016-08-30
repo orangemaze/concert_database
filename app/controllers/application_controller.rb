@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user, :am_i_moderator
 
-  puts '===  application controller ==='.blue
+  puts '=== application controller ==='.blue
 
   def authenticate_user
     if cookies[:user_id].present?

@@ -9,7 +9,7 @@
             %i.fa.fa-microphone.fa-5x
             %h3= "&nbsp;Details about #{@data_result.band_name} &nbsp;".html_safe
             - if @is_moderator == 'y'
-              %a{:href => "/bands/#{@data_result.band_id}/edit"}
+              %a.admin_edit{:href => "/bands/#{@data_result.band_id}/edit"}
                 %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
       %div.panel-footer
         %span.pull-left
@@ -22,7 +22,7 @@
                     %li
                       = v.html_safe
                       - if @is_moderator == 'y'
-                        %a{:href => "/tours/edit/#{k}"}
+                        %a.admin_edit{:href => "/tours/edit/#{k}"}
                           %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
                 %br
 
@@ -31,7 +31,7 @@
 
                 %br
                 %br People that played with #{@data_result.band_name}
-                = @data_result.band_members_over_the_years.present? ? @data_result.band_members_over_the_years.html_safe : ''
+                = @data_result.band_members_over_the_years.present? ? (@data_result.band_members_over_the_years).html_safe : ''
 
                 %br Associated bands that members of #{@data_result.band_name} have played with
 

@@ -12,6 +12,9 @@
   <!-- /.navbar-header -->
   <ul class="nav navbar-top-links navbar-right">
     <!-- /.dropdown -->
+    <% if @is_moderator == 'y' %>
+        <li><i class="fa fa-pencil-square-o reverse" id="admin_edit_control" aria-hidden="true"></i></li>
+    <% end %>
     <% if cookies[:user_id].blank?  %>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">

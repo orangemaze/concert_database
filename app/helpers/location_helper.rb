@@ -5,6 +5,7 @@ module LocationHelper
   def get_lat_lon_from_ip()
     location = JSON.parse(open("http://ipinfo.io/#{request.remote_ip}", &:read))
     lat_lon = "#{location['loc']}".split(",")
+    puts lat_lon.inspect.blue
   end
 
   def get_city_name_from_lat_lon(lat_lon)
