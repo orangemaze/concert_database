@@ -7,6 +7,8 @@ class Roio < ActiveRecord::Base
   has_many :roio_ratings, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :images, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :reviews, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
+  has_many :roio_set_lists, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
+  has_many :songs, :through => :roio_set_lists, :primary_key => 'songs_id', :foreign_key => 'songs_id'
 
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
@@ -31,6 +33,18 @@ class Roio < ActiveRecord::Base
   def user_name
     user.present? ? user.user_name : user.inspect
   end
+
+  def roio_set_list
+    roio_set_list = Hash.new
+    if  roio_set_lists.present?
+      roio_set_lists.order('set_position').each do |f|
+        roio_set_list[f.roio_set_list_id] = "#{f.set_position} <a href='/song/#{f.songs_id}'> #{f.song_name.to_s} </a>"
+      end
+    end
+    roio_set_list
+  end
+
+
 
   def band_details
     band_details = ''
