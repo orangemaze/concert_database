@@ -127,6 +127,33 @@
             $( function() {
                 $( ".datepicker" ).datepicker();
             } );
+
+            $( ".view_details" ).click(function() {
+                var action = $(this).attr( "id")
+                switch(action){
+                    case 'band':
+                        var link = '.band_details';
+                        break;
+                    case 'concert':
+                        var link = '.concert_details';
+                        break;
+                    case 'venue':
+                        var link = '.venue_details';
+                        break;
+                    case 'there':
+                        var link = '.there_details';
+                        break;
+                    default:
+                        break;
+                }
+
+
+                $( link ).toggle( "slow", function() {
+                    // Animation complete.
+                });
+            });
+
+
         });
 
     });

@@ -17,6 +17,21 @@ body {
     border-bottom-left-radius: 0px;
 }
 
+.band_details {
+    display: none;
+}
+
+.concert_details {
+    display: none;
+}
+
+.venue_details {
+    display: none;
+}
+
+.there_details {
+    display: none;
+}
 
 #wrapper {
     width: 100%;

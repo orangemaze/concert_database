@@ -1,6 +1,11 @@
 %div.row
   %div.col-md-5
-    = get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal")
+    - roio_image = ApplicationController.helpers.get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal", @data_result.roio_image_count)
+
+
+
+
+    = roio_image
     %ul.list-unstyled
       %li= "Band: #{@data_result.band_name.to_s.gsub(/\\'/, '\'')}"
       %li= "Title: #{@data_result.bootleg_name.to_s.gsub(/\\'/, '\'')}"
@@ -21,13 +26,24 @@
       %li= "Roio Rating: #{turn_to_ratings_stars(@data_result.roio_avg_rating.to_s)}".html_safe
       %li= "Images: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
       %li= "MD5: #{@data_result.md5}"
+      %li
+        - if cookies[:user_id].blank?
+          = "<i class='fa fa-sign-in' aria-hidden='true' alt='Sign In' title='Sign In'></i> to see who has this, and to add it to your tradlist!".html_safe
+        - else
+          - @data_result.user_trade_list.each do |k, v|
+            - puts Digest::MD5.hexdigest(k.to_s).to_s.red
+            - puts cookies[:user_id].to_s.blue
+            - if Digest::MD5.hexdigest(k.to_s) == cookies[:user_id]
+              = "#{v} date added to trade list<br>".html_safe
+              %a{:href => '#'}= "Remove from trade list?"
+
 
   %div.col-md-5
     Tracklist
-
-    - @data_result.roio_set_list.each do |k, v|
-      %li
-        = v.html_safe
-        - if @is_moderator == 'y'
-          %a.admin_edit{:href => "/tour/#{k}/edit"}
-            %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
+    %ul.list-unstyled
+      - @data_result.roio_set_list.each do |k, v|
+        %li
+          = v.html_safe
+          - if @is_moderator == 'y'
+            %a.admin_edit{:href => "/tour/#{k}/edit"}
+              %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}

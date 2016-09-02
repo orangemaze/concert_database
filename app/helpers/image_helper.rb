@@ -11,8 +11,7 @@ module ImageHelper
     end
   end
 
-  def get_image_location(concert_date, bootleg_id, bootleg_name, image_size)
-    image_year = concert_date[0..3]
+  def get_image_location(concert_date, bootleg_id, bootleg_name, image_size, image_count)
     case image_size
       when /small/
         image_height = '30'
@@ -24,8 +23,12 @@ module ImageHelper
         image_height = '30'
         image_width = '30'
     end
-    image_locaton = "<img src='http://www.concerts-db.com/art/#{image_year}/#{bootleg_id}/#{concert_date}-cov.jpg' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
-
+    if image_count > 0
+      image_year = concert_date[0..3]
+      image_locaton = "<img src='http://www.concerts-db.com/art/#{image_year}/#{bootleg_id}/#{concert_date}-cov.jpg' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
+    else
+      image_locaton = "<img src='/assets/no_art.jpg' height='#{image_height}' width='#{image_width}'>".html_safe
+    end
   end
 
   def get_roio_image_count_icon(image_count)

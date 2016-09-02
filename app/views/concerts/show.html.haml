@@ -14,13 +14,17 @@
             %div.col-xs-9.text-right
               %h4 Concert
               %div
-                = link_to(@data_result.concert_date, "/concerts/#{@data_result.concert_id}", :class => 'text-white')
-        %a{:href => "#"}
-          %div.panel-footer
-            %span.pull-left.text-primary View Details
+                = "#{turn_to_ratings_stars(@data_result.concert_avg_rating)}".html_safe
+
+        %div.panel-footer
+          %a.view_details#concert{:href => "#"}
+            %span.pull-left View Details
             %span.pull-right
-              %i.fa.fa-arrow-circle-right.text-primary
-            %div.clearfix
+              %i.fa.fa-arrow-circle-right
+          %div.clearfix
+          %p
+          %p.concert_details Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel imperdiet felis. Praesent congue at odio at feugiat. Vivamus a risus porta, congue velit vel, cursus metus. Ut id elementum eros. Maecenas consectetur est eu lacus cursus gravida. Integer commodo nisi massa, ut convallis lacus ultricies sit amet. Sed tincidunt et risus quis fermentum. Praesent sed nibh viverra, tristique quam non, posuere sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis fringilla ante sapien, quis tempus sem tempus eu. In eget felis enim. Vestibulum imperdiet pellentesque mauris elementum volutpat. Mauris suscipit efficitur metus id fermentum. Aenean placerat quam lacus, id varius enim fringilla quis.
+          %div.clearfix
 
     %div.col-lg-3.col-md-6
       %div.panel.panel-green
@@ -30,13 +34,19 @@
               %i.fa.fa-ticket.fa-5x
             %div.col-xs-9.text-right
               %h4 Venue
-              %div= @data_result.venue_name.html_safe
-        %a{:href => "/venues/#{@data_result.venue_id}"}
-          %div.panel-footer
+              %div
+                %a.text-white{:href => "/venues/#{@data_result.venue_id}"}
+                  = @data_result.venue_name.html_safe
+
+        %div.panel-footer
+          %a.view_details#venue{:href => "#"}
             %span.pull-left View Details
             %span.pull-right
               %i.fa.fa-arrow-circle-right
-            %div.clearfix
+          %div.clearfix
+          %p
+          %p.venue_details= @data_result.venue_address.html_safe
+          %div.clearfix
 
     %div.col-lg-3.col-md-6
       %div.panel.panel-yellow
@@ -46,13 +56,20 @@
               %i.fa.fa-microphone.fa-5x
             %div.col-xs-9.text-right
               %h4 Band
-              %div= @data_result.band_name_plain
-        %a{:href => "/bands/#{@data_result.band_id}"}
-          %div.panel-footer
+              %div
+                %a.text-white{:href => "/bands/#{@data_result.band_id}"}
+                  = @data_result.band_name_plain
+
+        %div.panel-footer
+          %a.view_details#band{:href => "#"}
             %span.pull-left View Details
             %span.pull-right
               %i.fa.fa-arrow-circle-right
-            %div.clearfix
+          %div.clearfix
+          %p
+          %p.band_details= @data_result.tour_name
+
+          %div.clearfix
 
 
     %div.col-lg-3.col-md-6
@@ -64,12 +81,17 @@
             %div.col-xs-9.text-right
               %h4 Were You There?
               %div
-        %a{:href => "#"}
-          %div.panel-footer
+                %a{:href => "#"}
+
+        %div.panel-footer
+          %a.view_details#there{:href => "#"}
             %span.pull-left View Details
             %span.pull-right
               %i.fa.fa-arrow-circle-right
-            %div.clearfix
+          %div.clearfix
+          %p
+          %p.there_details Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel imperdiet felis. Praesent congue at odio at feugiat. Vivamus a risus porta, congue velit vel, cursus metus. Ut id elementum eros. Maecenas consectetur est eu lacus cursus gravida. Integer commodo nisi massa, ut convallis lacus ultricies sit amet. Sed tincidunt et risus quis fermentum. Praesent sed nibh viverra, tristique quam non, posuere sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis fringilla ante sapien, quis tempus sem tempus eu. In eget felis enim. Vestibulum imperdiet pellentesque mauris elementum volutpat. Mauris suscipit efficitur metus id fermentum. Aenean placerat quam lacus, id varius enim fringilla quis.
+          %div.clearfix
 
 
   <!-- /.row -->

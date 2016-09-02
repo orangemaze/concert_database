@@ -6,6 +6,8 @@ class Concert < ActiveRecord::Base
   has_many :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :reviews, :through => :roios, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
+  has_many :concert_ratings, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :images, :through => :roios, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
 
   def this_test
     this_test = 'this test'
@@ -15,12 +17,15 @@ class Concert < ActiveRecord::Base
     if roios.present?
       data_holder = ''
       roios.each do |f|
+        puts '=== here ==='
+        roio_image = ''
         bootleg_id = f.bootleg_id
         bootleg_name = f.bootleg_name.gsub(/\\'/, '\'')
         roio_type = ApplicationController.helpers.turn_roio_type_into_icon(f.roio_type, 'normal')
         roio_format = f.roio_format
         band_name = f.band_name
-        data_holder = "#{data_holder.to_s} <a href='#' id='#{bootleg_id.to_s}' class='roio-details list-group-item'>#{ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small')}
+        roio_image = ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small', f.roio_image_count)
+        data_holder = "#{data_holder.to_s} <a href='#' id='#{bootleg_id.to_s}' class='roio-details list-group-item'> #{roio_image}
         #{roio_type.to_s} #{band_name.to_s} #{ApplicationController.helpers.turn_to_ratings_stars(f.roio_avg_rating)} &middot; #{bootleg_name.to_s}
             <span class='pull-right text-muted small'><em>#{roio_format.to_s}</em></span>
         </a>"
@@ -31,8 +36,28 @@ class Concert < ActiveRecord::Base
   end
 
 
+  def concert_avg_rating
+    puts concert_ratings.inspect.green
+    begin
+      concert_avg_rating = ''
+      if  concert_ratings.present?
+        concert_ratings.each do |f|
+          concert_avg_rating = concert_avg_rating.to_f + f.rating.to_f
+        end
+      end
+      concert_avg_rating = concert_ratings.present? ? (concert_avg_rating.to_f / concert_ratings.count).to_i : 'no ratings'
+    rescue
+      concert_avg_rating = ''
+    end
+  end
+
+
   def venue_id
     venue_id = concert_venue.present? ? concert_venue.venue_id : concert_venue.inspect
+  end
+
+  def venue_address
+    venue_address = concert_venue.present? ? concert_venue.venue_address : concert_venue.inspect
   end
 
   def venue_name

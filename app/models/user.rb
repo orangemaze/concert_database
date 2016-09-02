@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :reviews, :primary_key => 'username', :foreign_key => 'nick'
   has_many :moderators, :foreign_key => 'user_id', :primary_key => 'user_id'
   has_many :bands, :through => :moderators, :primary_key => 'band_id', :foreign_key => 'band_id'
-
+  has_many :user_trade_lists, :primary_key => 'user_id', :foreign_key => 'user_id'
 
   def band_name
     band_name = ''
@@ -15,5 +15,17 @@ class User < ActiveRecord::Base
     end
     band_name.html_safe
   end
+
+  def user_trade_list
+    user_trade_list = Hash.new
+    if  user_trade_lists.present?
+      user_trade_lists.each do |f|
+        user_trade_list[f.user_trade_list_id] = "#{f.time_entered}"
+      end
+    end
+    user_trade_list
+  end
+
+
 
 end

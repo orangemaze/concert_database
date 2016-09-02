@@ -26,9 +26,10 @@ class ApplicationController < ActionController::Base
         session[:avatar_96] = @user_info.avatar_96
         session[:avatar_24] = @user_info.avatar_24
         session[:language_id] = @user_info.language_id
+        puts 'user session is now present'.red
       end
 
-      puts 'user cookie and session is now present'.red
+      puts 'user cookie is now present'.red
     end
 
   end

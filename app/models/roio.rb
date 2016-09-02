@@ -9,6 +9,7 @@ class Roio < ActiveRecord::Base
   has_many :reviews, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :roio_set_lists, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :songs, :through => :roio_set_lists, :primary_key => 'songs_id', :foreign_key => 'songs_id'
+  has_many :user_trade_lists, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
 
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
@@ -42,6 +43,17 @@ class Roio < ActiveRecord::Base
       end
     end
     roio_set_list
+  end
+
+
+  def user_trade_list
+    user_trade_list = Hash.new
+    if  user_trade_lists.present?
+      user_trade_lists.each do |f|
+        user_trade_list[f.user_id] = "#{f.time_entered}"
+      end
+    end
+    user_trade_list
   end
 
 
