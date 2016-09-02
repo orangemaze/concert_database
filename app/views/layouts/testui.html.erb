@@ -19,6 +19,13 @@
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   <%= csrf_meta_tags %>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0188156492753736",
+          enable_page_level_ads: true
+      });
+  </script>
 </head>
 
 <body>
@@ -84,7 +91,7 @@
                     dataType: "json",
                     data: {
                         term: request.term,
-                        search_action: $("#action_button").val(),
+                        search_action: $("#action_button").val()
                     },
                     success: function(data) {
                         response(data);

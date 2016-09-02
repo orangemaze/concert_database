@@ -9,10 +9,10 @@ class TourController < ApplicationController
     @data_result = Tour.find(params[:id])
     puts "this is it".red
     puts @moderator_band_names.inspect.blue
-    puts @data_result.band_name.green
+    puts @data_result.band_name[0].green
     if @moderator_band_names.present?
       puts 'and here...'.red
-      if @moderator_band_names.has_value?(@data_result.band_name).present?
+      if @moderator_band_names.has_value?(@data_result.band_name[0]).present?
         puts 'finally!!'.blue
         @is_moderator = 'y'
       else
@@ -24,13 +24,11 @@ class TourController < ApplicationController
   end
 
   def edit
-
-  end
-
-  def edit
     @tour = Tour.find(params[:id])
+    puts 'edit'.blue
+    puts @tour.inspect.red
     if @moderator_band_names.present?
-      if @moderator_band_names.has_value?(@tour.band_name).present?
+      if @moderator_band_names.has_value?(@tour.band_name[0]).present?
         @is_moderator = 'y'
       else
         redirect_to("/index")

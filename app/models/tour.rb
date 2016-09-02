@@ -17,13 +17,13 @@ class Tour < ActiveRecord::Base
   end
 
   def band_name
-    band_name = ''
+    band_name = Array.new
     if bands.present?
       bands.each do |f|
-        band_name = band_name + f.band_name.to_s
+        band_name.push f.band_name.to_s
       end
     end
-    band_name.html_safe
+    band_name
   end
 
 
