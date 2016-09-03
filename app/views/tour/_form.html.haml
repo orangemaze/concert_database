@@ -18,8 +18,8 @@
     = f.text_field :end_date, :class => 'datepicker'
   %div.field
     = f.label :band_name
-    = f.text_field :band_id, :class => 'super-suggest', :id => 'suggest'
-    = f.hidden_field :band_name, :id => 'action_button', :value => 'Bands'
+    = f.text_field :band_id, :class => 'suggest-user', :id => 'suggest'
+    = f.hidden_field :band_name, :id => 'action_button', :value => 'Band_search'
   %div.field
     = f.label :total_shows
     = f.text_area :total_shows
