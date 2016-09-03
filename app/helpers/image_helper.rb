@@ -1,16 +1,5 @@
 module ImageHelper
 
-  def get_main_image
-    begin
-      main_image = MainImage.all # commented for testing
-      random_number = rand(1..main_image.count)
-      image_name = main_image[random_number].image_name
-      image_url = "//www.pf-db.com/images/main/#{image_name}"
-    rescue
-      image_url = "//www.pf-db.com/images/main/IMAGE_00014.jpg"
-    end
-  end
-
   def get_image_location(concert_date, bootleg_id, bootleg_name, image_size, image_count)
     case image_size
       when /small/
@@ -31,6 +20,17 @@ module ImageHelper
     end
   end
 
+  def get_main_image
+    begin
+      main_image = MainImage.all # commented for testing
+      random_number = rand(1..main_image.count)
+      image_name = main_image[random_number].image_name
+      image_url = "//www.pf-db.com/images/main/#{image_name}"
+    rescue
+      image_url = "//www.pf-db.com/images/main/IMAGE_00014.jpg"
+    end
+  end
+
   def get_roio_image_count_icon(image_count)
     if image_count.to_i == 0
       "No Images, would you like to add some?"
@@ -43,5 +43,16 @@ module ImageHelper
     end
   end
 
+  def get_user_avatar(user_name, user_id, a_24, a_96, size)
+    user_dir = user_name[0..2]
+    case size
+      when 'small'
+        "/user_images/#{user_dir}/#{user_id}/#{a_24}"
+      when 'large'
+        "/user_images/#{user_dir}/#{user_id}/#{a_96}"
+      else
+        "/user_images/#{user_dir}/#{user_id}/#{a_24}"
+    end
+  end
 
 end

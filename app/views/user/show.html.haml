@@ -6,7 +6,43 @@
       %div.panel-heading
         %div.row
           %div.col-xs-9.text-left.vertical-align.inline
-            %i.fa.fa-user.fa-5x
-            %h3= "&nbsp;Details about  &nbsp;".html_safe
+            - if @data_result[0].avatar_96.present?
+              = "<img src='http://www.concerts-db.com/#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'large')}'>".html_safe
+            - else
+              %i.fa.fa-user.fa-5x
+
+
+            %h3= "&nbsp;Details about #{session[:user_name]} &nbsp;".html_safe
       %div.panel-footer
-        %span.pull-left
+        %div.row
+          %div.col-md-4 Username
+          %div.col-md-4= @data_result[0].user_name
+        %div.row
+          %div.col-md-4 Name
+          %div.col-md-4= "#{@data_result[0].f_name} #{@data_result[0].l_name}"
+        %div.row
+          %div.col-md-4 Email
+          %div.col-md-4= @data_result[0].email
+        %div.row
+          %div.col-md-4 City, State, Country
+          %div.col-md-4= "#{@data_result[0].city}, #{@data_result[0].state}, #{@data_result[0].country}"
+        %div.row
+          %div.col-md-4 Trader
+          %div.col-md-4= @data_result[0].trader
+        %div.row
+          %div.col-md-4 Quote
+          %div.col-md-4= @data_result[0].quote
+        %div.row
+          %div.col-md-4 Url
+          %div.col-md-4= @data_result[0].url
+        %div.row
+          %div.col-md-4 Other
+          %div.col-md-4= @data_result[0].other
+        %div.row
+          %div.col-md-4 Language
+          %div.col-md-4= @data_result[0].language_id
+        %div.row
+          %div.col-md-4 Avatar
+          %div.col-md-4
+            = "<img src='http://www.concerts-db.com#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'small')}'>".html_safe
+            = "<img src='http://www.concerts-db.com#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'large')}'>".html_safe

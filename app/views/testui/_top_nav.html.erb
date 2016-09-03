@@ -30,7 +30,12 @@
     <% else %>
         <li class="dropdown">
           <a class="reverse dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class='reverse'><i class="fa fa-user fa-fw"></i> <%= cookies[:user_name] %> <i class="fa fa-caret-down"></i></span>
+            <span class='reverse'>
+              <% if session[:avatar_24].present? %>
+                <%= "<img src='http://www.concerts-db.com#{get_user_avatar(session[:user_name], session[:users_id], session[:avatar_24], session[:avatar_96], 'small')}'>".html_safe %> <%= cookies[:user_name] %> <i class="fa fa-caret-down"></i></span>
+              <% else %>
+                <i class="fa fa-user fa-fw"></i> <%= cookies[:user_name] %> <i class="fa fa-caret-down"></i></span>
+              <% end %>
           </a>
           <ul class="dropdown-menu dropdown-user">
             <li><a href="/user/<%= cookies[:user_id] %>"><i class="fa fa-user fa-fw"></i> User Profile</a>

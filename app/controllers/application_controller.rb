@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       if @user_info.user_name.nil?
 
       else
-        session[:user_id] = @user_info.user_id
+        session[:users_id] = @user_info.user_id
         session[:admin] = @user_info.admin
         session[:user_name] = @user_info.user_name
         session[:email] = @user_info.email
@@ -26,10 +26,10 @@ class ApplicationController < ActionController::Base
         session[:avatar_96] = @user_info.avatar_96
         session[:avatar_24] = @user_info.avatar_24
         session[:language_id] = @user_info.language_id
-        puts 'user session is now present'.red
+        puts "#{session[:users_id]} #{session[:f_name]} #{session[:l_name]} session is now present".red
       end
 
-      puts 'user cookie is now present'.red
+      puts "#{cookies[:user_name]} cookie is now present".red
     end
 
   end
