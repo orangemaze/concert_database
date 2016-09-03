@@ -40,7 +40,20 @@
           <ul class="dropdown-menu dropdown-user">
             <li><a href="/users/<%= cookies[:user_id] %>"><i class="fa fa-user fa-fw"></i> User Profile</a>
             </li>
-            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            <li class="dropdown-submenu"><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="#">Change Password</a></li>
+                <li><a href="#">Change Avatar</a></li>
+                <li><a href="#">Select Bands</a></li>
+                <li class="dropdown-submenu">
+                  <a href="#">Languages</a>
+                  <ul class="dropdown-menu">
+                    <% Language.all.order('language_name').each do |k| %>
+                        <li><a href="/users/change_language/<%= cookies[:user_id] %>?data_result[language_id]=<%= k.language_id %>"><%= k.language_name %></a></li>
+                    <% end %>
+                  </ul>
+                </li>
+              </ul>
             </li>
             <li class="divider"></li>
             <li><a href="/login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :moderators, :foreign_key => 'user_id', :primary_key => 'user_id'
   has_many :bands, :through => :moderators, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :user_trade_lists, :primary_key => 'user_id', :foreign_key => 'user_id'
+  has_one :language, :primary_key => 'language_id', :foreign_key => 'language_id'
 
   def band_name
     band_name = ''
@@ -31,5 +32,7 @@ class User < ActiveRecord::Base
     Digest::MD5.hexdigest(user_id.to_s)
   end
 
-
+  def language_name
+    language.language_name
+  end
 end

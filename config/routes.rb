@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   #admin type functions
   get 'albums' => 'albums#index'
-
+  get 'users/change_language/:id' => 'users#change_language'
 
 
   resources :concerts
@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   resources :tour
   resources :users
   resources :members
+  resources :language
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
