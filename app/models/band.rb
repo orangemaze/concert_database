@@ -29,6 +29,7 @@ class Band < ActiveRecord::Base
   end
 
   def band_years_active
+    @tag_return = ''
     concert_dates = Hash.new
     if concerts.present?
       concerts.select('substr(concert_date, 1, 4) as band_concert_date, count(concert_date) as band_concert_count').group('substr(concert_date, 1, 4)').order('concert_date').each do |f|
@@ -94,13 +95,13 @@ class Band < ActiveRecord::Base
   end
 
   def band_members_over_the_years
-
+    @tag_return_members = ''
     tag_id = [] # array
     tags = {}  # hash
-    # puts "here1".blue
+    puts "here1".blue
     # members tag cloud
     if members.present?
-      members.select("count(band_members.concert_id) as member_count, CONCAT(members.member_fname,' ',members.member_lname) as full_name,  members.member_id as member_id").where('band_members.member_id = members.member_id').group('member_id').order('members.member_lname').each do |f|
+      members.select("distinct count(band_members.concert_id) as member_count, CONCAT(members.member_fname,' ',members.member_lname) as full_name,  members.member_id as member_id").where('band_members.member_id = members.member_id').group('member_id').order('members.member_lname').each do |f|
         # puts f.member_count.to_s.red
         # puts f.full_name.to_s.red
         # puts f.member_id.to_s.red
@@ -111,8 +112,6 @@ class Band < ActiveRecord::Base
         tags[tag_name] = tag_count
       end
     end
-
-
 
     # puts 'here2'.blue
     @max_size = 36
@@ -137,7 +136,7 @@ class Band < ActiveRecord::Base
       @spread = 1
     end
 
-    # puts "are we here".red
+    puts "are we here >>>".red
 
     @step = (@max_size.to_f - @min_size.to_f) / (@spread.to_f)
     if tags.empty?

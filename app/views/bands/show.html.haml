@@ -31,8 +31,8 @@
 
                 %br
                 %br People that played with #{@data_result.band_name}
-                = @data_result.band_members_over_the_years.present? ? (@data_result.band_members_over_the_years).html_safe : ''
-
+                = @data_result.band_members_over_the_years.html_safe
+                %br
                 %br Associated bands that members of #{@data_result.band_name} have played with
 
         %div.clearfix

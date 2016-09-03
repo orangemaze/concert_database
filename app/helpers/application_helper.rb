@@ -30,6 +30,14 @@ module ApplicationHelper
     end
   end
 
+  def get_referer_page
+    begin
+      URI(request.referer).path
+    rescue
+      '/index'
+    end
+  end
+
   def turn_roio_type_into_icon(roio_type, size)
     case size.to_s
       when 'large'
