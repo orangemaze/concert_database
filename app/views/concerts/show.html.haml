@@ -1,9 +1,5 @@
 %div{:id => "page-wrapper"}
-  %div.row
-    %div.col-lg-12
-      %h3 Concert Details
-    <!-- /.col-lg-12 -->
-  <!-- /.row -->
+  %br
   %div.row
     %div.col-lg-3.col-md-6
       %div.panel.panel-primary
@@ -55,10 +51,12 @@
             %div.col-xs-3
               %i.fa.fa-microphone.fa-5x
             %div.col-xs-9.text-right
-              %h4 Band
+              %h4= "Band".pluralize(@data_result.band_name_plain.count)
               %div
-                %a.text-white{:href => "/bands/#{@data_result.band_id}"}
-                  = @data_result.band_name_plain
+                %ul.list-unstyled
+                  - @data_result.band_name_plain.each do |k, v|
+                    %li
+                      %a.text-white{:href => "/bands/#{k}"}= v
 
         %div.panel-footer
           %a.view_details#band{:href => "#"}
@@ -67,7 +65,7 @@
               %i.fa.fa-arrow-circle-right
           %div.clearfix
           %p
-          %p.band_details= @data_result.tour_name
+          %div.band_details= @data_result.band_name
 
           %div.clearfix
 

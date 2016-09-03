@@ -86,13 +86,13 @@ class Concert < ActiveRecord::Base
   end
 
   def band_name_plain
-    band_name = ''
+    band_name = Hash.new
     if concert_bands.present?
       concert_bands.order('band_position').each do |f|
-        band_name = band_name + f.band_name.to_s
+        band_name[f.band_id] = f.band_name.to_s
       end
     end
-    band_name.html_safe
+    band_name
   end
 
   def bootleg_name_plain

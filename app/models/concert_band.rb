@@ -42,7 +42,16 @@ class ConcertBand < ActiveRecord::Base
     band_name = ''
     if  bands.present?
       bands.each do |f|
-        band_name = "#{band_name.to_s}Band\n<ul>\n<li><a href='/bands/#{f.band_id.to_s}'>#{f.band_name.to_s}</a></li>\nTour\n<ul>\n<li>#{tour_name}</li>\n</ul>\n#{bands_members.to_s}</ul>\n</ul>\n"
+        band_name = "#{band_name.to_s}Band\n
+<ul class='li-no-style'>\n
+  <li><a href='/bands/#{f.band_id.to_s}'>#{f.band_name.to_s}</a></li>\n
+  <li>Tour
+    <ul class='li-no-style'>\n
+      <li>#{tour_name}</li>\n
+    </ul>\n
+  </li>\n
+  #{bands_members.to_s}</ul>\n
+</ul>\n"
       end
     end
     band_name.html_safe
@@ -52,7 +61,7 @@ class ConcertBand < ActiveRecord::Base
     tour_name = ''
     if  tours.order('start_date').present?
       tours.each do |f|
-        tour_name = tour_name.to_s + f.tour_name.to_s
+        tour_name = "#{tour_name.to_s} <a href='/tour/#{f.tours_id.to_s}'>#{f.tour_name.to_s}</a>"
       end
     end
     tour_name.html_safe
@@ -95,7 +104,7 @@ class ConcertBand < ActiveRecord::Base
 
       end
     end
-    bands_members = ("Members <ul>\n#{bands_members}</ul>\n").to_s
+    bands_members = ("<li>Members <ul class='li-no-style'>\n#{bands_members}</ul></li>\n").to_s
   end
 
   def band_id

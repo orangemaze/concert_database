@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   resources :bands
   resources :tour
   resources :user
+  resources :members
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

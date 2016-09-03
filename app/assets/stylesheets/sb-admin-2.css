@@ -334,6 +334,10 @@ table.dataTable thead .sorting:after {
     color: #ffffff !important;
 }
 
+.li-no-style{
+    list-style: none;
+}
+
 .panel-green {
     border-color: #5cb85c;
 }

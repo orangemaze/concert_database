@@ -121,6 +121,15 @@
                     .appendTo(ul);
         };
         $(document).ready(function() {
+            if (window.location.pathname == "/concerts") {
+                change_search('Concerts');
+            }
+            if (window.location.pathname == "/venues") {
+                change_search('Venues');
+            }
+            if (window.location.pathname == "/bands") {
+                change_search('Bands');
+            }
             $('.dataTables').DataTable({
                 responsive: true
             });
