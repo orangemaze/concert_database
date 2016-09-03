@@ -46,3 +46,6 @@
           %div.col-md-4
             = "<img src='http://www.concerts-db.com#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'small')}'>".html_safe
             = "<img src='http://www.concerts-db.com#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'large')}'>".html_safe
+
+
+        = link_to 'Edit', edit_user_path(@data_result[0].user_id_md5)

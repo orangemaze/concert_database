@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   resources :albums
   resources :bands
   resources :tour
-  resources :user
+  resources :users
   resources :members
 
   # Example of regular route:

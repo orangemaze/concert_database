@@ -1,0 +1,18 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left.vertical-align.inline
+            - if @data_result[0].avatar_96.present?
+              = "<img src='http://www.concerts-db.com/#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'large')}'>".html_safe
+            - else
+              %i.fa.fa-user.fa-5x
+            %h3= "&nbsp;Edit #{session[:user_name]} &nbsp;".html_safe
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Back', user_path

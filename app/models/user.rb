@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   self.table_name = 'user'
+  self.primary_key = 'user_id'
   has_many :roios, :foreign_key => 'user_id', :primary_key => 'user_id'
   has_many :reviews, :primary_key => 'username', :foreign_key => 'nick'
   has_many :moderators, :foreign_key => 'user_id', :primary_key => 'user_id'
@@ -26,6 +27,9 @@ class User < ActiveRecord::Base
     user_trade_list
   end
 
+  def user_id_md5
+    Digest::MD5.hexdigest(user_id.to_s)
+  end
 
 
 end

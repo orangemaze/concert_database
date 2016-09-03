@@ -1,0 +1,42 @@
+=# form_for(@data_result[0]) do |f|
+= form_for @data_result[0], :as => :data_result, :url => "/users/#{cookies[:user_id]}" do |f|
+  - if @data_result[0].errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@data_result[0].errors.count, "error")} prohibited this album from being saved:"
+
+      %ul
+      - @data_result[0].errors.full_messages.each do |message|
+        %li= message
+
+  %div.row
+    %div.col-md-4= f.label :user_name
+    %div.col-md-4= f.text_field :user_name
+  %div.row
+    %div.col-md-4= f.label :email
+    %div.col-md-4= f.text_field :email
+  %div.row
+    %div.col-md-4= f.label :f_name
+    %div.col-md-4= f.text_field :f_name
+  %div.row
+    %div.col-md-4= f.label :l_name
+    %div.col-md-4= f.text_field :l_name
+  %div.row
+    %div.col-md-4= f.label :city
+    %div.col-md-4= f.text_field :city
+  %div.row
+    %div.col-md-4= f.label :state
+    %div.col-md-4= f.text_field :state
+  %div.row
+    %div.col-md-4= f.label :country
+    %div.col-md-4= f.text_field :country
+  %div.row
+    %div.col-md-4= f.label :quote
+    %div.col-md-4= f.text_field :quote
+  %div.row
+    %div.col-md-4= f.label :url
+    %div.col-md-4= f.text_field :url
+  %div.row
+    %div.col-md-4= f.label :other
+    %div.col-md-4= f.text_field :other
+  %div.row
+    %div.col-md-8= f.submit
