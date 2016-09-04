@@ -48,7 +48,7 @@ class ConcertBand < ActiveRecord::Base
       bands.each do |f|
         band_name = "#{band_name.to_s}Band\n
 <ul class='li-no-style'>\n
-  <li>#{link_to f.band_name.to_s, band_path(f.band_id.to_s) + "?locale=#{I18n.locale.to_s}"}</li>\n
+  <li>#{link_to f.band_name.to_s, bands_path(f.band_id)}</li>\n
   <li>Tour
     <ul class='li-no-style'>\n
       <li>#{tour_name}</li>\n
@@ -65,7 +65,7 @@ class ConcertBand < ActiveRecord::Base
     tour_name = ''
     if  tours.order('start_date').present?
       tours.each do |f|
-        tour_name = "#{tour_name.to_s} #{link_to f.tour_name.to_s, tour_path(f.tours_id.to_s) + "?locale=#{I18n.locale.to_s}"}"
+        tour_name = "#{tour_name.to_s} #{link_to f.tour_name.to_s, (f.tours_id.to_s)}"
       end
     end
     tour_name.html_safe

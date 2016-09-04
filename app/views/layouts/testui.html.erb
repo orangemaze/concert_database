@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>The Concert Database</title>
+  <title><%= t('the_concert_database') %></title>
 
   <!-- Custom Fonts -->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,8 +65,9 @@
 
     $(".roio-details").click(function(){
         var bootleg_id = $(this).attr("id")
-        var locale = get_query_string_params('locale');
-        $.get("roio_details/"+bootleg_id+"?locale="+locale, function(data, status){
+        // var locale = get_query_string_params('locale');
+        var locale = window.location.pathname.substring(0, 3);
+        $.get(locale + "roio_details/"+bootleg_id, function(data, status){
             // roio-details-container
             $("#roio-details-container").html(data);
             // alert("Data: " + data + "\nStatus: " + status);
@@ -115,9 +116,10 @@
                 // alert(url);
                 if(url != '#') {
                     var action = $( "#action_button" ).attr( "value").toLowerCase();
-                    var locale = get_query_string_params('locale');
+                    // var locale = get_query_string_params('locale');
+                    var locale = window.location.pathname.substring(0, 3);
                     // alert(action)
-                    location.href = '/'+action+'/' + url + '?locale='+locale;
+                    location.href = locale + '/'+action+'/' + url;
                 }
             },
 
@@ -152,7 +154,6 @@
 
             $( ".view_details" ).click(function() {
                 var action = $(this).attr( "id")
-                alert(action)
                 switch(action){
                     case 'band':
                         var link = '.band_details';

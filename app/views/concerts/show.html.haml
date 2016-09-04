@@ -8,13 +8,13 @@
             %div.col-xs-3
               %i.fa.fa-calendar.fa-5x
             %div.col-xs-9.text-right
-              %h4 Concert
+              %h4= t('concert')
               %div
                 = "#{@data_result.concert_date} #{turn_to_ratings_stars(@data_result.concert_avg_rating)}".html_safe
 
         %div.panel-footer
           %a.view_details#concert{:href => "#"}
-            %span.pull-left View Details
+            %span.pull-left= t('view_detail').pluralize.titleize
             %span.pull-right
               %i.fa.fa-arrow-circle-right
           %div.clearfix
@@ -29,13 +29,13 @@
             %div.col-xs-3
               %i.fa.fa-ticket.fa-5x
             %div.col-xs-9.text-right
-              %h4 Venue
+              %h4= t('venue')
               %div
                 = link_to @data_result.venue_name.html_safe, venue_path(@data_result.venue_id), :class => 'reverse'
 
         %div.panel-footer
           %a.view_details#venue{:href => "#"}
-            %span.pull-left View Details
+            %span.pull-left= t('view_detail').pluralize.titleize
             %span.pull-right
               %i.fa.fa-arrow-circle-right
           %div.clearfix
@@ -50,7 +50,7 @@
             %div.col-xs-3
               %i.fa.fa-microphone.fa-5x
             %div.col-xs-9.text-right
-              %h4= "Band".pluralize(@data_result.band_name_plain.count)
+              %h4= t('band').pluralize(@data_result.band_name_plain.count)
               %div
                 %ul.list-unstyled
                   - @data_result.band_name_plain.each do |k, v|
@@ -58,7 +58,7 @@
                       =link_to v, band_path(k), :class => 'reverse'
         %div.panel-footer
           %a.view_details#band{:href => "#"}
-            %span.pull-left View Details
+            %span.pull-left= t('view_detail').pluralize.titleize
             %span.pull-right
               %i.fa.fa-arrow-circle-right
           %div.clearfix
@@ -75,13 +75,13 @@
             %div.col-xs-3
               %i.fa.fa-group.fa-5x
             %div.col-xs-9.text-right
-              %h4 Were You There?
+              %h4= t('were_you_there')
               %div
                 %a{:href => "#"}
 
         %div.panel-footer
           %a.view_details#there{:href => "#"}
-            %span.pull-left View Details
+            %span.pull-left= t('view_detail').pluralize.titleize
             %span.pull-right
               %i.fa.fa-arrow-circle-right
           %div.clearfix
@@ -96,7 +96,7 @@
       %div.panel.panel-default
         %div.panel-heading
           %i.fa.fa-tasks.fa-fw
-          List of Roios
+          = t('list_of_roios').pluralize.titleize
           <!-- /.panel-heading -->
         = @data_result.bootleg_name
         <!-- /.panel-body -->
@@ -105,7 +105,7 @@
       %div.panel.panel-default
         %div.panel-heading
           %i.fa.fa-search.fa-fw
-          Roio Details
+          = t('roio_detail').pluralize.titleize
         <!-- /.panel-heading -->
         %div.panel-body
           %div{:id => "roio-details-container"}
@@ -113,7 +113,7 @@
       %div.panel.panel-default
         %div.panel-heading
           %i.fa.fa-comments-o.fa-fw
-          Comments
+          = t('comment').pluralize.titleize
         <!-- /.panel-heading -->
         %div.panel-body
           %ul.timeline

@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+  include ActionView::Helpers::UrlHelper
+
   protect_from_forgery :with => :exception
   # layout 'application'
 

@@ -47,7 +47,7 @@
                   <a href="#"><%= t(:language).pluralize.titleize.html_safe %></a>
                   <ul class="dropdown-menu">
                     <% Language.all.order('language_name').each do |k| %>
-                        <li><a href="/<%= k.language_i18n.to_s %>/users/change_language/<%= cookies[:user_id] %>?data_result[language_id]=<%= k.language_id %>"><%= k.language_name %></a></li>
+                        <li><a href="/<%= k.language_i18n.to_s %>/users/change_language/<%= cookies[:user_id] %>?data_result[language_id]=<%= k.language_id %>"><%= t(k.language_name) %></a></li>
                     <% end %>
                   </ul>
                 </li>

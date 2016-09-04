@@ -14,7 +14,7 @@ class BandMember < ActiveRecord::Base
     if  members.present?
       members.order('member_lname').each do |f|
         # need to come up with a filter to just show members from the right band, currently showing all members for each band
-        bands_members = "#{bands_members.to_s} #{link_to "#{member_fname.to_s} #{member_lname.to_s}", member_path(f.member_id.to_s) + "?locale=#{I18n.locale.to_s}"}"
+        bands_members = "#{bands_members.to_s} #{link_to "#{member_fname.to_s} #{member_lname.to_s}", (f.member_id.to_s)}"
       end
     end
     bands_members.html_safe

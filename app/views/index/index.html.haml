@@ -10,8 +10,8 @@
             %div.col-xs-8
               %h2
                 = t(:the_concert_database).titleize.html_safe
-              %p This site is dedicated to sharing experiences of live performances and their incidental details such as tours programs, ticket stubs, photos, audio, video and more...
-              %p By cataloging these performances we can study how pieces have evolved over time and learn about small nuances hidden within the performances.
+              %p= t(:this_site_is).slice(0,1).capitalize + t(:this_site_is).slice(1..-1)
+              %p= t(:by_cataloging_these).slice(0,1).capitalize + t(:this_site_is).slice(1..-1)
         %div.panel-footer
           %img.center-block.img-responsive{:id => 'main_title_image', :src => get_main_image, :alt => 'Concert Image', :title => 'Concert Image', :width => '580'}
           %div.clearfix
@@ -22,16 +22,17 @@
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left
-                This is the new version of the site, it is still very much under construction
+                = t(:new_site_message).slice(0,1).capitalize + t(:new_site_message).slice(1..-1)
+
                 %ul
-                  %li= link_to "Bands", bands_path, :class => "text-white"
-                  %li= link_to "Concerts", concerts_path, :class => "text-white"
-                  %li= link_to "Countries", flags_path, :class => "text-white"
-                  %li= link_to "Roios", roios_path, :class => "text-white"
-                  %li= link_to "Venues", venues_path, :class => "text-white"
+                  %li= link_to t(:band).capitalize.pluralize.html_safe, bands_path, :class => "text-white"
+                  %li= link_to t(:concert).capitalize.pluralize.html_safe, concerts_path, :class => "text-white"
+                  %li= link_to t(:country).capitalize.pluralize.html_safe, flags_path, :class => "text-white"
+                  %li= link_to t(:roio).capitalize.pluralize.html_safe, roios_path, :class => "text-white"
+                  %li= link_to t(:venue).capitalize.pluralize.html_safe, venues_path, :class => "text-white"
           %a{:href => '#'}
             %div.panel-footer
-              %span.pull-left View Details
+              %span.pull-left= t('view_details')
               %span.pull-right
                 %i.fa.fa-arrow-circle-right
               %div.clearfix
@@ -48,22 +49,22 @@
                 =# "Time Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
           %a{:href => '#'}
             %div.panel-footer
-              %span.pull-left Don't see a concert you attended? Login / Register and add it, join the Community.
+              %span.pull-left= t('dont_see_a_concert')
               %span.pull-right
                 %i.fa.fa-arrow-circle-right
               %div.clearfix
         %div.panel.panel-yellow
           %div.panel-heading
             %div.row
-              %div.col-xs-9.text-left and another
+              %div.col-xs-9.text-left= t('and_another')
           %a{:href => '#'}
             %div.panel-footer
               - if session[:admin].present?
                 - if session[:admin].to_i < 5
-                  = "Admin Level #{session[:admin]}"
+                  = "#{t('admin_level')} #{session[:admin]}"
 
               - if @moderator_band_names.present?
-                %br Moderator of the following bands
+                %br= t('moderator_of_the_following')
                 %ul
                 - @moderator_band_names.each do |k, v|
                   %li= "#{v}"
