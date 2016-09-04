@@ -5,12 +5,16 @@ class BandMember < ActiveRecord::Base
   has_many :members, :primary_key => 'member_id', :foreign_key => 'member_id'
   has_many :concerts, :primary_key => 'concert_id', :foreign_key => 'concert_id'
 
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+  include ActionView::Helpers::UrlHelper
+
   def bands_members
     bands_members = ''
     if  members.present?
       members.order('member_lname').each do |f|
         # need to come up with a filter to just show members from the right band, currently showing all members for each band
-        bands_members = "#{bands_members.to_s} <a href='/members/#{f.member_id}'>#{member_fname.to_s} #{member_lname.to_s}</a>"
+        bands_members = "#{bands_members.to_s} #{link_to "#{member_fname.to_s} #{member_lname.to_s}", member_path(f.member_id.to_s) + "?locale=#{I18n.locale.to_s}"}"
       end
     end
     bands_members.html_safe

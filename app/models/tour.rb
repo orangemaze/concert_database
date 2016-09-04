@@ -6,11 +6,15 @@ class Tour < ActiveRecord::Base
   has_many :album_tours, :primary_key => 'tours_id', :foreign_key => 'tour_id'
   has_many :albums, :through => :album_tours, :primary_key => 'tours_id', :foreign_key => 'tour_id'
 
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+  include ActionView::Helpers::UrlHelper
+
   def tour_dates
     tour_dates = ''
     if  concert_bands.present?
       concert_bands.each do |f|
-        tour_dates = "#{tour_dates.to_s} <tr><td><a href='/concerts/#{f.concert_id}'>#{f.concert_date}</a></td><td>#{f.bootleg_name.gsub(/\\'/, '\'')}</td></tr>\n"
+        tour_dates = "#{tour_dates.to_s} <tr><td>#{link_to f.concert_date, concert_path(f.concert_id) + "?locale=#{I18n.locale.to_s}"}</td><td>#{f.bootleg_name.gsub(/\\'/, '\'')}</td></tr>\n"
       end
     end
     tour_dates.html_safe

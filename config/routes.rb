@@ -4,14 +4,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-
+  # filter :locale
 
   root 'index#index'
   get 'index' => 'index#index'
   get 'index/:id' => 'index#show'
   get 'about' => 'index#about'
-  get 'concerts' => 'concerts#index'
-  get 'concerts/:id' => 'concerts#show'
   get 'concerts/roio_details/:id' => 'concerts#roio_details'
   get 'roios' => 'roios#index'
   get 'roios/:id' => 'roios#show'
@@ -39,8 +37,8 @@ Rails.application.routes.draw do
   get 'albums' => 'albums#index'
   get 'users/change_language/:id' => 'users#change_language'
 
-
   resources :concerts
+  resources :concert
   resources :venues
   resources :venue_name
   resources :bibliography
@@ -51,6 +49,7 @@ Rails.application.routes.draw do
   resources :members
   resources :language
   resources :years
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

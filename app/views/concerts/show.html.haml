@@ -10,7 +10,7 @@
             %div.col-xs-9.text-right
               %h4 Concert
               %div
-                = "#{turn_to_ratings_stars(@data_result.concert_avg_rating)}".html_safe
+                = "#{@data_result.concert_date} #{turn_to_ratings_stars(@data_result.concert_avg_rating)}".html_safe
 
         %div.panel-footer
           %a.view_details#concert{:href => "#"}
