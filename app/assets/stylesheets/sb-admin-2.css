@@ -75,6 +75,10 @@ body {
     color: #fff;
 }
 
+.reverse:hover {
+    color: #000;
+}
+
 .navbar-top-links .dropdown-menu li {
     display: block;
 }
