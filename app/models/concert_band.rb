@@ -61,7 +61,7 @@ class ConcertBand < ActiveRecord::Base
     tour_name = ''
     if  tours.order('start_date').present?
       tours.each do |f|
-        tour_name = "#{tour_name.to_s} <a href='/tour/#{f.tours_id.to_s}'>#{f.tour_name.to_s}</a>"
+        tour_name = "#{tour_name.to_s} <a href='/tours/#{f.tours_id.to_s}'>#{f.tour_name.to_s}</a>"
       end
     end
     tour_name.html_safe

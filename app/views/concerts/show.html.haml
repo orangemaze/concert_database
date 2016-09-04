@@ -31,8 +31,7 @@
             %div.col-xs-9.text-right
               %h4 Venue
               %div
-                %a.text-white{:href => "/venues/#{@data_result.venue_id}"}
-                  = @data_result.venue_name.html_safe
+                = link_to @data_result.venue_name.html_safe, venue_path(@data_result.venue_id), :class => 'reverse'
 
         %div.panel-footer
           %a.view_details#venue{:href => "#"}
@@ -56,8 +55,7 @@
                 %ul.list-unstyled
                   - @data_result.band_name_plain.each do |k, v|
                     %li
-                      %a.text-white{:href => "/bands/#{k}"}= v
-
+                      =link_to v, band_path(k), :class => 'reverse'
         %div.panel-footer
           %a.view_details#band{:href => "#"}
             %span.pull-left View Details

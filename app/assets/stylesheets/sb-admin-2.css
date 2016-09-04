@@ -70,13 +70,11 @@ body {
 }
 
 .reverse {
-    padding: 15px;
-    min-height: 50px;
-    color: #fff;
+    color: #fff !important;
 }
 
 .reverse:hover {
-    color: #000;
+    color: #000 !important;
 }
 
 .navbar-top-links .dropdown-menu li {

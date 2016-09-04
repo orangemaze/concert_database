@@ -13,8 +13,8 @@ class Band < ActiveRecord::Base
     tour_name = Hash.new
     if  tours.present?
       tours.order('start_date').each do |f|
-        tour_name[f.tours_id] = "<a href='/tour/#{f.tours_id}'>#{f.tour_name.to_s} <span class='text-muted'>
-(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span></a>"
+        tour_name[f.tours_id] =
+            "#{f.tour_name.to_s} <span class='text-muted'>(#{ApplicationController.helpers.fix_bad_dates_in_db(f.start_date)} - #{ApplicationController.helpers.fix_bad_dates_in_db(f.end_date)})</span>"
       end
     end
     tour_name
@@ -86,7 +86,7 @@ class Band < ActiveRecord::Base
           @items = 'listing'
         end
 
-        @tag_return = "#{@tag_return.to_s} <a href=\"/lists/years/#{k}?band_id=#{@band_id}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
+        @tag_return = "#{@tag_return.to_s} <a href=\"/years/#{k}?band_id=#{@band_id}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
 
         tag_counting +=1
       end

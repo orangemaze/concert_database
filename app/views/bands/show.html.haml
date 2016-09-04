@@ -9,8 +9,7 @@
             %i.fa.fa-microphone.fa-5x
             %h3= "&nbsp;Details about #{@data_result.band_name} &nbsp;".html_safe
             - if @is_moderator == 'y'
-              %a.admin_edit{:href => "/bands/#{@data_result.band_id}/edit"}
-                %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
+              = link_to "<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(@data_result.band_id), :class => "admin_edit reverse"
       %div.panel-footer
         %span.pull-left
           %table.table.table-striped.table-bordered
@@ -20,10 +19,10 @@
                 %ul.list-unstyled
                   - @data_result.tour_name.each do |k, v|
                     %li
-                      = v.html_safe
+                      = link_to v.html_safe, tour_path(k)
                       - if @is_moderator == 'y'
-                        %a.admin_edit{:href => "/tour/#{k}/edit"}
-                          %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
+                        = link_to "<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(k), :class => "admin_edit"
+
                 %br
 
                 %br Years Active

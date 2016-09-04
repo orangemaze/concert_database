@@ -87,10 +87,10 @@
           <!-- /input-group -->
         </li>
         <li class="panel-default">
-          <%= link_to "<i class='fa fa-home fa-fw'></i> #{t(:home).capitalize}".html_safe, root_path %>
+          <%= link_to "<i class='fa fa-home fa-fw'></i> #{t(:home).capitalize}".html_safe, root_path, :class => "reverse" %>
         </li>
         <li class="panel-yellow">
-          <%= link_to "<i class='fa fa-microphone fa-fw'></i> #{t(:band).capitalize.pluralize}".html_safe, bands_path %>
+          <%= link_to "<i class='fa fa-microphone fa-fw'></i> #{t(:band).capitalize.pluralize}".html_safe, bands_path, :class => "reverse" %>
         </li>
         <li class="panel-primary">
           <%= link_to "<i class='fa fa-calendar fa-fw'></i> #{t(:concert).capitalize.pluralize}".html_safe, concerts_path, :class => "reverse" %>
@@ -103,6 +103,7 @@
         </li>
         <li class="panel-success">
           <%= link_to "<i class='fa fa-book fa-fw'></i> #{t(:bibliography).capitalize.pluralize}".html_safe, bibliography_path, :class => "reverse" %>
+        </li>
         <li>&nbsp;</li>
         <li>
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

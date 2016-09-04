@@ -18,4 +18,4 @@
             %tbody
               - @data_result.order('band_name').each do |data_result|
                 %tr
-                  %td= link_to("#{data_result.band_name.html_safe}", "bands/#{data_result.band_id.to_s.html_safe}")
+                  %td= link_to "#{data_result.band_name}".html_safe, band_path(data_result.band_id.to_s)

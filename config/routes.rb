@@ -17,8 +17,6 @@ Rails.application.routes.draw do
   get 'roios/:id' => 'roios#show'
   get 'bands' => 'bands#index'
   get 'bands/:id' => 'bands#show'
-  get 'tour' => 'tour#index'
-  get 'tour/:id' => 'tour#show'
   get 'countries' => 'countries#index'
   get 'countries/:id' => 'countries#show'
   get 'venues' => 'venues#index'
@@ -48,10 +46,11 @@ Rails.application.routes.draw do
   resources :bibliography
   resources :albums
   resources :bands
-  resources :tour
+  resources :tours
   resources :users
   resources :members
   resources :language
+  resources :years
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

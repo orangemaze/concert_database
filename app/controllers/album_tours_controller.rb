@@ -28,7 +28,7 @@ class AlbumToursController < ApplicationController
 
     respond_to do |format|
       if @album_tour.save
-        format.html { redirect_to @album_tour, :notice => 'Album tour was successfully created.' }
+        format.html { redirect_to @album_tour, :notice => 'Album tours was successfully created.' }
         format.json { render :show, :status => :created, :location => @album_tour }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AlbumToursController < ApplicationController
   def update
     respond_to do |format|
       if @album_tour.update(album_tour_params)
-        format.html { redirect_to @album_tour, :notice => 'Album tour was successfully updated.' }
+        format.html { redirect_to @album_tour, :notice => 'Album tours was successfully updated.' }
         format.json { render :show, :status => :ok, :location => @album_tour }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AlbumToursController < ApplicationController
   def destroy
     @album_tour.destroy
     respond_to do |format|
-      format.html { redirect_to album_tours_url, :notice => 'Album tour was successfully destroyed.' }
+      format.html { redirect_to album_tours_url, :notice => 'Album tours was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

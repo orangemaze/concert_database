@@ -65,7 +65,8 @@
 
     $(".roio-details").click(function(){
         var bootleg_id = $(this).attr("id")
-        $.get("roio_details/"+bootleg_id, function(data, status){
+        var locale = get_query_string_params('locale');
+        $.get("roio_details/"+bootleg_id+"?locale="+locale, function(data, status){
             // roio-details-container
             $("#roio-details-container").html(data);
             // alert("Data: " + data + "\nStatus: " + status);
@@ -82,6 +83,16 @@
         $( "#action_button" ).val(category);
     }
 
+    function get_query_string_params(sParam){
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam){
+                return sParameterName[1];
+            }
+        }
+    }
 
     $(function() {
         $(".suggest-user").autocomplete({
@@ -104,8 +115,9 @@
                 // alert(url);
                 if(url != '#') {
                     var action = $( "#action_button" ).attr( "value").toLowerCase();
+                    var locale = get_query_string_params('locale');
                     // alert(action)
-                    location.href = '/'+action+'/' + url;
+                    location.href = '/'+action+'/' + url + '?locale='+locale;
                 }
             },
 

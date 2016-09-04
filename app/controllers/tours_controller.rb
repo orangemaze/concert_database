@@ -1,4 +1,4 @@
-class TourController < ApplicationController
+class ToursController < ApplicationController
   layout 'testui'
   def index
     puts 'Roios'.blue
@@ -75,7 +75,7 @@ class TourController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
-    params.require(:tour).permit(:tour_name, :start_date, :end_date, :band_id, :total_shows)
+    params.require(:tours).permit(:tour_name, :start_date, :end_date, :band_id, :total_shows)
   end
 
 
