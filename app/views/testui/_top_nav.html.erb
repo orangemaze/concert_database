@@ -37,8 +37,7 @@
               <% end %>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="/users/<%= cookies[:user_id] %>"><i class="fa fa-user fa-fw"></i> <%= t(:user_profile).titleize.html_safe %></a>
-            </li>
+            <li><%= link_to "<i class='fa fa-user fa-fw'></i> #{t(:user_profile).titleize}".html_safe, user_path(cookies[:user_id]) %></li>
             <li class="dropdown-submenu"><a href="#"><i class="fa fa-gear fa-fw"></i> <%= t(:setting).pluralize.titleize.html_safe %></a>
               <ul class="dropdown-menu">
                 <li><a tabindex="-1" href="#"><%= t(:change_password).titleize.html_safe %></a></li>
@@ -48,7 +47,7 @@
                   <a href="#"><%= t(:language).pluralize.titleize.html_safe %></a>
                   <ul class="dropdown-menu">
                     <% Language.all.order('language_name').each do |k| %>
-                        <li><a href="/users/change_language/<%= cookies[:user_id] %>?data_result[language_id]=<%= k.language_id %>"><%= k.language_name %></a></li>
+                        <li><a href="/<%= k.language_i18n.to_s %>/users/change_language/<%= cookies[:user_id] %>?data_result[language_id]=<%= k.language_id %>"><%= k.language_name %></a></li>
                     <% end %>
                   </ul>
                 </li>
@@ -99,10 +98,10 @@
           <%= link_to "<i class='fa fa-ticket fa-fw'></i> #{t(:venue).capitalize.pluralize}".html_safe, venues_path, :class => "reverse" %>
         </li>
         <li class="panel-default">
-          <%= link_to "<i class='fa fa-cogs fa-fw'></i> #{t(:about).capitalize.pluralize}".html_safe, about_path, :class => "reverse" %>
+          <%= link_to "<i class='fa fa-cogs fa-fw'></i> #{t(:about).capitalize.pluralize}".html_safe, about_index_path, :class => "reverse" %>
         </li>
         <li class="panel-success">
-          <%= link_to "<i class='fa fa-book fa-fw'></i> #{t(:bibliography).capitalize.pluralize}".html_safe, bibliography_path, :class => "reverse" %>
+          <%= link_to "<i class='fa fa-book fa-fw'></i> #{t(:bibliography).capitalize.pluralize}".html_safe, bibliography_index_path, :class => "reverse" %>
         </li>
         <li>&nbsp;</li>
         <li>

@@ -7,25 +7,15 @@ Rails.application.routes.draw do
   # filter :locale
 
   root 'index#index'
-  get 'index' => 'index#index'
+  get ':locale/index' => 'index#index'
   get 'index/:id' => 'index#show'
   get 'about' => 'index#about'
   get 'concerts/roio_details/:id' => 'concerts#roio_details'
-  get 'roios' => 'roios#index'
-  get 'roios/:id' => 'roios#show'
-  get 'bands' => 'bands#index'
-  get 'bands/:id' => 'bands#show'
-  get 'countries' => 'countries#index'
-  get 'countries/:id' => 'countries#show'
-  get 'venues' => 'venues#index'
-  get 'venues/:id' => 'venues#show'
   get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
   get 'suggest' => 'suggest#index'
-  get 'bibliography/new' => 'bibliography#new'
-  get 'bibliography' => 'bibliography#index'
-  get 'bibliography/:id' => 'bibliography#show'
+
 
   get '/login' => 'login#index'
   get 'login/logout' => 'login#logout'
@@ -36,20 +26,23 @@ Rails.application.routes.draw do
   #admin type functions
   get 'albums' => 'albums#index'
   get 'users/change_language/:id' => 'users#change_language'
-
-  resources :concerts
-  resources :concert
-  resources :venues
-  resources :venue_name
-  resources :bibliography
-  resources :albums
-  resources :bands
-  resources :tours
-  resources :users
-  resources :members
-  resources :language
-  resources :years
-
+  get ':locale/users/change_language/:id' => 'users#change_language'
+  scope "/:locale" do
+    resources :concerts
+    resources :venues
+    resources :venue_name
+    resources :bibliography
+    resources :about
+    resources :albums
+    resources :bands
+    resources :tours
+    resources :users
+    resources :members
+    resources :language
+    resources :years
+    resources :flags
+    resources :roios
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -44,12 +44,22 @@ class UsersController < ApplicationController
 
   def change_language
     puts params[:id].to_s.red
+    puts params[:locale].to_s.red
+    sliced_url = URI(request.referer).path
+
+    sliced_url[0..2] = ''
+    sliced_url = "/#{params[:locale]}#{sliced_url}".to_s
+    puts sliced_url.to_s.blue
+
+    new_locale = params[:locale]
+
     @data_result = User.where('md5(user_id) = ?', params[:id]).limit(1)
     respond_to do |format|
       if @data_result[0].update(user_params)
         format.html {
+          I18n.locale = params[:locale]
           # redirect_to :controller => 'users', :action => 'show', :id => cookies[:user_id], :notice => 'Band was successfully updated.'
-          redirect_to(URI(request.referer).path, :notice => 'Band was successfully updated.')
+          redirect_to(sliced_url,:notice => 'Language was successfully updated.')
         }
       else
         format.html { render :edit }

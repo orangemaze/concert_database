@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery :with => :exception
   # layout 'application'
 
-  before_filter :authenticate_user, :am_i_moderator #, :current_user, :set_locale
+  before_filter :authenticate_user, :am_i_moderator, :set_current_locale #, :current_user
 
   puts '=== application controller ==='.blue
 
@@ -51,15 +51,9 @@ class ApplicationController < ActionController::Base
     @moderator_band_names
   end
 
-  def set_locale
-    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
-    I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
-    logger.debug "* Locale set to '#{I18n.locale}'"
-    if current_user
-      current_user.locale = params[:locale]
-      current_user.save
-    end
-    session[:locale] = I18n.locale
+  private
+  def set_current_locale
+    I18n.locale = params[:locale]
   end
 
 

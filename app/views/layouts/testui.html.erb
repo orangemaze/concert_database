@@ -134,13 +134,13 @@
                     .appendTo(ul);
         };
         $(document).ready(function() {
-            if (window.location.pathname == "/concerts") {
+            if (window.location.pathname.slice(3) == "/concerts") {
                 change_search('Concerts');
             }
-            if (window.location.pathname == "/venues") {
+            if (window.location.pathname.slice(3) == "/venues") {
                 change_search('Venues');
             }
-            if (window.location.pathname == "/bands") {
+            if (window.location.pathname.slice(3) == "/bands") {
                 change_search('Bands');
             }
             $('.dataTables').DataTable({
@@ -152,6 +152,7 @@
 
             $( ".view_details" ).click(function() {
                 var action = $(this).attr( "id")
+                alert(action)
                 switch(action){
                     case 'band':
                         var link = '.band_details';
