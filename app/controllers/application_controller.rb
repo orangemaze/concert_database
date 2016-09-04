@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery :with => :exception
   # layout 'application'
 
-  before_filter :authenticate_user, :am_i_moderator
+  before_filter :authenticate_user, :am_i_moderator #, :current_user, :set_locale
 
   puts '=== application controller ==='.blue
 
@@ -34,6 +34,11 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find(session[:user_id])
+  end
+
   def am_i_moderator
     if cookies[:user_id].present?
       moderator_list = Moderator.where('md5(user_id) = ?', cookies[:user_id])
@@ -45,6 +50,21 @@ class ApplicationController < ActionController::Base
     @moderator_band_names
   end
 
+  def set_locale
+    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    I18n.locale = params[:locale] || extract_locale_from_accept_language_header || I18n.default_locale
+    logger.debug "* Locale set to '#{I18n.locale}'"
+    if current_user
+      current_user.locale = params[:locale]
+      current_user.save
+    end
+    session[:locale] = I18n.locale
+  end
 
+
+  def default_url_options(options={})
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    { :locale => I18n.locale }
+  end
 
 end

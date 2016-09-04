@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/index.html">The Concert Database</a>
+    <a class="navbar-brand" href="/index.html"><%= t(:the_concert_database).titleize.html_safe %></a>
   </div>
   <!-- /.navbar-header -->
   <ul class="nav navbar-top-links navbar-right">
@@ -21,7 +21,7 @@
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="/login"><i class="fa fa-sign-in fa-fw"></i> Login / Sign Up</a>
+            <li><a href="/login"><i class="fa fa-sign-in fa-fw"></i> <%= t(:login_sign_up).titleize.html_safe %></a>
             </li>
           </ul>
           <!-- /.dropdown-user -->
@@ -38,15 +38,15 @@
               <% end %>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><a href="/users/<%= cookies[:user_id] %>"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            <li><a href="/users/<%= cookies[:user_id] %>"><i class="fa fa-user fa-fw"></i> <%= t(:user_profile).titleize.html_safe %></a>
             </li>
-            <li class="dropdown-submenu"><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            <li class="dropdown-submenu"><a href="#"><i class="fa fa-gear fa-fw"></i> <%= t(:setting).pluralize.titleize.html_safe %></a>
               <ul class="dropdown-menu">
-                <li><a tabindex="-1" href="#">Change Password</a></li>
-                <li><a href="#">Change Avatar</a></li>
-                <li><a href="#">Select Bands</a></li>
+                <li><a tabindex="-1" href="#"><%= t(:change_password).titleize.html_safe %></a></li>
+                <li><a href="#"><%= t(:change_avatar).titleize.html_safe %></a></li>
+                <li><a href="#"><%= t(:select_band).pluralize.titleize.html_safe %></a></li>
                 <li class="dropdown-submenu">
-                  <a href="#">Languages</a>
+                  <a href="#"><%= t(:language).pluralize.titleize.html_safe %></a>
                   <ul class="dropdown-menu">
                     <% Language.all.order('language_name').each do |k| %>
                         <li><a href="/users/change_language/<%= cookies[:user_id] %>?data_result[language_id]=<%= k.language_id %>"><%= k.language_name %></a></li>
@@ -56,7 +56,7 @@
               </ul>
             </li>
             <li class="divider"></li>
-            <li><a href="/login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="/login/logout"><i class="fa fa-sign-out fa-fw"></i> <%= t(:logout).titleize.html_safe %></a>
             </li>
           </ul>
           <!-- /.dropdown-user -->
@@ -78,9 +78,9 @@
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="action_button" value="#">Action <span class="caret"></span></button>
               <ul class="dropdown-menu" role="menu">
                 <li>&nbsp;</li>
-                <li><a href="#" onclick="change_search('Bands');">Bands</a></li>
-                <li><a href="#" onclick="change_search('Concerts');">Concerts</a></li>
-                <li><a href="#" onclick="change_search('Venues');">Venues</a></li>
+                <li><a href="#" onclick="change_search('Bands');"><%= t(:band).capitalize.pluralize.html_safe %></a></li>
+                <li><a href="#" onclick="change_search('Concerts');"><%= t(:concert).capitalize.pluralize.html_safe %></a></li>
+                <li><a href="#" onclick="change_search('Venues');"><%= t(:venue).capitalize.pluralize.html_safe %></a></li>
               </ul>
             </div><!-- /btn-group -->
             <input type="text" class="form-control suggest-user" id="suggest" placeholder="">
@@ -91,19 +91,19 @@
           <a href="/index.html"><i class="fa fa-home fa-fw"></i> Home</a>
         </li>
         <li class="panel-yellow">
-          <a href="/bands"><i class="fa fa-microphone fa-fw"></i> Bands</a>
+          <a href="/bands"><i class="fa fa-microphone fa-fw"></i> <%= t(:band).capitalize.pluralize.html_safe %></a>
         </li>
         <li class="panel-primary">
-          <a href="/concerts"><i class="fa fa-calendar fa-fw"></i> Concerts</a>
+          <a href="/concerts"><i class="fa fa-calendar fa-fw"></i> <%= t(:concert).capitalize.pluralize.html_safe %></a>
         </li>
         <li class="panel-green">
-          <a href="/venues"><i class="fa fa-ticket fa-fw"></i> Venues</a>
+          <a href="/venues"><i class="fa fa-ticket fa-fw"></i> <%= t(:venue).capitalize.pluralize.html_safe %></a>
         </li>
         <li class="panel-default">
-          <a href="/about"><i class="fa fa-cogs fa-fw"></i> About</a>
+          <a href="/about"><i class="fa fa-cogs fa-fw"></i> <%= t(:about).capitalize.html_safe %></a>
         </li>
         <li class="panel-success">
-          <a href="/bibliography"><i class="fa fa-book fa-fw"></i> Bibliography</a>
+          <a href="/bibliography"><i class="fa fa-book fa-fw"></i> <%= t(:bibliography).capitalize.html_safe %></a>
         <li>&nbsp;</li>
         <li>
           <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

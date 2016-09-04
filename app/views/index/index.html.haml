@@ -9,7 +9,7 @@
               = image_tag('concerts-db-logo-white-trans.gif', :alt => 'The Concert Database', :class => 'img-responsive')
             %div.col-xs-8
               %h2
-                The Concert Database
+                = t(:the_concert_database).titleize.html_safe
               %p This site is dedicated to sharing experiences of live performances and their incidental details such as tour programs, ticket stubs, photos, audio, video and more...
               %p By cataloging these performances we can study how pieces have evolved over time and learn about small nuances hidden within the performances.
         %div.panel-footer
@@ -39,6 +39,7 @@
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left
+                =# t(:hello)
                 =# "There are xxx concerts in the database within 50 miles from #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
                 =# "IP: #{request.remote_ip.to_s}"
                 =# "Lat: #{get_lat_lon_from_ip()[0]}"
