@@ -44,6 +44,10 @@ class BandMember < ActiveRecord::Base
     member_fname.html_safe
   end
 
+  def band_id
+    band_id
+  end
+
   def band_member_names
     band_member_names = Hash.new
     if  members.present?

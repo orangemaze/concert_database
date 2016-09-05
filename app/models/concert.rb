@@ -103,7 +103,7 @@ class Concert < ActiveRecord::Base
   def tour_name_plain
     tour_name = Hash.new
     if concert_bands.present?
-      concert_bands.each do |k ,v|
+      concert_bands.order('band_position').each do |k ,v|
         k.tour_name.each do |x, y|
           puts '== tour name =='
           puts x.to_s.blue
@@ -115,10 +115,10 @@ class Concert < ActiveRecord::Base
     tour_name
   end
 
-  def band_member_names
+  def band_member_names(band_id)
     band_member_names = Hash.new
     if band_members.present?
-      band_members.each do |k ,v|
+      band_members.where('band_id = ?', band_id).each do |k ,v|
         k.band_member_names.each do |x, y|
           puts '== member name =='
           puts x.to_s.blue

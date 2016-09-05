@@ -65,7 +65,9 @@
           %p
           %div.band_details
             %ul.list-unstyled
+              - count_tour = 0
               - @data_result.band_name_plain.each do |k, v|
+
                 %li
                   = t('band').titleize
                   %br
@@ -74,13 +76,18 @@
                     %li
                       = "#{t('tour').titleize}".html_safe
                       %br
-                      - @data_result.tour_name_plain.each do |a, b|
-                        = link_to b, tour_path(a.to_s)
+                      %ul
+                        %li= link_to @data_result.tour_name_plain.values[count_tour].to_s, tour_path(@data_result.tour_name_plain.keys[count_tour].to_s)
                     %li
                       = "#{t('member').titleize}".html_safe
+                      %br
                       %ul
-                        - @data_result.band_member_names.each do |a, b|
-                          %li= link_to b, member_path(a.to_s)
+                        - @data_result.band_member_names(k).each do |g, h|
+                          %li= link_to h.to_s, member_path(g.to_s)
+
+
+
+                      - count_tour = count_tour.to_i + 1
           %div.clearfix
 
 
