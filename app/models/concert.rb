@@ -113,10 +113,22 @@ class Concert < ActiveRecord::Base
       end
     end
     tour_name
-
   end
 
-
+  def band_member_names
+    band_member_names = Hash.new
+    if band_members.present?
+      band_members.each do |k ,v|
+        k.band_member_names.each do |x, y|
+          puts '== member name =='
+          puts x.to_s.blue
+          puts y.inspect.to_s.red
+          band_member_names[x] = y
+        end
+      end
+    end
+    band_member_names
+  end
 
 
   def bootleg_name_plain

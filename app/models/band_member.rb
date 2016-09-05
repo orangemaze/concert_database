@@ -44,5 +44,14 @@ class BandMember < ActiveRecord::Base
     member_fname.html_safe
   end
 
+  def band_member_names
+    band_member_names = Hash.new
+    if  members.present?
+      members.each do |f|
+        band_member_names[f.member_id] = f.member_fname.to_s + " " + f.member_lname.to_s
+      end
+    end
+    band_member_names
+  end
 
 end
