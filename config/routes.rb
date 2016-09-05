@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     resources :years
     resources :flags
     resources :roios
+    resources :index
+    resources :years
   end
 
   # Example of regular route:

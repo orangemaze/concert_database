@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
       puts "#{cookies[:user_name]} cookie is now present".red
       puts request.env['HTTP_USER_AGENT'].blue
     end
-    tracking_data = TrackingData.new(:user_id => session[:users_id], :on_page => request.original_url, :referred_from => request.referer, :time_stamp => Time.now, :browser => browser_name, :os => os_name, :user_agent => request.env['HTTP_USER_AGENT'])
+    tracking_data = TrackingData.new(:user_id => session[:users_id], :on_page => request.original_url, :referred_from => request.referer, :time_stamp => Time.now, :browser => browser_name, :os => os_name, :user_agent => request.env['HTTP_USER_AGENT'], :user_ip => request.remote_ip)
     tracking_data.save
 
   end

@@ -9,6 +9,10 @@ class Band < ActiveRecord::Base
   has_many :moderators, :foreign_key => 'band_id', :primary_key => 'band_id'
   has_many :users, :through => :moderators, :primary_key => 'user_id', :foreign_key => 'user_id'
 
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+  include ActionView::Helpers::UrlHelper
+
   def tour_name
     tour_name = Hash.new
     if  tours.present?
@@ -86,7 +90,7 @@ class Band < ActiveRecord::Base
           @items = 'listing'
         end
 
-        @tag_return = "#{@tag_return.to_s} <a href=\"/years/#{k}?band_id=#{@band_id}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
+        @tag_return = "#{@tag_return.to_s} <a href=\"/#{I18n.locale}/years/#{k}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
 
         tag_counting +=1
       end
@@ -163,7 +167,7 @@ class Band < ActiveRecord::Base
           @key_val = URI::escape(k)
 
 
-          @tag_return_members = "#{@tag_return_members.to_s}<a href=\"/members/#{tag_id[tag_counting]}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
+          @tag_return_members = "#{@tag_return_members.to_s}<a href=\"/#{I18n.locale}/members/#{tag_id[tag_counting]}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
 
           tag_counting +=1
         # end

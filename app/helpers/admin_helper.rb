@@ -28,6 +28,8 @@ module AdminHelper
         'Safari'
       when /trident/i
         'Internet Explorer'
+      when /googlebot/i
+        'googlebot'
       else
         'Unknown'
     end
@@ -38,12 +40,16 @@ module AdminHelper
     case user_agent
       when /windows/i
         'Windows'
+      when /android/i
+        'Android'
       when /ubuntu/i
         'Ubuntu'
       when /linux/i
         'Linux'
       when /mac/i
         'Mac'
+      when /googlebot/i
+        'googlebot'
       else
         'Unknown'
     end

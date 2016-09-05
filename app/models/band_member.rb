@@ -48,6 +48,13 @@ class BandMember < ActiveRecord::Base
     band_id
   end
 
+  def bands_name_info
+    bands_name_info = Hash.new
+    puts bands.inspect
+
+    bands_name_info
+  end
+
   def band_member_names
     band_member_names = Hash.new
     if  members.present?
