@@ -1,0 +1,23 @@
+{
+    "sEmptyTable":     "oNay ataday availableyay inyay abletay",
+    "sInfo":           "owingShay _START_ otay _END_ ofyay _TOTAL_ entriesyay",
+    "sInfoEmpty":      "owingShay 0 otay 0 ofyay 0 entriesyay",
+    "sInfoFiltered":   "(ilteredfay omfray _MAX_ otaltay entriesyay)",
+    "sInfoPostFix":    "",
+    "sInfoThousands":  ",",
+    "sLengthMenu":     "owShay _ENUMay_ entriesyay",
+    "sLoadingRecords": "oadingLay...",
+    "sProcessing":     "ocessingPray...",
+    "sSearch":         "earchSay:",
+    "sZeroRecords":    "oNay atchingmay ecordsray oundfay",
+    "oPaginate": {
+        "sFirst":    "irstFay",
+        "sLast":     "astLay",
+        "sNext":     "extNay",
+        "sPrevious": "eviousPray"
+    },
+    "oAria": {
+        "sSortAscending":  ": activateyay otay ortsay olumncay ascendingyay",
+        "sSortDescending": ": activateyay otay ortsay olumncay escendingday"
+    }
+}

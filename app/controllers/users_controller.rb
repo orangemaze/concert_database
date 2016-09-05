@@ -46,10 +46,19 @@ class UsersController < ApplicationController
     puts params[:id].to_s.red
     puts params[:locale].to_s.red
     sliced_url = URI(request.referer).path
+    puts '-- sliced url --'.red
+    puts sliced_url.to_s.blue
+
+    if sliced_url = "/"
+      make_index = '/index'
+    else
+      make_index = ''
+    end
 
     sliced_url[0..2] = ''
-    sliced_url = "/#{params[:locale]}#{sliced_url}".to_s
-    puts sliced_url.to_s.blue
+    sliced_url = "/#{params[:locale]}#{sliced_url}#{make_index}".to_s
+
+
 
     new_locale = params[:locale]
 

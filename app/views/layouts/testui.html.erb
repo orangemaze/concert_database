@@ -146,7 +146,10 @@
                 change_search('<%= t('band').titleize.pluralize %>');
             }
             $('.dataTables').DataTable({
-                responsive: true
+                responsive: true,
+                language: {
+                    url: '/assets/localisation/<%= I18n.locale %>.json'
+                }
             });
             $( function() {
                 $( ".datepicker" ).datepicker();
