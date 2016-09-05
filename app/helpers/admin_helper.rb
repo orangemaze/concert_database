@@ -17,4 +17,37 @@ module AdminHelper
     is_moderator
   end
 
+  def browser_name
+    user_agent = request.env['HTTP_USER_AGENT'].downcase
+    case user_agent
+      when /chrome/i
+        'Chrome'
+      when /gecko/i
+        'Mozilla'
+      when /safari/i
+        'Safari'
+      when /trident/i
+        'Internet Explorer'
+      else
+        'Unknown'
+    end
+  end
+
+  def os_name
+    user_agent = request.env['HTTP_USER_AGENT'].downcase
+    case user_agent
+      when /windows/i
+        'Windows'
+      when /ubuntu/i
+        'Ubuntu'
+      when /linux/i
+        'Linux'
+      when /mac/i
+        'Mac'
+      else
+        'Unknown'
+    end
+
+  end
+
 end

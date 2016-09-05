@@ -8,7 +8,7 @@
             %div.col-xs-3
               %i.fa.fa-calendar.fa-5x
             %div.col-xs-9.text-right
-              %h4= t('concert')
+              %h4= t('concert').titleize
               %div
                 = "#{@data_result.concert_date} #{turn_to_ratings_stars(@data_result.concert_avg_rating)}".html_safe
 
@@ -29,7 +29,7 @@
             %div.col-xs-3
               %i.fa.fa-ticket.fa-5x
             %div.col-xs-9.text-right
-              %h4= t('venue')
+              %h4= t('venue').titleize
               %div
                 = link_to @data_result.venue_name.html_safe, venue_path(@data_result.venue_id), :class => 'reverse'
 
@@ -50,7 +50,7 @@
             %div.col-xs-3
               %i.fa.fa-microphone.fa-5x
             %div.col-xs-9.text-right
-              %h4= t('band').pluralize(@data_result.band_name_plain.count)
+              %h4= t('band').titleize.pluralize(@data_result.band_name_plain.count)
               %div
                 %ul.list-unstyled
                   - @data_result.band_name_plain.each do |k, v|
@@ -98,7 +98,7 @@
             %div.col-xs-3
               %i.fa.fa-group.fa-5x
             %div.col-xs-9.text-right
-              %h4= t('were_you_there')
+              %h4= t('were_you_there').titleize
               %div
                 %a{:href => "#"}
 

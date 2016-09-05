@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-
+  include AdminHelper
   include ActionDispatch::Routing::UrlFor
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
@@ -35,7 +35,10 @@ class ApplicationController < ActionController::Base
       end
 
       puts "#{cookies[:user_name]} cookie is now present".red
+      puts request.env['HTTP_USER_AGENT'].blue
     end
+    tracking_data = TrackingData.new(:user_id => session[:users_id], :on_page => request.original_url, :referred_from => request.referer, :time_stamp => Time.now, :browser => browser_name, :os => os_name, :user_agent => request.env['HTTP_USER_AGENT'])
+    tracking_data.save
 
   end
 

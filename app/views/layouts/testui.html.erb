@@ -118,8 +118,13 @@
                     var action = $( "#action_button" ).attr( "value").toLowerCase();
                     // var locale = get_query_string_params('locale');
                     var locale = window.location.pathname.substring(0, 3);
-                    // alert(action)
-                    location.href = locale + '/'+action+'/' + url;
+                    if(locale = '/'){
+                        locale = '/en'
+                    }
+                    // alert(locale);
+                    var build_url = locale + '/' + action + '/' + url;
+                    // alert(build_url);
+                    location.href = build_url;
                 }
             },
 
