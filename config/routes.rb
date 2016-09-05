@@ -8,8 +8,7 @@ Rails.application.routes.draw do
 
   root 'index#index'
   get ':locale/index' => 'index#index'
-  get 'index/:id' => 'index#show'
-  get 'about' => 'index#about'
+  get ':locale/about' => 'index#about'
   get ':locale/concerts/roio_details/:id' => 'concerts#roio_details'
   get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'

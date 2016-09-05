@@ -7,7 +7,7 @@
         %div.row
           %div.col-xs-10.text-left.vertical-align.inline
             %i.fa.fa-ticket.fa-5x
-            %h3 &nbsp;Venues
+            %h3= "&nbsp;#{t('venue').pluralize.titleize}".html_safe
             %p
       %div.panel-footer
-        %p To select a venue, choose 'Venues' from the 'Action' drop down, and begin to enter a venue name. The site uses a search suggest feature wherever possible.
+        %p= t('to_select_a_venue')

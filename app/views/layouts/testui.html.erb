@@ -137,13 +137,13 @@
         };
         $(document).ready(function() {
             if (window.location.pathname.slice(3) == "/concerts") {
-                change_search('Concerts');
+                change_search('<%= t('concert').titleize.pluralize %>');
             }
             if (window.location.pathname.slice(3) == "/venues") {
-                change_search('Venues');
+                change_search('<%= t('venue').titleize.pluralize %>');
             }
             if (window.location.pathname.slice(3) == "/bands") {
-                change_search('Bands');
+                change_search('<%= t('band').titleize.pluralize %>');
             }
             $('.dataTables').DataTable({
                 responsive: true

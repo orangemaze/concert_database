@@ -7,7 +7,7 @@
         %div.row
           %div.col-xs-10.text-left.vertical-align.inline
             %i.fa.fa-calendar.fa-5x
-            %h3 &nbsp;Concerts
+            %h3= "&nbsp;#{t('concert').titleize.pluralize}".html_safe
             %p
       %div.panel-footer
-        %p To select a concert, choose 'Concerts' from the 'Action' drop down, and begin to enter a date. The site uses a search suggest feature wherever possible. All dates in the database are in the following format yyyy-mm-dd.
+        %p= t('to_select_a_concert')

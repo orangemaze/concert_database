@@ -77,6 +77,10 @@ en:
   tracklist: "tracklist"
   tour: "tour"
   member: "member"
+  action: "action"
+  to_select_a_concert: "To select a concert, choose 'Concerts' from the 'Action' drop down, and begin to enter a date. The site uses a search suggest feature wherever possible. All dates in the database are in the following format yyyy-mm-dd."
+  to_select_a_venue: "To select a venue, choose 'Venues' from the 'Action' drop down, and begin to enter a venue name. The site uses a search suggest feature wherever possible."
+  about_this_site: "About this site"
 
   date:
     formats:

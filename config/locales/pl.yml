@@ -76,6 +76,10 @@ pl:
   tracklist: "acklisttray"
   tour: "ourtay"
   member: "embermay"
+  action: "actionyay"
+  to_select_a_concert: "oTay electsay ayay oncertcay, oosechay 'oncertsCay' omfray ethay 'Actionyay' opdray ownday, andyay eginbay otay enteryay ayay ateday. eThay itesay usesyay ayay earchsay uggestsay eaturefay ereverwhay ossiblepay. Allyay atesday inyay ethay atabaseday areyay inyay ethay ollowingfay ormatfay yyyy-mm-dd."
+  to_select_a_venue: "oTay electsay ayay enuevay, oosechay 'enuesVay' omfray ethay 'Actionyay' opdray ownday, andyay eginbay otay enteryay ayay enuevay amenay. eThay itesay usesyay ayay earchsay uggestsay eaturefay ereverwhay ossiblepay."
+  about_this_site: "Aboutyay isthay itesay"
 
   date:
     formats:
