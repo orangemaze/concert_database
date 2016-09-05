@@ -7,25 +7,25 @@
 
     = roio_image
     %ul.list-unstyled
-      %li= "Band: #{@data_result.band_name.to_s.gsub(/\\'/, '\'')}"
-      %li= "Title: #{@data_result.bootleg_name.to_s.gsub(/\\'/, '\'')}"
-      %li= "Type: #{turn_roio_type_into_icon(@data_result.roio_type, 'large')}".html_safe
-      %li= "Format: #{@data_result.roio_format}"
-      %li= "Label: #{@data_result.release_label.to_s.gsub(/\\'/, '\'')}"
-      %li= "Recorder: #{@data_result.recorder.to_s.gsub(/\\'/, '\'')}"
-      %li= "Length: #{@data_result.length}"
-      %li= "Discs: #{@data_result.cd}"
-      %li= "Taper: #{@data_result.taper.to_s.gsub(/\\'/, '\'')}"
-      %li= "Lineage: #{@data_result.lineage.to_s.gsub(/\\'/, '\'')}"
-      %li= "Equipment: #{@data_result.equipment.to_s.gsub(/\\'/, '\'')}"
-      %li= "Generation: #{@data_result.generation.to_s.gsub(/\\'/, '\'')}"
-      %li= "Taper Location: #{@data_result.taper_location.to_s.gsub(/\\'/, '\'')}"
-      %li= "Source Warning: #{@data_result.source_warning.to_s.gsub(/\\'/, '\'')}"
-      %li= "Added to the database by #{@data_result.user_name} on #{@data_result.timeEntered}"
-      %li= "Last Edited: #{@data_result.time_entered_2}"
-      %li= "Roio Rating: #{turn_to_ratings_stars(@data_result.roio_avg_rating.to_s)}".html_safe
-      %li= "Images: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
-      %li= "MD5: #{@data_result.md5}"
+      %li= "#{t('band').titleize}: #{@data_result.band_name.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('title').titleize}: #{@data_result.bootleg_name.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('type').titleize}: #{turn_roio_type_into_icon(@data_result.roio_type, 'large')}".html_safe
+      %li= "#{t('format').titleize}: #{@data_result.roio_format}".html_safe
+      %li= "#{t('label').titleize}: #{@data_result.release_label.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('recorder').titleize}: #{@data_result.recorder.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('length').titleize}: #{@data_result.length}".html_safe
+      %li= "#{t('discs').titleize}: #{@data_result.cd}".html_safe
+      %li= "#{t('taper').titleize}: #{@data_result.taper.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('lineage').titleize}: #{@data_result.lineage.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('equipment').titleize}: #{@data_result.equipment.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('generation').titleize}: #{@data_result.generation.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('taper_location').titleize}: #{@data_result.taper_location.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('source_warning').titleize}: #{@data_result.source_warning.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li= "#{t('added_to_the_database_by').titleize} #{@data_result.user_name} #{t('on')} #{@data_result.timeEntered}".html_safe
+      %li= "#{t('last_edited').titleize}: #{@data_result.time_entered_2}".html_safe
+      %li= "#{t('roio_rating').titleize}: #{turn_to_ratings_stars(@data_result.roio_avg_rating.to_s)}".html_safe
+      %li= "#{t('image').titleize.pluralize(@data_result.roio_image_count)}: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
+      %li= "#{t('md5').titleize}: #{@data_result.md5}".html_safe
       %li
         - if cookies[:user_id].blank?
           = "<i class='fa fa-sign-in' aria-hidden='true' alt='Sign In' title='Sign In'></i> to see who has this, and to add it to your tradlist!".html_safe
@@ -39,7 +39,7 @@
 
 
   %div.col-md-5
-    Tracklist
+    = t('tracklist').titleize.html_safe
     %ul.list-unstyled
       - @data_result.roio_set_list.each do |k, v|
         %li

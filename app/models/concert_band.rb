@@ -61,16 +61,6 @@ class ConcertBand < ActiveRecord::Base
     band_name.html_safe
   end
 
-  def tour_name
-    tour_name = ''
-    if  tours.order('start_date').present?
-      tours.each do |f|
-        tour_name = "#{tour_name.to_s} #{link_to f.tour_name.to_s, (f.tours_id.to_s)}"
-      end
-    end
-    tour_name.html_safe
-  end
-
   def tour_start_date
     tour_start_date = ''
     if  tours.present?
@@ -122,13 +112,23 @@ class ConcertBand < ActiveRecord::Base
   end
 
   def band_name
-    band_name = ''
+    band_name = Hash.new
     if  bands.present?
       bands.each do |f|
-        band_name = band_name.to_s + f.band_name.to_s
+        band_name[f.band_id] = f.band_name.to_s
       end
     end
-    band_name.html_safe
+    band_name
+  end
+
+  def tour_name
+    tour_name = Hash.new
+    if  tours.order('start_date').present?
+      tours.each do |f|
+        tour_name[f.tours_id] = f.tour_name.to_s
+      end
+    end
+    tour_name
   end
 
 end

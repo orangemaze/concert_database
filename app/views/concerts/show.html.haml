@@ -63,8 +63,16 @@
               %i.fa.fa-arrow-circle-right
           %div.clearfix
           %p
-          %div.band_details= @data_result.band_name
-
+          %div.band_details
+            %ul.list-unstyled
+              - @data_result.band_name_plain.each do |k, v|
+                %li
+                  = t('band').titleize
+                  = link_to "#{v}", band_path(k)
+                  %ul
+                    %li
+                      = "#{t('tour').titleize}".html_safe
+                    %li= "#{t('member').titleize}".html_safe
           %div.clearfix
 
 

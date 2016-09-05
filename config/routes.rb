@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get ':locale/index' => 'index#index'
   get 'index/:id' => 'index#show'
   get 'about' => 'index#about'
-  get 'concerts/roio_details/:id' => 'concerts#roio_details'
+  get ':locale/concerts/roio_details/:id' => 'concerts#roio_details'
   get 'review/:id' => 'review#testui_comments'
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'

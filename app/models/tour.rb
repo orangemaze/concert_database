@@ -14,7 +14,7 @@ class Tour < ActiveRecord::Base
     tour_dates = ''
     if  concert_bands.present?
       concert_bands.each do |f|
-        tour_dates = "#{tour_dates.to_s} <tr><td>#{link_to f.concert_date, concert_path(f.concert_id) + "?locale=#{I18n.locale.to_s}"}</td><td>#{f.bootleg_name.gsub(/\\'/, '\'')}</td></tr>\n"
+        tour_dates = "#{tour_dates.to_s} <tr><td>#{link_to f.concert_date, "/#{I18n.locale}/concerts/#{f.concert_id}"}</td><td>#{f.bootleg_name.gsub(/\\'/, '\'')}</td></tr>\n"
       end
     end
     tour_dates.html_safe

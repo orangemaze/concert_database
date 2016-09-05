@@ -55,7 +55,28 @@ en:
   view_detail: "view detail"
   were_you_there: = "were you there"
 
-
+  title: "title"
+  type: "type"
+  format: "format"
+  label: "label"
+  recorder: "recorder"
+  length: "length"
+  disc: "disc"
+  taper: "taper"
+  lineage: "lineage"
+  equipment: "equipment"
+  generation: "generation"
+  taper_location: "taper location"
+  source_warning: "source warning"
+  added_to_the_database_by: "added to the database by"
+  on: "on"
+  last_edited: "last_edited"
+  roio_rating: "roio_rating"
+  image: "image"
+  md5: "md5"
+  tracklist: "tracklist"
+  tour: "tour"
+  member: "member"
 
   date:
     formats:

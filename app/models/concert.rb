@@ -88,12 +88,36 @@ class Concert < ActiveRecord::Base
   def band_name_plain
     band_name = Hash.new
     if concert_bands.present?
-      concert_bands.order('band_position').each do |f|
-        band_name[f.band_id] = f.band_name.to_s
+      concert_bands.order('band_position').each do |k ,v|
+        k.band_name.each do |x, y|
+          puts '== band name =='
+          puts x.to_s.blue
+          puts y.inspect.to_s.red
+          band_name[x] = y
+        end
       end
     end
     band_name
   end
+
+  def tour_name_plain
+    tour_name = Hash.new
+    if concert_bands.present?
+      concert_bands.each do |k ,v|
+        k.tour_name.each do |x, y|
+          puts '== tour name =='
+          puts x.to_s.blue
+          puts y.inspect.to_s.red
+          tour_name[x] = y
+        end
+      end
+    end
+    tour_name
+
+  end
+
+
+
 
   def bootleg_name_plain
     bootleg_name_plain = ''
@@ -103,10 +127,7 @@ class Concert < ActiveRecord::Base
       end
     end
     bootleg_name_plain.html_safe
-
   end
-
-
 
   def tour_name
     tour_name = ''
