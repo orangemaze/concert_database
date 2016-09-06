@@ -13,7 +13,7 @@
       %div.panel-footer
         %p= "Bands that #{@data_result.member_fname}&nbsp;#{@data_result.member_lname} has played with".html_safe
         %ul
-          - @data_result.band_name.each do |k ,v|
-            %li=# v
+          - Band.select('band.band_id, band.band_name').joins('join band_members on band.band_id = band_members.band_id').where('band_members.member_id = ?', @data_result.member_id).group('band_members.band_id').each do |v|
+            %li= link_to v.band_name, band_path(v.band_id)
 
         %div.clearfix
