@@ -10,9 +10,25 @@
             %h2 Editing Tour
             %p
       %div.panel-footer
+        %div.row
+          %div.col-xs-5.text-left.vertical-align.inline
 
-        = render 'form'
+            = render 'form'
 
-        = link_to 'Show', @tour
-        |
-        = link_to 'Back', tour_path
+          %div.col-xs-5.text-left.vertical-align#tour-member-container
+            %ul.list-unstyled
+              - TourMember.select('tour_members.tours_id, tour_members.member_id, members.member_fname, members.member_lname').joins('join members on members.member_id = tour_members.member_id').where('tour_members.tours_id = ?', @tour.tours_id).each do |v|
+                %li
+                  %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});"}
+                  = link_to "#{v.member_fname} #{v.member_lname}", member_path(v.member_id)
+
+        %div.row
+          %div.col-xs-10.text-left.vertical-align.inline
+            %p select concert to add to tour
+
+
+        %div.row
+          %div.col-xs-10.text-left.vertical-align.inline
+            = link_to 'Show', @tour
+            |
+            = link_to 'Back', tour_path

@@ -6,7 +6,7 @@ module AdminHelper
 
     # puts session[:band_moderator].inspect.blue
     if @moderator_band_names.present?
-      if @moderator_band_names.key(band_id).present?
+      if @moderator_band_names.key(band_id).present? || session[:admin] == 1
         is_moderator = 'y'
       else
         is_moderator = 'n'

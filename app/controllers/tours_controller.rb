@@ -12,7 +12,7 @@ class ToursController < ApplicationController
     puts @data_result.band_name[0].green
     if @moderator_band_names.present?
       puts 'and here...'.red
-      if @moderator_band_names.has_value?(@data_result.band_name[0]).present?
+      if @moderator_band_names.has_value?(@data_result.band_name[0]).present? or (session[:admin].to_i == 1)
         puts 'finally!!'.blue
         @is_moderator = 'y'
       else
@@ -28,7 +28,7 @@ class ToursController < ApplicationController
     puts 'edit'.blue
     puts @tour.inspect.red
     if @moderator_band_names.present?
-      if @moderator_band_names.has_value?(@tour.band_name[0]).present?
+      if @moderator_band_names.has_value?(@tour.band_name[0]).present? or (session[:admin].to_i == 1)
         @is_moderator = 'y'
       else
         redirect_to("/index")

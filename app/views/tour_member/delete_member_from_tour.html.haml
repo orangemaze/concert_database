@@ -1,0 +1,6 @@
+%ul.list-unstyled
+  - TourMember.select('tour_members.tours_id, tour_members.member_id, members.member_fname, members.member_lname').joins('join members on members.member_id = tour_members.member_id').where('tour_members.tours_id = ?', @tour.tours_id).each do |v|
+    %li
+      %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});"}
+      = link_to "#{v.member_fname} #{v.member_lname}", member_path(v.member_id)
+

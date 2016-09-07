@@ -8,7 +8,7 @@
           %div.col-xs-9.text-left.vertical-align.inline
             %i.fa.fa-microphone.fa-5x
             %h3= "&nbsp;Details about #{@data_result.member_fname}&nbsp;#{@data_result.member_lname}".html_safe
-            - if @is_moderator == 'y'
+            - if @is_moderator == 'y' or session['admion'] == 1
               = link_to "<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(@data_result.band_id), :class => "admin_edit reverse"
       %div.panel-footer
         %p= "Bands that #{@data_result.member_fname}&nbsp;#{@data_result.member_lname} has played with".html_safe

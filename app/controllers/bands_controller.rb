@@ -11,7 +11,7 @@ class BandsController < ApplicationController
     @data_result = Band.find(params[:id])
 
     if @moderator_band_names.present?
-      if @moderator_band_names.has_value?(@data_result.band_name).present?
+      if (@moderator_band_names.has_value?(@data_result.band_name).present?) or (session[:admin].to_i == 1)
         @is_moderator = 'y'
       else
         @is_moderator = 'n'

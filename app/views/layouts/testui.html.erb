@@ -95,6 +95,15 @@
         }
     }
 
+    function delete_tour_member(tours_id, member_id){
+        var locale = window.location.pathname.substring(0, 3);
+        $.get(locale + "/tour_member/delete_member_from_tour/?tours_id="+tours_id+"&member_id="+member_id, function(data, status){
+            // roio-details-container
+            $("#tour-member-container").html(data);
+            // alert("Data: " + data + "\nStatus: " + status);
+        });
+    }
+
     $(function() {
         $(".suggest-user").autocomplete({
             source: function(request, response) {
@@ -159,6 +168,7 @@
             $( function() {
                 $( ".datepicker" ).datepicker();
             } );
+
 
             $( ".view_details" ).click(function() {
                 var action = $(this).attr( "id")
