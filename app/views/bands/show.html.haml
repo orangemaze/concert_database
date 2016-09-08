@@ -30,7 +30,16 @@
 
                 %br
                 %br People that played with #{@data_result.band_name}
-                = @data_result.band_members_over_the_years.html_safe
+                - tag_counting = 0
+                - @data_result.band_members_over_the_years.each do |k , v|
+                  - if tag_counting >= 1
+                    - if @is_moderator == 'y'
+                      = ' <i class="fa fa-retweet" aria-hidden="true"></i> '.html_safe
+                    - else
+                      = ' <strong>&middot;</strong> '.html_safe
+                  = v.html_safe
+                  - tag_counting +=1
+
                 %br
                 %br Associated bands that members of #{@data_result.band_name} have played with
 

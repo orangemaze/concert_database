@@ -24,13 +24,13 @@ class BandsController < ApplicationController
   def edit
     @band = Band.find(params[:id])
     if @moderator_band_names.present?
-      if @moderator_band_names.has_value?(@band.band_name).present?
+      if @moderator_band_names.has_value?(@band.band_name).present? or (session[:admin].to_i == 1)
         @is_moderator = 'y'
       else
-        redirect_to("/index")
+        redirect_to(index_index_path)
       end
     else
-      redirect_to("/index")
+      redirect_to(index_index_path)
     end
   end
 

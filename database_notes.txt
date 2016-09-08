@@ -43,3 +43,9 @@ rails generate scaffold album_tour album_id:int tour_id:int
 
 
 rails generate scaffold add_release_year_to_albums release_year:string
+
+
+
+SELECT `band`.* FROM `band` WHERE `band`.`band_id` = 97
+  Band Load (32.1ms)  SELECT  venue.venue_id, venue_names.venue_name, city.city_name, states.state_name, states.state_abbr, flags.country, flags.iso_codes FROM venue_names left join venue on venue_names.venue_id = venue.venue_id left join city on venue.venue_city_id = city.city_id left join states on venue.venue_state_id = states.state_id left join flags on venue.venue_country_id = flags.flags_id WHERE (venue_names.venue_name like '%madiso%') GROUP BY venue_names.venue_name  ORDER BY venue_names.venue_name LIMIT 75
+

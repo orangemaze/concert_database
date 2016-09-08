@@ -99,16 +99,12 @@ class Band < ActiveRecord::Base
   end
 
   def band_members_over_the_years
-    @tag_return_members = ''
+    @tag_return_members = Hash.new
     tag_id = [] # array
     tags = {}  # hash
-    puts "here1".blue
-    # members tag cloud
+    puts 'members tag cloud'.green
     if members.present?
       members.select("distinct count(band_members.concert_id) as member_count, CONCAT(members.member_fname,' ',members.member_lname) as full_name,  members.member_id as member_id").where('band_members.member_id = members.member_id').group('member_id').order('members.member_lname').each do |f|
-        # puts f.member_count.to_s.red
-        # puts f.full_name.to_s.red
-        # puts f.member_id.to_s.red
 
         tag_count = f.member_count
         tag_name = f.full_name.to_s
@@ -117,7 +113,6 @@ class Band < ActiveRecord::Base
       end
     end
 
-    # puts 'here2'.blue
     @max_size = 36
     @min_size = 9
     @max_qty = tags.max_by{|k,v| v}
@@ -140,24 +135,15 @@ class Band < ActiveRecord::Base
       @spread = 1
     end
 
-    puts "are we here >>>".red
-
     @step = (@max_size.to_f - @min_size.to_f) / (@spread.to_f)
     if tags.empty?
-      @here = 'here1'
-      # puts "empty".red
+      # nothing
     else
-      puts 'full'.red
+
       tag_counting = 0
       tags.each do |k,v|
         @size = (@min_size.to_f + ((v.to_f - @min_qty[1].to_f) * @step.to_f))
 
-        #if ((v != '392') or (v != '44'))
-          if tag_counting >= 1
-            @tag_return_members = @tag_return_members.to_s + ' <strong>&middot;</strong> '
-          end
-
-          # puts 'here'.red
           if v.to_f > 1
             @items = 'listings'
           else
@@ -166,8 +152,7 @@ class Band < ActiveRecord::Base
 
           @key_val = URI::escape(k)
 
-
-          @tag_return_members = "#{@tag_return_members.to_s}<a href=\"/#{I18n.locale}/members/#{tag_id[tag_counting]}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
+          @tag_return_members[tag_id[tag_counting]] = "<a href=\"/#{I18n.locale}/members/#{tag_id[tag_counting]}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
 
           tag_counting +=1
         # end
