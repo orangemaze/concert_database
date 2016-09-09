@@ -10,4 +10,8 @@ class MembersController < ApplicationController
   def show
     @data_result = Member.find(params[:id])
   end
+
+  def merge_members
+    render :layout => false
+  end
 end

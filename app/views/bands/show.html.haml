@@ -34,7 +34,11 @@
                 - @data_result.band_members_over_the_years.each do |k , v|
                   - if tag_counting >= 1
                     - if @is_moderator == 'y'
-                      = ' <i class="fa fa-retweet" aria-hidden="true"></i> '.html_safe
+
+                      = " <i class='fa fa-retweet' id='#{k}' aria-hidden='true' data-toggle='popover' data-placement='top' data-content='Current Member ID: #{k}<br>Merged Member ID: <input type=\"text\" name=\"merged_id\" id=\"merged_id\"><button type=\"submit\" onclick=\"merge_members(#{k})\" id=\"#{k}}\">submit</button>' data-original-title='Merge Band Members <br><span class=\"text-muted\">This operation cannot be undone</span><span id=\"error_message\"></span>'></i><span class='change_member_#{k}'></span> ".html_safe
+
+
+
                     - else
                       = ' <strong>&middot;</strong> '.html_safe
                   = v.html_safe

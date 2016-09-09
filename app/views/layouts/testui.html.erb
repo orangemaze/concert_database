@@ -63,6 +63,21 @@
         $( "#admin_edit_control" ).toggleClass( "reverse" );
     });
 
+    $("[data-toggle=popover]").popover({html : true});
+
+    function merge_members(current_id){
+        var merged_id = $( "#merged_id" ).val();
+        var locale = window.location.pathname.substring(0, 3);
+        $.get(locale + "/members/merge_members/"+current_id+"?merged_id="+merged_id, function( data ) {
+            if(data.replace(/^\s\s*/, '').replace(/\s\s*$/, '') == "complete"){
+                $('.popover').popover('hide');
+            }
+            else {
+                $("#error_message").html("<br> error"+data+"!");
+            }
+        });
+    }
+
     $(".roio-details").click(function(){
         var bootleg_id = $(this).attr("id")
         // var locale = get_query_string_params('locale');

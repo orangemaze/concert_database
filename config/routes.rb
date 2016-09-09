@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'testui' => 'testui#index'
   get 'testui/:id' => 'testui#show'
   get 'suggest' => 'suggest#index'
-
+  get ':locale/members/merge_members/:id' => 'members#merge_members'
 
   get '/login' => 'login#index'
   get 'login/logout' => 'login#logout'

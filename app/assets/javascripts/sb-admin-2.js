@@ -5,6 +5,11 @@ $(function() {
 });
 
 
+$( ".change_to" ).click(function() {
+    member_id = this.id;
+    $(".change_member_"+member_id).html(member_id);
+});
+
 $( "#login" ).click(function() {
     var username = $("#username").val();
     var password = $("#password").val();
