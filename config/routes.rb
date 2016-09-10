@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
   end
 
+  match '*path', :via => :all, :to => redirect('/404')
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
