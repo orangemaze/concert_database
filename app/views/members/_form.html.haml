@@ -1,0 +1,20 @@
+= form_for(@member) do |f|
+  - if @member.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@member.errors.count, "error")} prohibited this album from being saved:"
+
+      %ul
+      - @member.errors.full_messages.each do |message|
+        %li= message
+
+  %div.field
+    = f.label :member_fname
+    = f.text_area :member_fname
+  %div.field
+    = f.label :member_lname
+    = f.text_area :member_lname
+  %div.field
+    = f.label :bio
+    = f.text_area :bio
+  %div.actions
+    = f.submit

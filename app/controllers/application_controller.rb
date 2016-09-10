@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
         session[:email] = @user_info.email
         session[:f_name] = @user_info.f_name
         session[:l_name] = @user_info.l_name
-        session[:admin] = @user_info.admin
         session[:trader] = @user_info.trader
         session[:avatar_96] = @user_info.avatar_96
         session[:avatar_24] = @user_info.avatar_24

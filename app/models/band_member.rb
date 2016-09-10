@@ -44,9 +44,13 @@ class BandMember < ActiveRecord::Base
     member_fname.html_safe
   end
 
-  def band_id
-    band_id
+  def band_id=(band_id)
+    @band_id = band_id
   end
+  def band_id
+    @band_id
+  end
+
 
   def bands_name_info
     bands_name_info = Hash.new

@@ -1,5 +1,12 @@
 class ConcertsController < ApplicationController
   layout 'testui'
+
+  before_filter :announce_controller
+
+  def announce_controller
+    puts '=== concert controller ==='.magenta
+  end
+
   def index
     puts 'Concerts'.blue
     # @data_result = Concert.all.limit(20) # commented for testing
@@ -7,6 +14,17 @@ class ConcertsController < ApplicationController
 
   def show
     @data_result = Concert.find(params[:id])
+    puts ' == show =='.green
+    @data_result.inspect.red
+    if @moderator_band_names.present?
+      if (@moderator_band_names.has_value?(@data_result.band_name[0]).present?) or (session[:admin].to_i == 1)
+        @is_moderator = 'y'
+      else
+        @is_moderator = 'n'
+      end
+    else
+      @is_moderator = 'n'
+    end
   end
 
   def roio_details

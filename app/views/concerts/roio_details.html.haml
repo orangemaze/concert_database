@@ -8,7 +8,10 @@
     = roio_image
     %ul.list-unstyled
       %li= "#{t('band').titleize}: #{@data_result.band_name.to_s.gsub(/\\'/, '\'')}".html_safe
-      %li= "#{t('title').titleize}: #{@data_result.bootleg_name.to_s.gsub(/\\'/, '\'')}".html_safe
+      %li
+        = "#{t('title').titleize}: #{@data_result.bootleg_name.to_s.gsub(/\\'/, '\'')}".html_safe
+        = is_band_moderator(@data_result.band_id.to_s) == 'y' ? "<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe : ''
+        = is_band_moderator(@data_result.bootleg_id) == 'y' ? "<i class='fa fa-times' aria-hidden='true'></i>".html_safe : ''
       %li= "#{t('type').titleize}: #{turn_roio_type_into_icon(@data_result.roio_type, 'large')}".html_safe
       %li= "#{t('format').titleize}: #{@data_result.roio_format}".html_safe
       %li= "#{t('label').titleize}: #{@data_result.release_label.to_s.gsub(/\\'/, '\'')}".html_safe

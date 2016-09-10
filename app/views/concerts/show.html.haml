@@ -72,8 +72,8 @@
                   = t('band').titleize
                   %br
                   = link_to "#{v}", band_path(k)
-                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(k)) : ''
-                  = is_band_moderator(k) == 'y' ? "<i class='fa fa-times' aria-hidden='true'></i>".html_safe : ''
+                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(k), :class => "admin_edit") : ''
+                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, band_path(k.to_s), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "admin_edit") : ''
                   %ul
                     %li
                       = "#{t('tour').titleize}".html_safe
@@ -81,7 +81,7 @@
                       %ul
                         %li
                           = link_to @data_result.tour_name_plain.values[count_tour].to_s, tour_path(@data_result.tour_name_plain.keys[count_tour].to_s)
-                          = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s)) : ''
+                          = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s), :class => "admin_edit") : ''
                     %li
                       = "#{t('member').titleize}".html_safe
                       %br
@@ -89,8 +89,8 @@
                         - @data_result.band_member_names(k).each do |g, h|
                           %li
                             = link_to h.to_s, member_path(g.to_s)
-                            = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_member_path(g)) : ''
-                            = is_band_moderator(k) == 'y' ? "<i class='fa fa-times' aria-hidden='true'></i>".html_safe : ''
+                            = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_member_path(:id => g, :band_id => k), :class => "admin_edit") : ''
+                            = is_band_moderator(k) == 'y' ? "<i class='fa fa-times admin_edit' aria-hidden='true'></i>".html_safe : ''
 
 
 
