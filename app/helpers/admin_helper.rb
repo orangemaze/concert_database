@@ -5,8 +5,12 @@ module AdminHelper
     puts '=== is moderator ==='.red
 
     # puts session[:band_moderator].inspect.blue
-    if @moderator_band_names.present?
-      if @moderator_band_names.key(band_id).present? || session[:admin] == 1
+    if session[:admin].to_i == 1
+      is_moderator = 'y'
+    elsif @moderator_band_names.present?
+      puts @moderator_band_names.inspect
+      puts session[:admin].magenta
+      if @moderator_band_names.key(band_id).present? || session[:admin].to_i == 1
         is_moderator = 'y'
       else
         is_moderator = 'n'
@@ -14,6 +18,8 @@ module AdminHelper
     else
       is_moderator = 'n'
     end
+
+    puts is_moderator.blue
     is_moderator
   end
 

@@ -19,14 +19,31 @@ class MembersController < ApplicationController
     if @moderator_band_names.present?
       if (session[:admin].to_i == 1) # or @moderator_band_names.has_value?(@band.band_name).present?
 
-        update_band =  "update band_members set member_id = '#{merged_id}' where member_id = '#{current_id}';"
-        update_tour = "update tour_members set member_id = '#{merged_id}' where member_id = '#{current_id}';"
+        update_band = "update band_members set member_id = '#{current_id}' where member_id = '#{merged_id}';"
+        update_tour = "update tour_members set member_id = '#{current_id}' where member_id = '#{merged_id}';"
 
         puts update_band.magenta
         puts update_tour.magenta
 
-        BandMember.connection.select_all(update_band)
-        TourMember.connection.select_all(update_tour)
+        begin
+          begin
+            band_members = BandMember.find_by_sql(update_band)
+          rescue
+            band_members = BandMember.find_by_sql(update_band)
+          end
+        rescue
+          # nada
+        end
+
+        begin
+          begin
+            tour_members = TourMember.find_by_sql(update_tour)
+          rescue
+            tour_members = TourMember.find_by_sql(update_tour)
+          end
+        rescue
+          # nada
+        end
 
         @data = "complete"
       else
