@@ -16,7 +16,7 @@
       %li= "#{t('label').titleize}: #{@data_result.release_label.to_s.gsub(/\\'/, '\'')}".html_safe
       %li= "#{t('recorder').titleize}: #{@data_result.recorder.to_s.gsub(/\\'/, '\'')}".html_safe
       %li= "#{t('length').titleize}: #{@data_result.length}".html_safe
-      %li= "#{t('discs').titleize}: #{@data_result.cd}".html_safe
+      %li= "#{t('disc').titleize.pluralize}: #{@data_result.cd}".html_safe
       %li= "#{t('taper').titleize}: #{@data_result.taper.to_s.gsub(/\\'/, '\'')}".html_safe
       %li= "#{t('lineage').titleize}: #{@data_result.lineage.to_s.gsub(/\\'/, '\'')}".html_safe
       %li= "#{t('equipment').titleize}: #{@data_result.equipment.to_s.gsub(/\\'/, '\'')}".html_safe

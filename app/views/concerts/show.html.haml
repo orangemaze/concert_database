@@ -125,8 +125,12 @@
     %div.col-lg-4
       %div.panel.panel-default
         %div.panel-heading
-          %i.fa.fa-tasks.fa-fw
-          = t('list_of_roios').pluralize.titleize
+          %span.pull-left
+            %i.fa.fa-tasks.fa-fw
+            = t('list_of_roios').pluralize.titleize
+          %span.pull-right
+            = link_to("<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_roio_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.band_id}")
+          %div.clearfix
           <!-- /.panel-heading -->
         = @data_result.bootleg_name
         <!-- /.panel-body -->

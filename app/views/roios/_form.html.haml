@@ -8,46 +8,60 @@
         %li= message
 
   %div.row
-    %div.col-md-2= f.label :bootleg_name
+    %div.col-md-2
+      %strong= t('title').titleize.html_safe
     %div.col-md-4= f.text_area :bootleg_name
   %div.row
-    %div.col-md-2= f.label :roio_type
+    %div.col-md-2
+      %strong= t('type').titleize.html_safe
     %div.col-md-4= f.text_area :roio_type
   %div.row
-    %div.col-md-2= f.label :release_label
+    %div.col-md-2
+      %strong= t('label').titleize.html_safe
     %div.col-md-4= f.text_area :release_label
   %div.row
-    %div.col-md-2= f.label :roio_format
+    %div.col-md-2
+      %strong= t('format').titleize.html_safe
     %div.col-md-4= f.text_area :roio_format
   %div.row
-    %div.col-md-2= f.label :md5
+    %div.col-md-2
+      %strong= t('md5').titleize.html_safe
     %div.col-md-4= f.text_area :md5
   %div.row
-    %div.col-md-2= f.label :recorder
+    %div.col-md-2
+      %strong= t('recorder').titleize.html_safe
     %div.col-md-4= f.text_area :recorder
   %div.row
-    %div.col-md-2= f.label :cd
+    %div.col-md-2
+      %strong= t('disc').titleize.pluralize.html_safe
     %div.col-md-4= f.text_area :cd
   %div.row
-    %div.col-md-2= f.label :length
+    %div.col-md-2
+      %strong= t('length').titleize.html_safe
     %div.col-md-4= f.text_area :length
   %div.row
-    %div.col-md-2= f.label :lineage
+    %div.col-md-2
+      %strong= t('lineage').titleize.html_safe
     %div.col-md-4= f.text_area :lineage
   %div.row
-    %div.col-md-2= f.label :taper
+    %div.col-md-2
+      %strong= t('taper').titleize.html_safe
     %div.col-md-4= f.text_area :taper
   %div.row
-    %div.col-md-2= f.label :equipment
+    %div.col-md-2
+      %strong= t('equipment').titleize.html_safe
     %div.col-md-4= f.text_area :equipment
   %div.row
-    %div.col-md-2= f.label :generation
+    %div.col-md-2
+      %strong= t('generation').titleize.html_safe
     %div.col-md-4= f.text_area :generation
   %div.row
-    %div.col-md-2= f.label :source_warning
+    %div.col-md-2
+      %strong= t('source_warning').titleize.html_safe
     %div.col-md-4= f.text_area :source_warning
   %div.row
-    %div.col-md-2= f.label :taper_location
+    %div.col-md-2
+      %strong= t('taper_location').titleize.html_safe
     %div.col-md-4= f.text_area :taper_location
 
 
