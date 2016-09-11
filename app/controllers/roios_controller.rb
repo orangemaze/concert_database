@@ -14,7 +14,9 @@ class RoiosController < ApplicationController
       puts 'new'.blue
       @roio = Roio.new
     else
-      redirect_to(URI(request.referer).path)
+
+      note = t('you_must_be_logged_in_to_add_a_roio')
+      redirect_to URI(request.referer).path + "?note=" + note
     end
   end
 

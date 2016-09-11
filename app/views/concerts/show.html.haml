@@ -1,5 +1,8 @@
 %div{:id => "page-wrapper"}
   %br
+  - if @note.present?
+    %div.alert.alert-danger.text-center{:role => 'alert'}= @note
+
   %div.row
     %div.col-lg-3.col-md-6
       %div.panel.panel-primary
@@ -127,9 +130,9 @@
         %div.panel-heading
           %span.pull-left
             %i.fa.fa-tasks.fa-fw
-            = t('list_of_roios').pluralize.titleize
+            = t('list_of_roios').pluralize.titleize.html_safe
           %span.pull-right
-            = link_to("<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_roio_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.band_id}")
+            = link_to("#{t('add_roio').titleize.html_safe} <i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_roio_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.band_id}")
           %div.clearfix
           <!-- /.panel-heading -->
         = @data_result.bootleg_name

@@ -8,6 +8,9 @@
           %div.col-xs-10.text-left.vertical-align.inline
             %i.fa.fa-calendar.fa-5x
             %h3= "&nbsp;#{t('concert').titleize.pluralize}".html_safe
-            %p
+          %span.pull-right.vertical-align.inline{:style => 'margin-top: 25px; margin-bottom: auto; margin-right: 10px; height: 45px;'}
+            %br
+            = link_to("#{t('add_concert').titleize.html_safe} <i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_concert_path)
+        %div.clearfix
       %div.panel-footer
         %p= t('to_select_a_concert')
