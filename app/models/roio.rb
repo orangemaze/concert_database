@@ -16,7 +16,7 @@ class Roio < ActiveRecord::Base
   end
 
   def band_id
-    concert.present? ? concert.band_id : concert.inspect
+    band.present? ? band.band_id : band.inspect
   end
 
   def venue_id

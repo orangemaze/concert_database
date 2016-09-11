@@ -6,9 +6,9 @@ class Tour < ActiveRecord::Base
   has_many :album_tours, :primary_key => 'tours_id', :foreign_key => 'tour_id'
   has_many :albums, :through => :album_tours, :primary_key => 'tours_id', :foreign_key => 'tour_id'
 
-  include ActionDispatch::Routing::UrlFor
-  include Rails.application.routes.url_helpers
-  include ActionView::Helpers::UrlHelper
+  # include ActionDispatch::Routing::UrlFor
+  # include Rails.application.routes.url_helpers
+  # include ActionView::Helpers::UrlHelper
 
   def tour_dates
     tour_dates = ''

@@ -1,0 +1,62 @@
+= form_for(@roio) do |f|
+  - if @roio.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@roio.errors.count, "error")} prohibited this album from being saved:"
+
+      %ul
+      - @roio.errors.full_messages.each do |message|
+        %li= message
+
+  %div.row
+    %div.col-md-2= f.label :bootleg_name
+    %div.col-md-4= f.text_area :bootleg_name
+  %div.row
+    %div.col-md-2= f.label :roio_type
+    %div.col-md-4= f.text_area :roio_type
+  %div.row
+    %div.col-md-2= f.label :release_label
+    %div.col-md-4= f.text_area :release_label
+  %div.row
+    %div.col-md-2= f.label :roio_format
+    %div.col-md-4= f.text_area :roio_format
+  %div.row
+    %div.col-md-2= f.label :md5
+    %div.col-md-4= f.text_area :md5
+  %div.row
+    %div.col-md-2= f.label :recorder
+    %div.col-md-4= f.text_area :recorder
+  %div.row
+    %div.col-md-2= f.label :cd
+    %div.col-md-4= f.text_area :cd
+  %div.row
+    %div.col-md-2= f.label :length
+    %div.col-md-4= f.text_area :length
+  %div.row
+    %div.col-md-2= f.label :lineage
+    %div.col-md-4= f.text_area :lineage
+  %div.row
+    %div.col-md-2= f.label :taper
+    %div.col-md-4= f.text_area :taper
+  %div.row
+    %div.col-md-2= f.label :equipment
+    %div.col-md-4= f.text_area :equipment
+  %div.row
+    %div.col-md-2= f.label :generation
+    %div.col-md-4= f.text_area :generation
+  %div.row
+    %div.col-md-2= f.label :source_warning
+    %div.col-md-4= f.text_area :source_warning
+  %div.row
+    %div.col-md-2= f.label :taper_location
+    %div.col-md-4= f.text_area :taper_location
+
+
+
+
+
+
+
+
+
+  %div.row.actions
+    %div.col-md-6= f.submit

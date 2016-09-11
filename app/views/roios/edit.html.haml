@@ -1,0 +1,18 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-microphone.fa-5x
+            %h3 &nbsp;Editing Roio
+            %p
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Show', @roio
+        |
+        = link_to 'Back', roio_path

@@ -5,9 +5,9 @@ class BandMember < ActiveRecord::Base
   has_many :members, :primary_key => 'member_id', :foreign_key => 'member_id'
   has_many :concerts, :primary_key => 'concert_id', :foreign_key => 'concert_id'
 
-  include ActionDispatch::Routing::UrlFor
-  include Rails.application.routes.url_helpers
-  include ActionView::Helpers::UrlHelper
+  # include ActionDispatch::Routing::UrlFor
+  # include Rails.application.routes.url_helpers
+  # include ActionView::Helpers::UrlHelper
 
   def bands_members
     bands_members = ''
