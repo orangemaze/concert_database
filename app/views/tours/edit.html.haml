@@ -17,15 +17,41 @@
 
           %div.col-xs-5.text-left.vertical-align#tour-member-container
             %ul.list-unstyled
+              %li push members to all shows in tour
               - TourMember.select('tour_members.tours_id, tour_members.member_id, members.member_fname, members.member_lname').joins('join members on members.member_id = tour_members.member_id').where('tour_members.tours_id = ?', @tour.tours_id).each do |v|
                 %li
                   %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});"}
                   = link_to "#{v.member_fname} #{v.member_lname}", member_path(v.member_id)
-
+              %li add members
         %div.row
-          %div.col-xs-10.text-left.vertical-align.inline
+          %div.col-xs-4.text-center.vertical-align.inline
             %p select concert to add to tour
 
+          %div.col-xs-2.text-center.center-block
+
+
+          %div.col-xs-4.text-center.vertical-align.inline
+            %p 	These concerts are part of the tour
+
+
+        %div.row
+          %div.col-xs-4.text-center.vertical-align.inline
+            %p
+              %select{:size => "25", :name => "concert_available_tour[]", :id => "concert_available_tour", :multiple => ""}
+
+
+
+
+          %div.col-xs-2.text-center.center-block
+
+            %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "add selected", :value => "add selected >", :id => "add selected", :onclick => "add_concerts_to_tour(concert_available_tour);"} add selected >
+            %button.btn.btn-primary.btn-xs.text-center.center-block{:type => "button", :name => "remove selcted", :value => "< remove selcted", :id => "remove selcted", :onclick => "remove_concerts_from_tour(concert_in_tour);"} < remove selcted
+            %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "remove selcted", :value => "go to selected show", :id => "go selected", :onclick => "go_to_concert_selected(concert_in_tour);"} go to selected show
+
+
+          %div.col-xs-4.text-center.vertical-align.inline
+            %p
+              %select{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
 
         %div.row
           %div.col-xs-10.text-left.vertical-align.inline

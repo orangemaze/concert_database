@@ -9,7 +9,7 @@
 
   %div.field
     = f.label :tour_name
-    = f.text_area :tour_name
+    = f.text_field :tour_name
   %div.field
     = f.label :start_date
     = f.text_field :start_date, :class => 'datepicker'
@@ -22,6 +22,6 @@
     = f.hidden_field :band_name, :id => 'action_button', :value => 'Band_search'
   %div.field
     = f.label :total_shows
-    = f.text_area :total_shows
+    = f.text_field :total_shows
   %div.actions
     = f.submit
