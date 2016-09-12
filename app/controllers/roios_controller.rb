@@ -21,7 +21,7 @@ class RoiosController < ApplicationController
   end
 
   def create
-    @roio = Roio.new(album_params)
+    @roio = Roio.new(roio_params)
 
     respond_to do |format|
       if @roio.save
@@ -42,10 +42,10 @@ class RoiosController < ApplicationController
       if @moderator_band_names.has_value?(@roio.band_name[0]).present? or (session[:admin].to_i == 1)
         @is_moderator = 'y'
       else
-        redirect_to(index_index_path)
+        redirect_to URI(request.referer).path
       end
     else
-      redirect_to(index_index_path)
+      redirect_to URI(request.referer).path
     end
   end
 

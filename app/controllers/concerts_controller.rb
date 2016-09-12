@@ -16,6 +16,20 @@ class ConcertsController < ApplicationController
 
   end
 
+  def edit
+    @concert = Concert.find(params[:id])
+    puts 'edit'.blue
+    puts @concert.inspect.red
+    if @moderator_band_names.present?
+      if @moderator_band_names.has_value?(@concert.band_name[0]).present? or (session[:admin].to_i == 1)
+        @is_moderator = 'y'
+      else
+        redirect_to URI(request.referer).path
+      end
+    else
+      redirect_to URI(request.referer).path
+    end
+  end
 
   def show
     @data_result = Concert.find(params[:id])
@@ -38,6 +52,20 @@ class ConcertsController < ApplicationController
     end
   end
 
+  def update
+    @concert = Concert.find(params[:id])
+    respond_to do |format|
+      if @concert.update(roio_params)
+        format.html { redirect_to @concert }
+        format.json { render :show, :status => :ok, :location => @concert }
+      else
+        format.html { render :edit }
+        format.json { render :json => @concert.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+
   def roio_details
     @data_result = Roio.find(params[:id])
     render :layout => false
@@ -46,6 +74,10 @@ class ConcertsController < ApplicationController
   private
   def set_index
     @data_result = Concert.find(params[:id])
+  end
+
+  def roio_params
+    params.require(:concert).permit(:concert_date, :time_of_show, :notes)
   end
 
 

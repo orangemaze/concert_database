@@ -1,0 +1,18 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-calendar.fa-5x
+            %h3 &nbsp;Editing Concert
+            %p
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Show', @concert
+        |
+        = link_to 'Back', concert_path

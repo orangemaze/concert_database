@@ -1,0 +1,23 @@
+= form_for(@concert) do |f|
+  - if @concert.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@concert.errors.count, "error")} prohibited this album from being saved:"
+
+      %ul
+      - @concert.errors.full_messages.each do |message|
+        %li= message
+
+  %div.row
+    %div.col-md-2
+      %strong= t('concert_date').titleize.html_safe
+    %div.col-md-4= f.text_area :concert_date
+  %div.row
+    %div.col-md-2
+      %strong= t('time_of_show').titleize.html_safe
+    %div.col-md-4= f.text_area :time_of_show
+  %div.row
+    %div.col-md-2
+      %strong= t('note').titleize.html_safe
+    %div.col-md-4= f.text_area :notes
+  %div.row.actions
+    %div.col-md-6= f.submit

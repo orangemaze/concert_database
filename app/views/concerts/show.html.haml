@@ -22,7 +22,8 @@
               %i.fa.fa-arrow-circle-right
           %div.clearfix
           %p
-          %p.concert_details Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel imperdiet felis. Praesent congue at odio at feugiat. Vivamus a risus porta, congue velit vel, cursus metus. Ut id elementum eros. Maecenas consectetur est eu lacus cursus gravida. Integer commodo nisi massa, ut convallis lacus ultricies sit amet. Sed tincidunt et risus quis fermentum. Praesent sed nibh viverra, tristique quam non, posuere sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis fringilla ante sapien, quis tempus sem tempus eu. In eget felis enim. Vestibulum imperdiet pellentesque mauris elementum volutpat. Mauris suscipit efficitur metus id fermentum. Aenean placerat quam lacus, id varius enim fringilla quis.
+          %p.concert_details
+            = "#{t('concert').titleize}: #{@data_result.concert_date} #{is_band_moderator(@data_result.band_id.to_s) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_concert_path(@data_result.concert_id)) : ''} #{is_band_moderator(@data_result.concert_id) == 'y' ? "<i class='fa fa-times' aria-hidden='true'></i>".html_safe : ''}<br>#{t('time_of_show').titleize}: #{@data_result.time_of_show}<br>#{t('note').titleize.pluralize}: #{@data_result.notes}<br>".html_safe
           %div.clearfix
 
     %div.col-lg-3.col-md-6
