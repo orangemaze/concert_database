@@ -20,8 +20,8 @@
               %li push members to all shows in tour
               - TourMember.select('tour_members.tours_id, tour_members.member_id, members.member_fname, members.member_lname').joins('join members on members.member_id = tour_members.member_id').where('tour_members.tours_id = ?', @tour.tours_id).each do |v|
                 %li
-                  %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});"}
                   = link_to "#{v.member_fname} #{v.member_lname}", member_path(v.member_id)
+                  %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});"}
               %li add members
         %div.row
           %div.col-xs-4.text-center.vertical-align.inline
@@ -38,8 +38,11 @@
           %div.col-xs-4.text-center.vertical-align.inline
             %p
               %select{:size => "25", :name => "concert_available_tour[]", :id => "concert_available_tour", :multiple => ""}
-
-
+                - counthis = 0
+                - ConcertBand.select('concerts.concert_id, concerts.concert_date').joins('join concerts on concerts.concert_id = concert_band.concert_id').where('concert_band.band_id = ? and concerts.concert_date > ? and concerts.concert_date < ?', @tour.band_id, @tour.start_date, @tour.end_date).each do |v|
+                  %option= "#{v.concert_id} #{v.concert_date}"
+                  - counthis = counthis + 1
+              = counthis
 
 
           %div.col-xs-2.text-center.center-block
@@ -52,6 +55,11 @@
           %div.col-xs-4.text-center.vertical-align.inline
             %p
               %select{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
+                - counthis = 0
+                - ConcertBand.select('concerts.concert_id, concerts.concert_date').joins('join concerts on concerts.concert_id = concert_band.concert_id').where('concert_band.tours_id = ? and concert_band.band_id = ?', @tour.tours_id, @tour.band_id).each do |v|
+                  %option= "#{v.concert_id} #{v.concert_date}"
+                  - counthis = counthis + 1
+              = counthis
 
         %div.row
           %div.col-xs-10.text-left.vertical-align.inline
