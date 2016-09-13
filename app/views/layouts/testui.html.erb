@@ -8,8 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title><%= t('the_concert_database') %></title>
+  <title><%= t('the_concert_database').titleize.html_safe %></title>
 
   <!-- Custom Fonts -->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,91 +33,21 @@
 
   <%= render :partial => '/testui/top_nav' %>
 
-
   <%= yield %>
 
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-
 <%= javascript_include_tag 'jquery.min' %>
-<!-- Bootstrap Core JavaScript -->
 <%= javascript_include_tag 'bootstrap.min' %>
-
-<!-- Metis Menu Plugin JavaScript -->
 <%= javascript_include_tag 'metisMenu.min' %>
-
-<!-- DataTables JavaScript -->
 <%= javascript_include_tag 'jquery.dataTables.min' %>
 <%= javascript_include_tag 'dataTables.bootstrap.min' %>
 <%= javascript_include_tag 'dataTables.responsive' %>
 <%= javascript_include_tag 'jquery-ui-1.10.4.custom' %>
-
-<!-- Custom Theme JavaScript -->
 <%= javascript_include_tag 'sb-admin-2' %>
+
 <script>
-    $("#admin_edit_control").click(function(){
-        $(".admin_edit").toggle();
-        $( "#admin_edit_control" ).toggleClass( "reverse" );
-    });
-
-    $("[data-toggle=popover]").popover({html : true});
-
-    function merge_members(current_id){
-        var merged_id = $( "#merged_id" ).val();
-        var locale = window.location.pathname.substring(0, 3);
-        $.get(locale + "/members/merge_members/"+current_id+"?merged_id="+merged_id, function( data ) {
-            if(data.replace(/^\s\s*/, '').replace(/\s\s*$/, '') == "complete"){
-                $('.popover').popover('hide');
-            }
-            else {
-                $("#error_message").html("<br> error"+data+"!");
-            }
-        });
-    }
-
-    $(".roio-details").click(function(){
-        var bootleg_id = $(this).attr("id")
-        // var locale = get_query_string_params('locale');
-        var locale = window.location.pathname.substring(0, 3);
-        $.get(locale + "/concerts/roio_details/"+bootleg_id, function(data, status){
-            // roio-details-container
-            $("#roio-details-container").html(data);
-            // alert("Data: " + data + "\nStatus: " + status);
-        });
-    });
-    function change_search(category){
-        $( "#action_button" ).html(category+" <span class=\"caret\"></span>");
-        if(category == "Concerts"){
-            $("#suggest").attr("placeholder", "yyyy-mm-dd");
-        }
-        else{
-            $("#suggest").attr("placeholder", "");
-        }
-        $( "#action_button" ).val(category);
-    }
-
-    function get_query_string_params(sParam){
-        var sPageURL = window.location.search.substring(1);
-        var sURLVariables = sPageURL.split('&');
-        for (var i = 0; i < sURLVariables.length; i++){
-            var sParameterName = sURLVariables[i].split('=');
-            if (sParameterName[0] == sParam){
-                return sParameterName[1];
-            }
-        }
-    }
-
-    function delete_tour_member(tours_id, member_id){
-        var locale = window.location.pathname.substring(0, 3);
-        $.get(locale + "/tour_member/delete_member_from_tour/?tours_id="+tours_id+"&member_id="+member_id, function(data, status){
-            // roio-details-container
-            $("#tour-member-container").html(data);
-            // alert("Data: " + data + "\nStatus: " + status);
-        });
-    }
-
     $(function() {
         $(".suggest-user").autocomplete({
             source: function(request, response) {
@@ -151,7 +80,6 @@
                     location.href = build_url;
                 }
             },
-
             html: true, // optional (jquery.ui.autocomplete.html.js required)
 
             // optional (if other layers overlap autocomplete list)
@@ -183,8 +111,6 @@
             $( function() {
                 $( ".datepicker" ).datepicker();
             } );
-
-
             $( ".view_details" ).click(function() {
                 var action = $(this).attr( "id")
                 switch(action){
@@ -203,20 +129,12 @@
                     default:
                         break;
                 }
-
-
                 $( link ).toggle( "slow", function() {
                     // Animation complete.
                 });
             });
-
-
         });
-
     });
 </script>
-
-
 </body>
-
 </html>

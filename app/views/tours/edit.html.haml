@@ -17,47 +17,57 @@
 
           %div.col-xs-5.text-left.vertical-align#tour-member-container
             %ul.list-unstyled
-              %li push members to all shows in tour
+              %li
+                %a{:href =>'#'}
+                  push members to all shows in tour
+                  %i.fa.fa-sign-out{:aria_hidden =>"true"}
+                  %i.fa.fa-road{:aria_hidden =>"true"}
+
               - TourMember.select('tour_members.tours_id, tour_members.member_id, members.member_fname, members.member_lname').joins('join members on members.member_id = tour_members.member_id').where('tour_members.tours_id = ?', @tour.tours_id).each do |v|
                 %li
                   = link_to "#{v.member_fname} #{v.member_lname}", member_path(v.member_id)
-                  %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});"}
-              %li add members
+                  %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});", :style => 'cursor: pointer;'}
+              %li
+                %a{:href =>'#'}
+                  add members
+                  %i.fa.fa-plus{:aria_hidden =>"true"}
+                  %i.fa.fa-user{:aria_hidden =>"true"}
         %div.row
-          %div.col-xs-4.text-center.vertical-align.inline
+          %div.col-xs-5.text-center.vertical-align.inline
             %p select concert to add to tour
 
           %div.col-xs-2.text-center.center-block
 
 
-          %div.col-xs-4.text-center.vertical-align.inline
+          %div.col-xs-5.text-center.vertical-align.inline
             %p 	These concerts are part of the tour
 
 
         %div.row
-          %div.col-xs-4.text-center.vertical-align.inline
+          %div.col-xs-5.text-center.vertical-align.inline
             %p
-              %select{:size => "25", :name => "concert_available_tour[]", :id => "concert_available_tour", :multiple => ""}
+              %select.btn-mini.word-wrap{:size => "25", :name => "concert_available_tour[]", :id => "concert_available_tour", :multiple => ""}
                 - counthis = 0
-                - ConcertBand.select('concerts.concert_id, concerts.concert_date').joins('join concerts on concerts.concert_id = concert_band.concert_id').where('concert_band.band_id = ? and concerts.concert_date > ? and concerts.concert_date < ?', @tour.band_id, @tour.start_date, @tour.end_date).each do |v|
-                  %option= "#{v.concert_id} #{v.concert_date}"
+                - ConcertBand.select('concerts.concert_id, concerts.concert_date, venue_names.venue_name, city.city_name, states.state_name, flags.country').joins('left join concerts on concerts.concert_id = concert_band.concert_id').joins('left join concert_venue on concerts.concert_id = concert_venue.concert_id').joins('left join venue on venue.venue_id = concert_venue.venue_id').joins("left join venue_names on venue_names.venue_id = venue.venue_id and '#{@tour.start_date}' >= venue_names.start_date and  '#{@tour.end_date}' <= venue_names.end_date").joins('left join city on city.city_id = venue.venue_city_id').joins('left join states on states.state_id = venue.venue_state_id').joins('left join flags on flags.flags_id = venue.venue_country_id').where('concert_band.band_id = ? and concerts.concert_date > ? and concerts.concert_date < ?', @tour.band_id, @tour.start_date, @tour.end_date).group('concerts.concert_id').order('concerts.concert_date').each do |v|
+                  %option{:value => v.concert_id}= "#{v.concert_date} - #{v.venue_name} - #{v.city_name}, #{v.state_name}, #{v.country}"
                   - counthis = counthis + 1
               = counthis
 
 
           %div.col-xs-2.text-center.center-block
-
-            %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "add selected", :value => "add selected >", :id => "add selected", :onclick => "add_concerts_to_tour(concert_available_tour);"} add selected >
-            %button.btn.btn-primary.btn-xs.text-center.center-block{:type => "button", :name => "remove selcted", :value => "< remove selcted", :id => "remove selcted", :onclick => "remove_concerts_from_tour(concert_in_tour);"} < remove selcted
+            %input{:type => "hidden", :id => 'tours_id', :value => @tour.tours_id}
+            %input{:type => "hidden", :id => 'band_id', :value => @tour.band_id}
+            %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "add selected", :value => "add selected >", :id => "add selected", :onclick => "add_remove_concerts_to_tour('add');"} add selected >
+            %button.btn.btn-primary.btn-xs.text-center.center-block{:type => "button", :name => "remove selcted", :value => "< remove selcted", :id => "remove selcted", :onclick => "add_remove_concerts_to_tour('remove');"} < remove selcted
             %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "remove selcted", :value => "go to selected show", :id => "go selected", :onclick => "go_to_concert_selected(concert_in_tour);"} go to selected show
 
 
-          %div.col-xs-4.text-center.vertical-align.inline
+          %div.col-xs-5.text-center.vertical-align.inline
             %p
-              %select{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
+              %select.btn-mini.word-wrap{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
                 - counthis = 0
-                - ConcertBand.select('concerts.concert_id, concerts.concert_date').joins('join concerts on concerts.concert_id = concert_band.concert_id').where('concert_band.tours_id = ? and concert_band.band_id = ?', @tour.tours_id, @tour.band_id).each do |v|
-                  %option= "#{v.concert_id} #{v.concert_date}"
+                - ConcertBand.select('concerts.concert_id, concerts.concert_date, venue_names.venue_name, city.city_name, states.state_name, flags.country').joins('left join concerts on concerts.concert_id = concert_band.concert_id').joins('left join concert_venue on concerts.concert_id = concert_venue.concert_id').joins('left join venue on venue.venue_id = concert_venue.venue_id').joins('left join venue_names on venue_names.venue_id = venue.venue_id').joins('left join city on city.city_id = venue.venue_city_id').joins('left join states on states.state_id = venue.venue_state_id').joins('left join flags on flags.flags_id = venue.venue_country_id').where('concert_band.tours_id = ? and concert_band.band_id = ?', @tour.tours_id, @tour.band_id).group('concerts.concert_id').order('concerts.concert_date').each do |v|
+                  %option{:value => v.concert_id}= "#{v.concert_date} - #{v.venue_name} - #{v.city_name}, #{v.state_name}, #{v.country}"
                   - counthis = counthis + 1
               = counthis
 
