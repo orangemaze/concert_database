@@ -1,4 +1,4 @@
 database.yml
 /log/*.log
 *.pid
-/app/controllers/login_controller.rb
+/app/controllers/logins_controller.rb
