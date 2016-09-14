@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get 'albums' => 'albums#index'
   get 'users/change_language/:id' => 'users#change_language'
   get ':locale/users/change_language/:id' => 'users#change_language'
+  get ':locale/tours/add_remove_concert_to_tour/:id' => 'tours#add_remove_concert_to_tour'
+
   scope "/:locale" do
     resources :concerts
     resources :venues

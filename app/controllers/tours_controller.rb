@@ -66,6 +66,29 @@ class ToursController < ApplicationController
     end
   end
 
+  def add_remove_concert_to_tour
+    @tour = Tour.find(params[:id])
+
+    tour_id = params[:id]
+    band_id = params[:band_id]
+    user_action = params[:user_action]
+    choice = params[:choice].split(',')
+
+    choice.each do |v|
+      if user_action == 'add'
+        sql = "replace into concert_band (concert_id, tours_id, band_id) values (#{v}, #{tour_id}, #{band_id})"
+      else
+        sql = "delete from concert_band where concert_id = #{v}, tours_id = #{tour_id}, band_id = #{band_id}"
+      end
+      #TODO: activate this
+      puts sql.to_s.magenta
+
+    end
+
+
+
+    render :layout => false
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

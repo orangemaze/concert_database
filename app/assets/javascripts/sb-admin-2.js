@@ -186,9 +186,14 @@ function add_remove_concerts_to_tour(action) {
             count++;
         }
     }
-    var url = locale+ '/tours/add_remove_concert_to_tour/'+tours_id+'?band_id='+band_id+'&action='+action+'&choice=' + selectedArray;
+    var url = locale+ '/tours/add_remove_concert_to_tour/'+tours_id+'?band_id='+band_id+'&user_action='+action+'&choice=' + selectedArray;
     //alert(selectedArray);
-    alert(url);
+    // alert(url);
+    $.get(url, function(data, status){
+        $("#concerts_in_tour").html(data);
+    });
+
+
 
 }
 

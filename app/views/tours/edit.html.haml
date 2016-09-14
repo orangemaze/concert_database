@@ -1,6 +1,6 @@
 %div.row.well
   %div.col-md-2
-  %div.col-md-6
+  %div.col-md-8
     %div{:class => "panel panel-success"}
       %div.panel-heading
         %div.row
@@ -33,10 +33,10 @@
                   %i.fa.fa-plus{:aria_hidden =>"true"}
                   %i.fa.fa-user{:aria_hidden =>"true"}
         %div.row
-          %div.col-xs-5.text-center.vertical-align.inline
+          %div.col-xs-4.text-center.vertical-align.inline
             %p select concert to add to tour
 
-          %div.col-xs-2.text-center.center-block
+          %div.col-md-2.text-center.center-block
 
 
           %div.col-xs-5.text-center.vertical-align.inline
@@ -44,7 +44,7 @@
 
 
         %div.row
-          %div.col-xs-5.text-center.vertical-align.inline
+          %div.col-xs-4.text-center.vertical-align.inline
             %p
               %select.btn-mini.word-wrap{:size => "25", :name => "concert_available_tour[]", :id => "concert_available_tour", :multiple => ""}
                 - counthis = 0
@@ -54,15 +54,19 @@
               = counthis
 
 
-          %div.col-xs-2.text-center.center-block
+          %div.col-md-2.text-center.center-block
             %input{:type => "hidden", :id => 'tours_id', :value => @tour.tours_id}
+            %br
             %input{:type => "hidden", :id => 'band_id', :value => @tour.band_id}
+            %br
             %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "add selected", :value => "add selected >", :id => "add selected", :onclick => "add_remove_concerts_to_tour('add');"} add selected >
+            %br
             %button.btn.btn-primary.btn-xs.text-center.center-block{:type => "button", :name => "remove selcted", :value => "< remove selcted", :id => "remove selcted", :onclick => "add_remove_concerts_to_tour('remove');"} < remove selcted
+            %br
             %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "remove selcted", :value => "go to selected show", :id => "go selected", :onclick => "go_to_concert_selected(concert_in_tour);"} go to selected show
 
 
-          %div.col-xs-5.text-center.vertical-align.inline
+          %div.col-xs-5.text-center.vertical-align.inline#concerts_in_tour
             %p
               %select.btn-mini.word-wrap{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
                 - counthis = 0
