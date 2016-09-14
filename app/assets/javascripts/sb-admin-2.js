@@ -177,7 +177,12 @@ function add_remove_concerts_to_tour(action) {
     var str = document.getElementById('concert_available_tour').value;
 
     var selectedArray = new Array();
-    var selObj = document.getElementById('concert_available_tour');
+    if (action == 'add'){
+        var selObj = document.getElementById('concert_available_tour');
+    }
+    else{
+        var selObj = document.getElementById('concert_in_tour');
+    }
     var i;
     var count = 0;
     for (i=0; i<selObj.options.length; i++) {

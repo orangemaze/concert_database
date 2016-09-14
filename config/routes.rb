@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get ':locale/users/change_language/:id' => 'users#change_language'
   get ':locale/tours/add_remove_concert_to_tour/:id' => 'tours#add_remove_concert_to_tour'
 
+  get ':locale/tours/push_members_to_all_shows_in_tour/:id' => 'tours#push_members_to_all_shows_in_tour'
+
+
   scope "/:locale" do
     resources :concerts
     resources :venues
@@ -47,6 +50,7 @@ Rails.application.routes.draw do
     resources :index
     resources :years
     resources :tour_member
+    resources :comments
 
   end
 

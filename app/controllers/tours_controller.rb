@@ -78,16 +78,17 @@ class ToursController < ApplicationController
       if user_action == 'add'
         sql = "replace into concert_band (concert_id, tours_id, band_id) values (#{v}, #{tour_id}, #{band_id})"
       else
-        sql = "delete from concert_band where concert_id = #{v}, tours_id = #{tour_id}, band_id = #{band_id}"
+        sql = "delete from concert_band where concert_id = #{v} and tours_id = #{tour_id} and band_id = #{band_id}"
       end
-      #TODO: activate this
-      puts sql.to_s.magenta
-
+      ActiveRecord::Base.connection.execute(sql)
     end
-
-
-
     render :layout => false
+  end
+
+  def push_members_to_all_shows_in_tour
+    @tour = Tour.find(params[:id])
+    #TODO: need to add to the database
+    redirect_to edit_tour_path(params[:id])
   end
 
   private

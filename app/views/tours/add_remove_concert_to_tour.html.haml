@@ -1,5 +1,4 @@
 %p
-  HERE
   %select.btn-mini.word-wrap{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
     - counthis = 0
     - ConcertBand.select('concerts.concert_id, concerts.concert_date, venue_names.venue_name, city.city_name, states.state_name, flags.country').joins('left join concerts on concerts.concert_id = concert_band.concert_id').joins('left join concert_venue on concerts.concert_id = concert_venue.concert_id').joins('left join venue on venue.venue_id = concert_venue.venue_id').joins('left join venue_names on venue_names.venue_id = venue.venue_id').joins('left join city on city.city_id = venue.venue_city_id').joins('left join states on states.state_id = venue.venue_state_id').joins('left join flags on flags.flags_id = venue.venue_country_id').where('concert_band.tours_id = ? and concert_band.band_id = ?', @tour.tours_id, @tour.band_id).group('concerts.concert_id').order('concerts.concert_date').each do |v|

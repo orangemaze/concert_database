@@ -120,7 +120,7 @@
               %i.fa.fa-arrow-circle-right
           %div.clearfix
           %p
-          %p.there_details Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel imperdiet felis. Praesent congue at odio at feugiat. Vivamus a risus porta, congue velit vel, cursus metus. Ut id elementum eros. Maecenas consectetur est eu lacus cursus gravida. Integer commodo nisi massa, ut convallis lacus ultricies sit amet. Sed tincidunt et risus quis fermentum. Praesent sed nibh viverra, tristique quam non, posuere sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis fringilla ante sapien, quis tempus sem tempus eu. In eget felis enim. Vestibulum imperdiet pellentesque mauris elementum volutpat. Mauris suscipit efficitur metus id fermentum. Aenean placerat quam lacus, id varius enim fringilla quis.
+          %p.there_details Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel imperdiet felis.
           %div.clearfix
 
 
@@ -150,8 +150,12 @@
         <!-- /.panel-body -->
       %div.panel.panel-default
         %div.panel-heading
-          %i.fa.fa-comments-o.fa-fw
-          = t('comment').pluralize.titleize
+          %span.pull-left
+            %i.fa.fa-comments-o.fa-fw
+            = t('comment').pluralize.titleize
+          %span.pull-right
+            = link_to("#{t('add_comment').titleize.html_safe} <i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_comment_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.band_id}")
+          %div.clearfix
         <!-- /.panel-heading -->
         %div.panel-body
           %ul.timeline
