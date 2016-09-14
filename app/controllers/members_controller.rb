@@ -33,7 +33,7 @@ class MembersController < ApplicationController
     band_id = params[:band_id]
     # @band = Band.find(band_id)
     if @moderator_band_names.present?
-      if (session[:admin].to_i == 1) # or @moderator_band_names.has_value?(@band.band_name).present?
+      if session[:admin].to_i == 1 # or @moderator_band_names.has_value?(@band.band_name).present?
 
         update_band = "update band_members set member_id = '#{current_id}' where member_id = '#{merged_id}';"
         update_tour = "update tour_members set member_id = '#{current_id}' where member_id = '#{merged_id}';"

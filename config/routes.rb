@@ -17,11 +17,8 @@ Rails.application.routes.draw do
   get 'suggest' => 'suggest#index'
   get ':locale/members/merge_members/:id' => 'members#merge_members'
 
-  get '/login' => 'login#index'
-  get 'login/logout' => 'login#logout'
-  get 'login/login' => 'login#login'
-  get 'login/check_cookies' => 'login#check_cookies'
-  get 'login/show_cookies' => 'login#show_cookies'
+  get ':locale/logins/logout' => 'logins#logout'
+  get ':locale/logins/login' => 'logins#login'
 
   #admin type functions
   get 'albums' => 'albums#index'
@@ -51,6 +48,7 @@ Rails.application.routes.draw do
     resources :years
     resources :tour_member
     resources :comments
+    resources :logins
 
   end
 

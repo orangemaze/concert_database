@@ -20,15 +20,22 @@ $( "#login" ).click(function() {
     else{
         var remember_me = 'no';
     }
-
-    $.get( "/login/login?username="+username+"&password="+password+"&remember_me="+remember_me+"&from_what_page="+from_what_page, function( data ) {
+    var locale = window.location.pathname.substring(0, 3);
+    if(locale = '/'){
+        locale = '/en'
+    }
+    $.get( locale + "/logins/login?username="+username+"&password="+password+"&remember_me="+remember_me+"&from_what_page="+from_what_page, function( data ) {
         // alert(data);
         window.open(data,"_self");
     });
 });
 
 $( "#logout" ).click(function() {
-    $.get( "/login/logout", function( data ) {
+    var locale = window.location.pathname.substring(0, 3);
+    if(locale = '/'){
+        locale = '/en'
+    }
+    $.get( locale + "/logins/logout", function( data ) {
         // alert('logged out');
         // $( "#sign_in" ).html( data );
         // alert( "Load was performed." );

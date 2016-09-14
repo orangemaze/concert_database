@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     puts '-- sliced url --'.red
     puts sliced_url.to_s.blue
 
-    if sliced_url = "/"
+    if sliced_url == "/"
       make_index = '/index'
     else
       make_index = ''
