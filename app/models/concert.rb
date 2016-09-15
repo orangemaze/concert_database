@@ -24,7 +24,8 @@ class Concert < ActiveRecord::Base
         roio_type = ApplicationController.helpers.turn_roio_type_into_icon(f.roio_type, 'normal')
         roio_format = f.roio_format
         band_name = f.band_name
-        roio_image = ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small', f.roio_image_count)
+        bootleg_image = f.bootleg_image
+        roio_image = ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small', f.roio_image_count, bootleg_image)
         data_holder = "#{data_holder.to_s} <a href='#' id='#{bootleg_id.to_s}' class='roio-details list-group-item'> #{roio_image}
         #{roio_type.to_s} #{band_name.to_s} #{ApplicationController.helpers.turn_to_ratings_stars(f.roio_avg_rating)} &middot; #{bootleg_name.to_s}
             <span class='pull-right text-muted small'><em>#{roio_format.to_s}</em></span>

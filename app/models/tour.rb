@@ -8,7 +8,7 @@ class Tour < ActiveRecord::Base
 
   # include ActionDispatch::Routing::UrlFor
   # include Rails.application.routes.url_helpers
-  # include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::UrlHelper
 
   def tour_dates
     tour_dates = ''

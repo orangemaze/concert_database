@@ -1,6 +1,6 @@
 module ImageHelper
 
-  def get_image_location(concert_date, bootleg_id, bootleg_name, image_size, image_count)
+  def get_image_location(concert_date, bootleg_id, bootleg_name, image_size, image_count, bootleg_image)
     case image_size
       when /small/
         image_height = '30'
@@ -12,12 +12,24 @@ module ImageHelper
         image_height = '30'
         image_width = '30'
     end
-    if image_count > 0
-      image_year = concert_date[0..3]
-      image_locaton = "<img src='http://www.concerts-db.com/art/#{image_year}/#{bootleg_id}/#{concert_date}-cov.jpg' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
-    else
-      image_locaton = "<img src='/assets/no_art.jpg' height='#{image_height}' width='#{image_width}'>".html_safe
+
+    case bootleg_image.split(".")[1]
+      when /jpg/
+        image_format = 'jpg'
+      when /png/
+        image_format = 'png'
+      else
+        image_format = 'jpg'
     end
+
+    if bootleg_image == 'no_art.jpg'
+      url = "http://www.concerts-db.com/images/no_art.jpg"
+    else
+      url = "http://www.concerts-db.com/art/#{concert_date[0..3]}/#{bootleg_id}/#{concert_date}-cov.#{image_format}"
+    end
+
+    "<img src='#{url}' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
+
   end
 
   def get_main_image

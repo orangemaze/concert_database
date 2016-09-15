@@ -9,7 +9,7 @@
             %i.fa.fa-road.fa-5x
             %h3= "&nbsp;Details about #{@data_result.tour_name} &nbsp;".html_safe
             - if @is_moderator == 'y'
-              %a.admin_edit{:href => "/tours/#{@data_result.tours_id}/edit"}
+              %a.admin_edit{:href => edit_tour_path(@data_result.tours_id)}
                 %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
 
       %div.panel-footer
