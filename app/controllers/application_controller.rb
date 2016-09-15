@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
         session[:email] = @user_info.email
         session[:f_name] = @user_info.f_name
         session[:l_name] = @user_info.l_name
+        session[:admin] = @user_info.admin
         session[:trader] = @user_info.trader
         session[:avatar_96] = @user_info.avatar_96
         session[:avatar_24] = @user_info.avatar_24
@@ -35,10 +36,6 @@ class ApplicationController < ActionController::Base
 
       puts "#{cookies[:user_name]} cookie is now present".red
       puts request.env['HTTP_USER_AGENT'].blue
-    else
-      puts 'no cookie present'
-      puts session.clear
-      puts 'sessions cleared'
     end
     tracking_data = TrackingData.new(:user_id => session[:users_id], :on_page => request.original_url, :referred_from => request.referer, :time_stamp => Time.now, :browser => browser_name, :os => os_name, :user_agent => request.env['HTTP_USER_AGENT'], :user_ip => request.remote_ip)
     tracking_data.save

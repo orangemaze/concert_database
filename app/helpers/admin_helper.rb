@@ -9,7 +9,7 @@ module AdminHelper
       is_moderator = 'y'
     elsif @moderator_band_names.present?
       puts @moderator_band_names.inspect
-      puts session[:admin].magenta
+      puts session[:admin].to_s.magenta
       if @moderator_band_names.key(band_id).present? || session[:admin].to_i == 1
         is_moderator = 'y'
       else
