@@ -48,12 +48,18 @@
                 = "Lng: #{get_lat_lon_from_ip()[1].to_s}<br>".html_safe
                 = "Location: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}<br>".html_safe
                 = "Time Zone Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
-          %a{:href => '#'}
-            %div.panel-footer
-              %span.pull-left= t('dont_see_a_concert')
-              %span.pull-right
-                %i.fa.fa-arrow-circle-right
-              %div.clearfix
+          %div.panel-footer
+            %span.pull-left
+              = t('dont_see_a_concert')
+              %br
+              %br
+              = "Cities Nearby:"
+              %br
+              - get_cities_within_range(get_lat_lon_from_ip(), 50).each do |v|
+                = "#{v.city}, #{v.region}, #{v.country} - #{v.geo_distance}<br>".html_safe
+            %span.pull-right
+              %i.fa.fa-arrow-circle-right
+            %div.clearfix
 
 
 
