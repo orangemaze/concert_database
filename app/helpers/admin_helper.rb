@@ -23,6 +23,27 @@ module AdminHelper
     is_moderator
   end
 
+  def admin_message(admin_level)
+    if admin_level.present?
+      case admin_level
+        when '1'
+          'With great power, comes great responsibility, you have unlimited power'
+        when '2'
+          '2'
+        when '3'
+          '3'
+        when '4'
+          '4'
+        when '5'
+          '5'
+        else
+          ''
+      end
+    else
+      # nothing
+    end
+  end
+
   def browser_name
     user_agent = request.env['HTTP_USER_AGENT'].downcase
     case user_agent

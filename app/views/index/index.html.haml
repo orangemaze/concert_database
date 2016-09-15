@@ -36,36 +36,39 @@
               %span.pull-right
                 %i.fa.fa-arrow-circle-right
               %div.clearfix
+
+
         %div.panel.panel-red
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left
-                =# t(:hello)
-                =# "There are xxx concerts in the database within 50 miles from #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
-                =# "IP: #{request.remote_ip.to_s}"
-                =# "Lat: #{get_lat_lon_from_ip()[0]}"
-                =# "Lng: #{get_lat_lon_from_ip()[1]}"
-                =# "Location: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}"
-                =# "Time Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
+                = "There are xxx concerts in the database within 50 miles from #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}<br>".html_safe
+                = "IP: #{request.remote_ip.to_s}<br>".html_safe
+                = "Lat: #{get_lat_lon_from_ip()[0].to_s}<br>".html_safe
+                = "Lng: #{get_lat_lon_from_ip()[1].to_s}<br>".html_safe
+                = "Location: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}<br>".html_safe
+                = "Time Zone Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
           %a{:href => '#'}
             %div.panel-footer
               %span.pull-left= t('dont_see_a_concert')
               %span.pull-right
                 %i.fa.fa-arrow-circle-right
               %div.clearfix
+
+
+
         %div.panel.panel-yellow
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left= t('and_another')
-          %a{:href => '#'}
-            %div.panel-footer
-              - if session[:admin].present?
-                - if session[:admin].to_i < 5
-                  = "#{t('admin_level')} #{session[:admin]}"
 
-              - if @moderator_band_names.present?
-                %br= t('moderator_of_the_following')
-                %ul
-                - @moderator_band_names.each do |k, v|
-                  %li= "#{v}"
-              %div.clearfix
+          %div.panel-footer
+            = admin_message(session[:admin])
+            %br
+            - if @moderator_band_names.present?
+              %br= t('moderator_of_the_following')
+              %ul
+              - @moderator_band_names.each do |k, v|
+                %li
+                  %a{:href => band_path(k)}= v
+            %div.clearfix
