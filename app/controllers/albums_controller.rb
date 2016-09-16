@@ -18,10 +18,10 @@ class AlbumsController < ApplicationController
       if session[:admin].to_i < 5
         @album = Album.new
       else
-        redirect_to("/index")
+        redirect_to URI(request.referer).path
       end
     else
-      redirect_to("/index")
+      redirect_to URI(request.referer).path
     end
   end
 
@@ -31,10 +31,10 @@ class AlbumsController < ApplicationController
       if session[:admin].to_i < 5
         # nothing
       else
-        redirect_to("/index")
+        redirect_to URI(request.referer).path
       end
     else
-      redirect_to("/index")
+      redirect_to URI(request.referer).path
     end
   end
 

@@ -13,7 +13,15 @@ class ConcertsController < ApplicationController
   end
 
   def new
-
+    if session[:admin].present?
+      if session[:admin].to_i < 5
+        @concert = Concert.new
+      else
+        redirect_to URI(request.referer).path
+      end
+    else
+      redirect_to URI(request.referer).path
+    end
   end
 
   def edit
@@ -55,7 +63,7 @@ class ConcertsController < ApplicationController
   def update
     @concert = Concert.find(params[:id])
     respond_to do |format|
-      if @concert.update(roio_params)
+      if @concert.update(concert_params)
         format.html { redirect_to @concert }
         format.json { render :show, :status => :ok, :location => @concert }
       else
@@ -64,6 +72,25 @@ class ConcertsController < ApplicationController
       end
     end
   end
+
+
+  def create
+    @concert = Concert.new(concert_params)
+
+    @concert.concert_bands << ConcertBand.first
+
+
+    respond_to do |format|
+      if @concert.save
+        format.html { redirect_to @concert, :notice => 'Album was successfully created.' }
+        format.json { render :show, :status => :created, :location => @concert }
+      else
+        format.html { render :new }
+        format.json { render :json => @concert.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 
 
   def roio_details
@@ -76,7 +103,7 @@ class ConcertsController < ApplicationController
     @data_result = Concert.find(params[:id])
   end
 
-  def roio_params
+  def concert_params
     params.require(:concert).permit(:concert_date, :time_of_show, :notes)
   end
 

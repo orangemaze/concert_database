@@ -75,6 +75,17 @@ class Concert < ActiveRecord::Base
     band_id.html_safe
   end
 
+  def city_name
+    ''
+  end
+
+  def state_name
+    ''
+  end
+
+  def country
+    ''
+  end
 
   def band_name
     band_name = ''

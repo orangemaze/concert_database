@@ -74,6 +74,7 @@
 
                 %li
                   = t('band').titleize
+                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_band_path(k), :class => "admin_edit") : ''
                   %br
                   = link_to "#{v}", band_path(k)
                   = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(k), :class => "admin_edit") : ''

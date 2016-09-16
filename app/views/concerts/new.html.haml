@@ -1,0 +1,16 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-calendar.fa-5x
+            %h3 &nbsp;New Concert
+            %p
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Back', URI(request.referer).path

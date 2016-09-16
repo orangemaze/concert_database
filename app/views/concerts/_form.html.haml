@@ -6,18 +6,63 @@
       %ul
       - @concert.errors.full_messages.each do |message|
         %li= message
+  %div.panel.cold-md-12
+    %div.row
+      Concert Info
+    %div.row
+      %div.col-md-2
+        %strong= t('concert_date').titleize.html_safe
+      %div.col-md-4= f.text_field :concert_date
+      %div.col-md-6
 
-  %div.row
-    %div.col-md-2
-      %strong= t('concert_date').titleize.html_safe
-    %div.col-md-4= f.text_area :concert_date
-  %div.row
-    %div.col-md-2
-      %strong= t('time_of_show').titleize.html_safe
-    %div.col-md-4= f.text_area :time_of_show
-  %div.row
-    %div.col-md-2
-      %strong= t('note').titleize.html_safe
-    %div.col-md-4= f.text_area :notes
-  %div.row.actions
-    %div.col-md-6= f.submit
+
+    %div.row
+      %div.col-md-2
+        %strong= t('venue').titleize.html_safe
+      %div.col-md-4= f.text_field :venue_name
+
+      %div.col-md-2
+        %strong= t('city').titleize.html_safe
+      %div.col-md-4= f.text_field :city_name
+
+    %div.row
+      %div.col-md-2
+        %strong= t('state').titleize.html_safe
+      %div.col-md-4= f.text_field :state_name
+
+      %div.col-md-2
+        %strong= t('country').titleize.html_safe
+      %div.col-md-4= f.text_field :country
+
+
+
+    %div.row
+      %div.col-md-2
+        %strong= t('time_of_show').titleize.html_safe
+      %div.col-md-4= f.text_field :time_of_show
+    %div.row
+      %div.col-md-2
+        %strong= t('no_known_recording').titleize.html_safe
+      %div.col-md-4= f.text_field :no_known_recording
+    %div.row
+      %div.col-md-2
+        %strong= t('note').titleize.html_safe
+      %div.col-md-4= f.text_area :notes
+
+  %div.panel.cold-md-6
+    %div.row
+      Band Info
+    %div.row
+      %div.col-md-2
+        %strong= t('band_name').titleize.html_safe
+      %div.col-md-4= f.text_field :band_name
+
+    %div.row
+      %div.col-md-2
+        %strong= t('tour_name').titleize.html_safe
+      %div.col-md-4= f.text_field :tour_name
+
+
+  %div.panel.cold-md-6
+    %div.row.actions
+      %div.col-md-6= f.submit
