@@ -19,7 +19,7 @@
     %div.row
       %div.col-md-2
         %strong= t('venue').titleize.html_safe
-      %div.col-md-4= f.text_field :venue_name
+      %div.col-md-4= f.text_field :venue_id
 
       %div.col-md-2
         %strong= t('city').titleize.html_safe
@@ -54,13 +54,13 @@
       Band Info
     %div.row
       %div.col-md-2
-        %strong= t('band_name').titleize.html_safe
-      %div.col-md-4= f.text_field :band_name
+        %strong= t('band_id').titleize.html_safe
+      %div.col-md-4= f.text_field :band_id
 
     %div.row
       %div.col-md-2
         %strong= t('tour_name').titleize.html_safe
-      %div.col-md-4= f.text_field :tour_name
+      %div.col-md-4= f.text_field :tours_id
 
 
   %div.panel.cold-md-6

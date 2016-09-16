@@ -77,8 +77,8 @@ class ConcertsController < ApplicationController
   def create
     @concert = Concert.new(concert_params)
 
-    @concert.concert_bands << ConcertBand.first
-
+    @concert.concert_bands << ConcertBand.new(concert_band_params)
+    @concert.concert_venues << ConcertVenue.new(concert_venue_params)
 
     respond_to do |format|
       if @concert.save
@@ -107,5 +107,12 @@ class ConcertsController < ApplicationController
     params.require(:concert).permit(:concert_date, :time_of_show, :notes)
   end
 
+  def concert_band_params
+    params.require(:concert).permit(:concert_id, :band_id, :tours_id, :band_position)
+  end
+
+  def concert_venue_params
+    params.require(:concert).permit(:concert_id, :venue_id)
+  end
 
 end

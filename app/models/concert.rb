@@ -2,7 +2,7 @@ class Concert < ActiveRecord::Base
   include ActionView::Helpers::TextHelper
   self.table_name = 'concerts'
   has_many :roios, :primary_key => 'concert_id'
-  belongs_to :concert_venue, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :concert_venues, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :reviews, :through => :roios, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
@@ -54,15 +54,33 @@ class Concert < ActiveRecord::Base
 
 
   def venue_id
-    venue_id = concert_venue.present? ? concert_venue.venue_id : concert_venue.inspect
+    venue_id = ''
+    if concert_venues.present?
+      concert_venues.each do |f|
+        venue_id = venue_id + f.venue_id.to_s
+      end
+    end
+    venue_id.html_safe
   end
 
   def venue_address
-    venue_address = concert_venue.present? ? concert_venue.venue_address : concert_venue.inspect
+    venue_address = ''
+    if concert_venues.present?
+      concert_venues.each do |f|
+        venue_address = venue_address + f.venue_address.to_s
+      end
+    end
+    venue_address.html_safe
   end
 
   def venue_name
-    venue_name = concert_venue.present? ? concert_venue.venue_name : concert_venue.inspect
+    venue_name = ''
+    if concert_venues.present?
+      concert_venues.each do |f|
+        venue_name = venue_name + f.venue_name.to_s
+      end
+    end
+    venue_name.html_safe
   end
 
   def band_id
@@ -84,6 +102,10 @@ class Concert < ActiveRecord::Base
   end
 
   def country
+    ''
+  end
+
+  def tours_id
     ''
   end
 
