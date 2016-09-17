@@ -18,6 +18,15 @@
        elsif @search_action == 'Tours' or @addl_action == 'tours'
     %>{"id": "<%= suggestions.tours_id %>","value": "<%= suggestions.tour_name %>","label": "<%= suggestions.tour_name %>"}
     <%
+       elsif @addl_action == 'city'
+    %>{"id": "<%= suggestions.city_id %>","value": "<%= suggestions.city_name %>","label": "<%= suggestions.city_name %>"}
+    <%
+       elsif @addl_action == 'state'
+    %>{"id": "<%= suggestions.state_id %>","value": "<%= suggestions.state_name %>","label": "<%= suggestions.state_name %>"}
+    <%
+       elsif @addl_action == 'flags'
+    %>{"id": "<%= suggestions.flags_id %>","value": "<%= suggestions.country %>","label": "<%= suggestions.country %>"}
+    <%
        else
     %>{"id": "<%= suggestions.band_id %>","value": "<%= suggestions.band_name %>","label": "<%= suggestions.band_name %>"}
     <%

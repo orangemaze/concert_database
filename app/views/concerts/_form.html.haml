@@ -25,17 +25,22 @@
 
       %div.col-md-2
         %strong= t('city').titleize.html_safe
-      %div.col-md-4= f.text_field :city_name, :id => 'city_name'
+      %div.col-md-4
+        = f.text_field :city_name, :id => 'city', :class => 'suggest'
+        = f.hidden_field :city_id, :id => 'city_id'
 
     %div.row
       %div.col-md-2
         %strong= t('state').titleize.html_safe
-      %div.col-md-4= f.text_field :state_name, :id => 'state_name'
+      %div.col-md-4
+        = f.text_field :state_name, :id => 'state', :class => 'suggest'
+        = f.hidden_field :state_id, :id => 'state_id'
 
       %div.col-md-2
         %strong= t('country').titleize.html_safe
-      %div.col-md-4= f.text_field :country, :id => 'country'
-
+      %div.col-md-4
+        = f.text_field :country, :id => 'flags', :class => 'suggest'
+        = f.hidden_field :flags_id, :id => 'flags_id'
 
 
     %div.row

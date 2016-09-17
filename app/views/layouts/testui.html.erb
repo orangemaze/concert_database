@@ -87,11 +87,14 @@
                 }
                 else{
                     //alert(url);
-                    $( "#"+addl_action+"_id" ).html(url);
                     if (addl_action == 'venue'){
                         $("#city_name").val(ui.item.city_name);
-                        $("#state_name").val(ui.item.state_name)
-                        $("#country").val(ui.item.country_name)
+                        $("#state_name").val(ui.item.state_name);
+                        $("#country").val(ui.item.country_name);
+                        $("#venue_id").val(ui.item.id);
+                    }
+                    else{
+                        $( "#"+addl_action+"_id" ).val(url);
                     }
                 }
             },

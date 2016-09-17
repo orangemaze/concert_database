@@ -97,11 +97,23 @@ class Concert < ActiveRecord::Base
     ''
   end
 
+  def city_id
+    ''
+  end
+
   def state_name
     ''
   end
 
+  def state_id
+    ''
+  end
+
   def country
+    ''
+  end
+
+  def flags_id
     ''
   end
 

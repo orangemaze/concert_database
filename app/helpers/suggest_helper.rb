@@ -23,6 +23,15 @@ module SuggestHelper
     elsif search_action == 'tours'
       puts '--tours--'.red
       @search_result = Tour.select('tours_id, tour_name, start_date, end_date, band_id').from('tours').where('tour_name like ?',  "%#{input}%")
+    elsif search_action == 'city'
+      puts '--city--'.red
+      @search_result = City.select('city_id, city_name').from('city').where('city_name like ?',  "%#{input}%")
+    elsif search_action == 'state'
+      puts '--state--'.red
+      @search_result = State.select('state_id, state_name').from('state').where('state_name like ?',  "%#{input}%")
+    elsif search_action == 'flags'
+      puts '--country--'.red
+      @search_result = Country.select('flags_id, country').from('flags').where('country like ?',  "%#{input}%")
 
     else
       puts '--else--'.red
