@@ -19,20 +19,22 @@
     %div.row
       %div.col-md-2
         %strong= t('venue').titleize.html_safe
-      %div.col-md-4= f.text_field :venue_id
+      %div.col-md-4
+        = f.text_field :venue_name, :id => 'venue', :class => 'suggest'
+        = f.hidden_field :venue_id, :id => 'venue_id'
 
       %div.col-md-2
         %strong= t('city').titleize.html_safe
-      %div.col-md-4= f.text_field :city_name
+      %div.col-md-4= f.text_field :city_name, :id => 'city_name'
 
     %div.row
       %div.col-md-2
         %strong= t('state').titleize.html_safe
-      %div.col-md-4= f.text_field :state_name
+      %div.col-md-4= f.text_field :state_name, :id => 'state_name'
 
       %div.col-md-2
         %strong= t('country').titleize.html_safe
-      %div.col-md-4= f.text_field :country
+      %div.col-md-4= f.text_field :country, :id => 'country'
 
 
 
@@ -54,13 +56,17 @@
       Band Info
     %div.row
       %div.col-md-2
-        %strong= t('band_id').titleize.html_safe
-      %div.col-md-4= f.text_field :band_id
+        %strong= t('band_name').titleize.html_safe
+      %div.col-md-4
+        = f.text_field :band_name, :id => 'band', :class => 'suggest'
+        = f.hidden_field :band_id, :id => 'band_id'
 
     %div.row
       %div.col-md-2
         %strong= t('tour_name').titleize.html_safe
-      %div.col-md-4= f.text_field :tours_id
+      %div.col-md-4
+        = f.text_field :tour_name, :id => 'tours', :class => 'suggest'
+        = f.hidden_field :tours_id, :id => 'tours_id'
 
 
   %div.panel.cold-md-6

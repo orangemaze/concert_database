@@ -53,10 +53,10 @@
               = t('dont_see_a_concert')
               %br
               %br
-              = "Cities Nearby:"
+              = "Cities with shows listed within 50 miles:"
               %br
               - get_cities_within_range(get_lat_lon_from_ip(), 50).each do |v|
-                = "#{v.city}, #{v.region}, #{v.country} - #{v.geo_distance}<br>".html_safe
+                = "#{v.city}, #{v.region}, #{v.country} - #{number_with_precision(v.geo_distance, :precision => 2)} mi (#{(v.geo_distance.to_s + 'mi').convert_to('km').to_s('%0.2f')})<br>".html_safe
             %span.pull-right
               %i.fa.fa-arrow-circle-right
             %div.clearfix

@@ -49,14 +49,16 @@
 
 <script>
     $(function() {
-        $(".suggest-user").autocomplete({
+
+        $(".suggest").autocomplete({
             source: function(request, response) {
                 $.ajax({
                     url: "/suggest",
                     dataType: "json",
                     data: {
                         term: request.term,
-                        search_action: $("#action_button").val()
+                        search_action: $("#action_button").val(),
+                        addl_action: $(this.element).prop("id")
                     },
                     success: function(data) {
                         response(data);
@@ -66,22 +68,34 @@
             minLength: 4,
             select: function(event, ui) {
                 var url = ui.item.id;
-                // alert(url);
-                if(url != '#') {
-                    var action = $( "#action_button" ).attr( "value").toLowerCase();
-                    // var locale = get_query_string_params('locale');
-                    var locale = window.location.pathname.substring(0, 3);
-                    if(locale = '/'){
-                        locale = '/en'
+                var addl_action = $(this).prop("id");
+                //alert(addl_action);
+                if(addl_action == 'suggest'){
+                    // alert(url);
+                    if(url != '#') {
+                        var action = $( "#action_button" ).attr( "value").toLowerCase();
+                        // var locale = get_query_string_params('locale');
+                        var locale = window.location.pathname.substring(0, 3);
+                        if(locale = '/'){
+                            locale = '/en'
+                        }
+                        // alert(locale);
+                        var build_url = locale + '/' + action + '/' + url;
+                        // alert(build_url);
+                        location.href = build_url;
                     }
-                    // alert(locale);
-                    var build_url = locale + '/' + action + '/' + url;
-                    // alert(build_url);
-                    location.href = build_url;
+                }
+                else{
+                    //alert(url);
+                    $( "#"+addl_action+"_id" ).html(url);
+                    if (addl_action == 'venue'){
+                        $("#city_name").val(ui.item.city_name);
+                        $("#state_name").val(ui.item.state_name)
+                        $("#country").val(ui.item.country_name)
+                    }
                 }
             },
             html: true, // optional (jquery.ui.autocomplete.html.js required)
-
             // optional (if other layers overlap autocomplete list)
             open: function(event, ui) {
                 $(".ui-autocomplete").css("z-index", 1000);
