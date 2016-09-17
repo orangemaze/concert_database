@@ -77,18 +77,68 @@ class ConcertsController < ApplicationController
   def create
     @concert = Concert.new(concert_params)
 
-    @concert.concert_bands << ConcertBand.new(concert_band_params)
-    @concert.concert_venues << ConcertVenue.new(concert_venue_params)
+    concert_date = params[:concert_date]
+    venue_name = params[:venue_name]
+    city_name = params[:city_name]
+    state_name = params[:state_name]
+    country = params[:country]
+    time_of_show = params[:time_of_show]
+    no_known_recording = params[:no_known_recording]
+    notes = params[:notes]
+    band_name = params[:band_name]
+    tour_name = params[:tour_name]
 
-    respond_to do |format|
-      if @concert.save
-        format.html { redirect_to @concert, :notice => 'Album was successfully created.' }
-        format.json { render :show, :status => :created, :location => @concert }
-      else
-        format.html { render :new }
-        format.json { render :json => @concert.errors, :status => :unprocessable_entity }
-      end
+    band_id = params[:band_id]
+    tours_id = params[:tours_id]
+    venue_id = params[:venue_id]
+    city_id = params[:city_id]
+    state_id = params[:state_id]
+    flags_id = params[:flags_id]
+
+
+    if band_id.present?
+      @concert.concert_bands << ConcertBand.new(concert_band_params)
+      puts 'band_id is present, and concert_band is entered'.blue
+    else
+      @concert.bands << Band.new(band_params)
+      puts 'no band_id, band added'.blue
+      @concert.concert_bands << ConcertBand.new(concert_band_params)
+      puts 'then concert_band'.blue
     end
+
+    if venue_id.present?
+      # @concert.concert_venues << ConcertVenue.new(concert_venue_params)
+      puts 'venue_id is present, added to concert_venue'.red
+    else
+      if city_id.blank?
+        # @concert.city << City.new(city_params)
+        puts 'city_id is blank'.red
+      end
+
+      if state_id.blank?
+        # @concert.state << State.new(state_params)
+        puts 'state_id is blank'.red
+      end
+
+      if city_id.blank?
+        # @concert.country << County.new(country_params)
+        puts 'flags_id is blank'.red
+      end
+      #@concert.venues << ConcertVenue.new(venue_params)
+      #@concert.concert_venues << ConcertVenue.new(concert_venue_params)
+      #@concert.venue_names << VenueName.new(venue_name_params)
+    end
+
+    redirect_to @concert
+    #respond_to do |format|
+    #  if @concert.save
+    #    format.html { redirect_to @concert, :notice => 'Album was successfully created.' }
+    #    format.json { render :show, :status => :created, :location => @concert }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render :json => @concert.errors, :status => :unprocessable_entity }
+    #  end
+    #end
   end
 
 
@@ -107,9 +157,26 @@ class ConcertsController < ApplicationController
     params.require(:concert).permit(:concert_date, :time_of_show, :notes)
   end
 
+  def band_params
+    params.require(:concert).permit(:band_id, :band_name)
+  end
+
   def concert_band_params
     params.require(:concert).permit(:concert_id, :band_id, :tours_id, :band_position)
   end
+
+  def city_params
+    params.require(:concert).permit(:city_name)
+  end
+
+  def venue_params
+    params.require(:concert).permit(:venue_name, :venue_city_id, :venue_state_d, :venue_country_id)
+  end
+
+  def venue_name_params
+    params.require(:concert).permit(:venue_name, :venue_id)
+  end
+
 
   def concert_venue_params
     params.require(:concert).permit(:concert_id, :venue_id)
