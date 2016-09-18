@@ -9,6 +9,7 @@ class Concert < ActiveRecord::Base
   has_many :concert_ratings, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :images, :through => :roios, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :bands, :through => :concert_bands, :primary_key => 'band_id', :foreign_key => 'band_id'
+  has_many :tours, :through => :concert_bands, :primary_key => 'tours_id', :foreign_key => 'tours_id'
 
   def this_test
     this_test = 'this test'

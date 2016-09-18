@@ -76,7 +76,7 @@ class ConcertsController < ApplicationController
 
   def create
     @concert = Concert.new(concert_params)
-
+    puts @concert.inspect.green
     concert_date = params[:concert_date]
     venue_name = params[:venue_name]
     city_name = params[:city_name]
@@ -97,14 +97,24 @@ class ConcertsController < ApplicationController
 
 
     if band_id.present?
-      @concert.concert_bands << ConcertBand.new(concert_band_params)
-      puts 'band_id is present, and concert_band is entered'.blue
+      # nothing yet
     else
       @concert.bands << Band.new(band_params)
       puts 'no band_id, band added'.blue
-      @concert.concert_bands << ConcertBand.new(concert_band_params)
-      puts 'then concert_band'.blue
+      puts @concert.bands.inspect.green
     end
+
+    if tours_id.present?
+      # nothing yet
+    else
+      @concert.tours << Tour.new(tour_params)
+      puts 'no tour_id, tour added'.blue
+      puts @concert.tours.inspect.green
+    end
+
+    @concert.concert_bands << ConcertBand.new(concert_band_params)
+    puts 'then concert_band'.blue
+
 
     if venue_id.present?
       # @concert.concert_venues << ConcertVenue.new(concert_venue_params)
@@ -159,6 +169,10 @@ class ConcertsController < ApplicationController
 
   def band_params
     params.require(:concert).permit(:band_id, :band_name)
+  end
+
+  def tour_params
+    params.require(:concert).permit(:band_id, :tour_name)
   end
 
   def concert_band_params
