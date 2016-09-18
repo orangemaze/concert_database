@@ -129,16 +129,16 @@ class ConcertsController < ApplicationController
       #@concert.venue_names << VenueName.new(venue_name_params)
     end
 
-    redirect_to @concert
-    #respond_to do |format|
-    #  if @concert.save
-    #    format.html { redirect_to @concert, :notice => 'Album was successfully created.' }
-    #    format.json { render :show, :status => :created, :location => @concert }
-    #  else
-    #    format.html { render :new }
-    #    format.json { render :json => @concert.errors, :status => :unprocessable_entity }
-    #  end
-    #end
+    # redirect_to @concert
+    respond_to do |format|
+      if @concert.save
+        format.html { redirect_to @concert, :notice => 'Album was successfully created.' }
+        format.json { render :show, :status => :created, :location => @concert }
+      else
+        format.html { render :new }
+        format.json { render :json => @concert.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
 

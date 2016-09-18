@@ -1,10 +1,10 @@
 class Band < ActiveRecord::Base
   self.table_name = 'band'
-  has_many :concert_bands, :primary_key => 'band_id', :foreign_key => 'band_id'
+  belongs_to :concert_band, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_one :roio, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :band_members, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :tours, :primary_key => 'band_id', :foreign_key => 'band_id'
-  has_many :concerts, :through => :concert_bands, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :concerts, :through => :concert_band, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :members, :through => :band_members, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :moderators, :foreign_key => 'band_id', :primary_key => 'band_id'
   has_many :users, :through => :moderators, :primary_key => 'user_id', :foreign_key => 'user_id'
@@ -35,11 +35,13 @@ class Band < ActiveRecord::Base
   def band_years_active
     @tag_return = ''
     concert_dates = Hash.new
-    if concerts.present?
+    #if concerts.present?
       concerts.select('substr(concert_date, 1, 4) as band_concert_date, count(concert_date) as band_concert_count').group('substr(concert_date, 1, 4)').order('concert_date').each do |f|
         concert_dates[f.band_concert_date] = f.band_concert_count
       end
-    end
+    #end
+
+    puts concerts.inspect.magenta
 
     tag_id = [] # array
     tags = {}  # hash

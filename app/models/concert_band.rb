@@ -1,7 +1,7 @@
 class ConcertBand < ActiveRecord::Base
   self.table_name = 'concert_band'
   has_many :concerts, :primary_key => 'concert_id', :foreign_key => 'concert_id'
-  has_many :bands, :primary_key => 'band_id', :foreign_key => 'band_id'
+  belongs_to :band, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :tours, :primary_key => 'tours_id', :foreign_key => 'tours_id'
   has_many :band_members, :primary_key => 'concert_id', :foreign_key => 'concert_id'
   has_many :roios, :through => :concerts, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
@@ -44,11 +44,14 @@ class ConcertBand < ActiveRecord::Base
 
   def band_details
     band_name = ''
-    if  bands.present?
-      bands.each do |f|
-        band_name = "#{band_name.to_s}Band\n
+    if  band.present?
+      #band.each do |f|
+      puts 'um here?'.green
+      puts band.inspect.magenta
+      puts band['band_id']
+        band_name = "#{band['band_name'].to_s}Band\n
 <ul class='li-no-style'>\n
-  <li>#{link_to f.band_name.to_s, bands_path(f.band_id)}</li>\n
+  <li>#{link_to band['band_name'].to_s, bands_path(band['band_id'])}</li>\n
   <li>Tour
     <ul class='li-no-style'>\n
       <li>#{tour_name}</li>\n
@@ -56,7 +59,7 @@ class ConcertBand < ActiveRecord::Base
   </li>\n
   #{bands_members.to_s}</ul>\n
 </ul>\n"
-      end
+      #end
     end
     band_name.html_safe
   end
@@ -85,38 +88,37 @@ class ConcertBand < ActiveRecord::Base
 
   def bands_members
     bands_members = ''
-    if  bands.present?
-      bands.each do |f|
+    if  band.present?
         if  band_members.present?
           band_members.each do |g|
-            if f.band_id == g.band_id
+            if band['band_id'] == g.band_id
               bands_members = "#{bands_members.to_s}<li>#{g.bands_members}</li>\n"
             end
 
           end
         end
 
-      end
+
     end
     bands_members = ("<li>Members <ul class='li-no-style'>\n#{bands_members}</ul></li>\n").to_s
   end
 
   def band_id
     band_id = ''
-    if  bands.present?
-      bands.each do |f|
-        band_id = band_id.to_s + f.band_id.to_s
-      end
+    if  band.present?
+      #band.each do |f|
+        band_id = band_id.to_s
+      #end
     end
     band_id.html_safe
   end
 
   def band_name
     band_name = Hash.new
-    if  bands.present?
-      bands.each do |f|
-        band_name[f.band_id] = f.band_name.to_s
-      end
+    if  band.present?
+      #band.each do |f|
+        band_name[band['band_id']] = band['band_name'].to_s
+      #end
     end
     band_name
   end
