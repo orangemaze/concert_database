@@ -4,7 +4,7 @@ class Member < ActiveRecord::Base
 
   def band_name
     band_name = Hash.new
-    puts '-- member --'.red
+    #puts '-- member --'.red
 
     band_name
   end

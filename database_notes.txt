@@ -70,4 +70,10 @@ SELECT * FROM pfdbcom_db_dev.tracking_data
 
 
 
+ SELECT * FROM pfdbcom_db_dev.tracking_data
+ where browser != 'googlebot'
+ and user_agent not like '%googlebot%'
+ and user_agent not like '%maxpoint%'
+ and user_agent not like '%mediapartners%'
+ and user_ip != '46.174.191.28'
 

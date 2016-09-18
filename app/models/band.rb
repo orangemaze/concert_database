@@ -25,11 +25,11 @@ class Band < ActiveRecord::Base
   end
 
   def is_moderator
-    puts ' == mod squad =='.blue
-    puts band_id.to_s.red
-    puts Band.inspect.to_s.blue
+    #puts ' == mod squad =='.blue
+    #puts band_id.to_s.red
+    #puts Band.inspect.to_s.blue
     data_result = Moderator.where("md5(user_id) = ? and band_id = ?", Band.current_user, band_id)
-    puts data_result.inspect.blue
+    #puts data_result.inspect.blue
   end
 
   def band_years_active
@@ -41,7 +41,7 @@ class Band < ActiveRecord::Base
       end
     #end
 
-    puts concerts.inspect.magenta
+    #puts concerts.inspect.magenta
 
     tag_id = [] # array
     tags = {}  # hash
@@ -104,7 +104,7 @@ class Band < ActiveRecord::Base
     @tag_return_members = Hash.new
     tag_id = [] # array
     tags = {}  # hash
-    puts 'members tag cloud'.green
+    #puts 'members tag cloud'.green
     if members.present?
       members.select("distinct count(band_members.concert_id) as member_count, CONCAT(members.member_fname,' ',members.member_lname) as full_name,  members.member_id as member_id").where('band_members.member_id = members.member_id').group('member_id').order('members.member_lname').each do |f|
 

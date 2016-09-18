@@ -54,7 +54,7 @@ class BandMember < ActiveRecord::Base
 
   def bands_name_info
     bands_name_info = Hash.new
-    puts bands.inspect
+    # puts bands.inspect
 
     bands_name_info
   end

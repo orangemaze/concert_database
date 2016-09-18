@@ -8,7 +8,7 @@ class ConcertsController < ApplicationController
   end
 
   def index
-    puts 'Concerts'.blue
+    #puts 'Concerts'.blue
     # @data_result = Concert.all.limit(20) # commented for testing
   end
 
@@ -41,9 +41,9 @@ class ConcertsController < ApplicationController
 
   def show
     @data_result = Concert.find(params[:id])
-    puts ' == show =='.green
-    puts flash.inspect.to_s.magenta
-    puts '-- flash above --'
+    # puts ' == show =='.green
+    # puts flash.inspect.to_s.magenta
+    # puts '-- flash above --'
 
     @note = params[:note].present? ? params[:note] : ''
 

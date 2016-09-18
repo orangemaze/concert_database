@@ -45,9 +45,9 @@ class ConcertBand < ActiveRecord::Base
   def band_details
     band_name = ''
     if  band.present?
-      puts 'um here?'.green
-      puts band.inspect.magenta
-      puts band['band_id']
+      #puts 'um here?'.green
+      #puts band.inspect.magenta
+      #puts band['band_id']
         band_name = "#{band['band_name'].to_s}Band\n
 <ul class='li-no-style'>\n
   <li>#{link_to band['band_name'].to_s, bands_path(band['band_id'])}</li>\n

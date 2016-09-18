@@ -19,7 +19,7 @@ class Concert < ActiveRecord::Base
     if roios.present?
       data_holder = ''
       roios.each do |f|
-        puts '=== here ==='
+        # puts '=== here ==='
         roio_image = ''
         bootleg_id = f.bootleg_id
         bootleg_name = f.bootleg_name.gsub(/\\'/, '\'')
@@ -138,9 +138,9 @@ class Concert < ActiveRecord::Base
     if concert_bands.present?
       concert_bands.order('band_position').each do |k ,v|
         k.band_name.each do |x, y|
-          puts '== band name =='
-          puts x.to_s.blue
-          puts y.inspect.to_s.red
+          # puts '== band name =='
+          # puts x.to_s.blue
+          # puts y.inspect.to_s.red
           band_name[x] = y
         end
       end
@@ -153,9 +153,9 @@ class Concert < ActiveRecord::Base
     if concert_bands.present?
       concert_bands.order('band_position').each do |k ,v|
         k.tour_name.each do |x, y|
-          puts '== tour name =='
-          puts x.to_s.blue
-          puts y.inspect.to_s.red
+          # puts '== tour name =='
+          # puts x.to_s.blue
+          # puts y.inspect.to_s.red
           tour_name[x] = y
         end
       end
@@ -168,9 +168,9 @@ class Concert < ActiveRecord::Base
     if band_members.present?
       band_members.where('band_id = ?', band_id).each do |k ,v|
         k.band_member_names.each do |x, y|
-          puts '== member name =='
-          puts x.to_s.blue
-          puts y.inspect.to_s.red
+          # puts '== member name =='
+          # puts x.to_s.blue
+          # puts y.inspect.to_s.red
           band_member_names[x] = y
         end
       end

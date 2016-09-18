@@ -2,14 +2,14 @@ module AdminHelper
 
   def is_band_moderator(band_id)
     is_moderator = ''
-    puts '=== is moderator ==='.red
+    # puts '=== is moderator ==='.red
 
     # puts session[:band_moderator].inspect.blue
     if session[:admin].to_i == 1
       is_moderator = 'y'
     elsif @moderator_band_names.present?
-      puts @moderator_band_names.inspect
-      puts session[:admin].to_s.magenta
+      # puts @moderator_band_names.inspect
+      # puts session[:admin].to_s.magenta
       if @moderator_band_names.key(band_id).present? || session[:admin].to_i == 1
         is_moderator = 'y'
       else
@@ -19,7 +19,7 @@ module AdminHelper
       is_moderator = 'n'
     end
 
-    puts is_moderator.blue
+    #puts is_moderator.blue
     is_moderator
   end
 
