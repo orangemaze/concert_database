@@ -73,7 +73,6 @@ class ConcertsController < ApplicationController
     end
   end
 
-
   def create
     @concert = Concert.new(concert_params)
     puts @concert.inspect.green
@@ -155,6 +154,11 @@ class ConcertsController < ApplicationController
 
   def roio_details
     @data_result = Roio.find(params[:id])
+    render :layout => false
+  end
+
+  def roio_add_comment
+    @roio_id = params[:id]
     render :layout => false
   end
 

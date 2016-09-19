@@ -106,10 +106,15 @@ $(".roio-details").click(function(){
     // var locale = get_query_string_params('locale');
     var locale = window.location.pathname.substring(0, 3);
     $.get(locale + "/concerts/roio_details/"+bootleg_id, function(data, status){
-        // roio-details-container
         $("#roio-details-container").html(data);
-        // alert("Data: " + data + "\nStatus: " + status);
     });
+    $.get(locale + "/concerts/roio_add_comment/"+bootleg_id, function(data, status){
+        $("#roio-add-comment").html(data);
+    });
+
+
+
+
 });
 function change_search(category){
     $( "#action_button" ).html(category+" <span class=\"caret\"></span>");

@@ -12,8 +12,8 @@
                 = t(:the_concert_database).titleize.html_safe
               %p= t(:this_site_is).slice(0,1).capitalize + t(:this_site_is).slice(1..-1)
               %p= t(:by_cataloging_these).slice(0,1).capitalize + t(:this_site_is).slice(1..-1)
-        %div.panel-footer
-          %img.center-block.img-responsive{:id => 'main_title_image', :src => get_main_image, :alt => 'Concert Image', :title => 'Concert Image', :width => '580'}
+        %div.panel-footer-image
+          %img.center-block.img-responsive{:id => 'main_title_image', :src => get_main_image, :alt => 'Concert Image', :title => 'Concert Image', :width => '100%'}
           %div.clearfix
 
     %div.row

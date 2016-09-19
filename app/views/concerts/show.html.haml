@@ -1,7 +1,7 @@
 %div{:id => "page-wrapper"}
   %br
   - if @note.present?
-    %div.alert.alert-danger.text-center{:role => 'alert'}= @note
+    %div.alert.alert-danger.text-center{:role => 'alert'}= @note.html_safe
 
   %div.row
     %div.col-lg-3.col-md-6
@@ -145,6 +145,8 @@
         %div.panel-heading
           %i.fa.fa-search.fa-fw
           = t('roio_detail').pluralize.titleize
+          %span.pull-right#roio-add-comment
+          %div.clearfix
         <!-- /.panel-heading -->
         %div.panel-body
           %div{:id => "roio-details-container"}
@@ -154,8 +156,6 @@
           %span.pull-left
             %i.fa.fa-comments-o.fa-fw
             = t('comment').pluralize.titleize
-          %span.pull-right
-            = link_to("#{t('add_comment').titleize.html_safe} <i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_comment_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.band_id}")
           %div.clearfix
         <!-- /.panel-heading -->
         %div.panel-body
