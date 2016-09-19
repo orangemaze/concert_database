@@ -160,7 +160,7 @@
         <!-- /.panel-heading -->
         %div.panel-body
           %ul.timeline
-            = @data_result.get_ui_comments.html_safe
+            = @data_result.get_ui_comments(cookies[:user_name]).html_safe
         <!-- /.panel-body -->
       <!-- /.panel -->
     <!-- /.col-lg-8 -->

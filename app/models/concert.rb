@@ -228,18 +228,26 @@ class Concert < ActiveRecord::Base
     tour_name.html_safe
   end
 
-  def get_ui_comments
+  def get_ui_comments(user_name)
     get_ui_comments = ''
 
     if reviews.present?
       reviews.order('orig_date').reverse.each do |f|
+        edit_this_comment = ''
+        if user_name.present?
+          if user_name == f.nick
+            edit_this_comment = "<a href='#'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>"
+          end
+        end
+
+
         get_ui_comments = get_ui_comments + "
         <li class='" + cycle('', 'timeline-inverted') +"'>
           <div class='timeline-badge'><i class='fa fa-comments-o'></i>
           </div>
           <div class='timeline-panel'>
             <div class='timeline-heading'>
-              <h4 class='timeline-title'>#{f.bootleg_name} <small>#{f.nick}</small></h4>
+              <h4 class='timeline-title'>#{f.bootleg_name} <small>#{f.nick} #{edit_this_comment}</small></h4>
               <p><small class='text-muted'><i class='fa fa-clock-o'></i> #{f.review_time}</small>
               </p>
             </div>
