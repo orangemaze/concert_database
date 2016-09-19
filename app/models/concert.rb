@@ -96,7 +96,13 @@ class Concert < ActiveRecord::Base
   end
 
   def city_name
-    ''
+    city_name = ''
+    if concert_venues.present?
+      concert_venues.each do |f|
+        city_name = city_name + f.city_name.to_s
+      end
+    end
+    city_name.html_safe
   end
 
   def city_id
@@ -104,15 +110,27 @@ class Concert < ActiveRecord::Base
   end
 
   def state_name
-    ''
+    state_name = ''
+    if concert_venues.present?
+      concert_venues.each do |f|
+        state_name = state_name + f.state_name.to_s
+      end
+    end
+    state_name.html_safe
   end
 
   def state_id
     ''
   end
 
-  def country
-    ''
+  def country_name
+    country_name = ''
+    if concert_venues.present?
+      concert_venues.each do |f|
+        country_name = country_name + f.country_name.to_s
+      end
+    end
+    country_name.html_safe
   end
 
   def flags_id
@@ -188,6 +206,17 @@ class Concert < ActiveRecord::Base
     end
     bootleg_name_plain.html_safe
   end
+
+  def bootleg_name_plain_hash
+    bootleg_name_plain_hash = Hash.new
+    if roios.present?
+      roios.each do |f|
+        bootleg_name_plain_hash[f.bootleg_id.to_s] = f.bootleg_name.to_s
+      end
+    end
+  end
+
+
 
   def tour_name
     tour_name = ''

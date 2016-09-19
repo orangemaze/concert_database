@@ -1,0 +1,30 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-10.text-left.vertical-align.inline
+            %i.fa.fa-calendar.fa-5x
+            = "<h3>&nbsp;#{t('year').pluralize.titleize}</h3>".html_safe
+            %p
+      %div.panel-footer
+        %div.table-responsive
+          %table.table.table-striped.table-bordered.table-hover.dataTables
+            %thead
+              %tr
+                %td= t('year').titleize.html_safe
+                %td= t('venue').titleize.html_safe
+                %td= t('roio').pluralize.titleize.html_safe
+            %tbody
+              - @data_result.order('concert_date').each do |data_result|
+                %tr
+                  %td= link_to "#{data_result.concert_date}".html_safe, concert_path(data_result.concert_id.to_s)
+                  %td= "#{data_result.venue_name}, #{data_result.city_name}, #{data_result.state_name}, #{data_result.country_name}"
+                  %td
+                    -begin
+                      -data_result.bootleg_name_plain_hash.each do |v|
+                        = "#{v.bootleg_name}<br>".html_safe
+                    -rescue
+                      - #nada

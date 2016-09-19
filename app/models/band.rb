@@ -32,7 +32,7 @@ class Band < ActiveRecord::Base
     #puts data_result.inspect.blue
   end
 
-  def band_years_active
+  def band_years_active(band_id)
     @tag_return = ''
     concert_dates = Hash.new
     #if concerts.present?
@@ -92,7 +92,7 @@ class Band < ActiveRecord::Base
           @items = 'listing'
         end
 
-        @tag_return = "#{@tag_return.to_s} <a href=\"/#{I18n.locale}/years/#{k}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
+        @tag_return = "#{@tag_return.to_s} <a href=\"/#{I18n.locale}/years/#{k}?band_id=#{band_id}\" style=\"font-size: #{@size.to_s}px\" title=\"#{k} has #{v} #{@items}\">#{k}</a> "
 
         tag_counting +=1
       end

@@ -7,7 +7,6 @@ class ToursController < ApplicationController
 
   def show
     @data_result = Tour.find(params[:id])
-    puts "this is it".red
     puts @moderator_band_names.inspect.blue
     puts @data_result.band_name[0].green
     if @moderator_band_names.present?

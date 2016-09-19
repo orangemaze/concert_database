@@ -26,7 +26,7 @@
                 %br
 
                 %br Years Active
-                = @data_result.band_years_active.html_safe
+                = @data_result.band_years_active(@data_result.band_id).html_safe
 
                 %br
                 %br People that played with #{@data_result.band_name}

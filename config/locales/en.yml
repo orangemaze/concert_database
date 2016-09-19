@@ -62,6 +62,7 @@ en:
   about_this_site: "About this site"
   add_roio: "Add ROIO"
   you_must_be_logged_in_to_add_a_roio: "You must be logged in to add a ROIO"
+  year: 'year'
 
   date:
     formats:
