@@ -65,6 +65,12 @@ en:
   you_must_be_logged_in_to_add_a_review: "You must be logged in to add a Comment"
   year: 'year'
   add_comment: "add comment"
+  cities_with_shows: "cities with shows listed within 50 miles"
+  location: "location"
+  lat: "latitude"
+  lon: "longitude"
+  time_zone: "time zone"
+
 
   date:
     formats:

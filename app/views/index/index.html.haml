@@ -6,12 +6,12 @@
         %div.panel-heading
           %div.row
             %div.col-xs-4
-              = image_tag('concerts-db-logo-white-trans.gif', :alt => 'The Concert Database', :class => 'img-responsive')
+              = image_tag('concerts-db-logo-white-trans.gif', :alt => "#{t(:the_concert_database).titleize.html_safe}", :class => 'img-responsive')
             %div.col-xs-8
               %h2
                 = t(:the_concert_database).titleize.html_safe
-              %p= t(:this_site_is).slice(0,1).capitalize + t(:this_site_is).slice(1..-1)
-              %p= t(:by_cataloging_these).slice(0,1).capitalize + t(:this_site_is).slice(1..-1)
+              %p= t(:this_site_is).capitalize
+              %p= t(:by_cataloging_these).capitalize
         %div.panel-footer-image
           %img.center-block.img-responsive{:id => 'main_title_image', :src => get_main_image, :alt => 'Concert Image', :title => 'Concert Image', :width => '100%'}
           %div.clearfix
@@ -22,14 +22,8 @@
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left
-                = t(:new_site_message).slice(0,1).capitalize + t(:new_site_message).slice(1..-1)
+                = t(:new_site_message).capitalize
 
-                %ul
-                  %li= link_to t(:band).capitalize.pluralize.html_safe, bands_path, :class => "text-white"
-                  %li= link_to t(:concert).capitalize.pluralize.html_safe, concerts_path, :class => "text-white"
-                  %li= link_to t(:country).capitalize.pluralize.html_safe, flags_path, :class => "text-white"
-                  %li= link_to t(:roio).capitalize.pluralize.html_safe, roios_path, :class => "text-white"
-                  %li= link_to t(:venue).capitalize.pluralize.html_safe, venues_path, :class => "text-white"
           %a{:href => '#'}
             %div.panel-footer
               %span.pull-left= t('view_details')
@@ -42,18 +36,17 @@
           %div.panel-heading
             %div.row
               %div.col-xs-9.text-left
-                = "There are xxx concerts in the database within 50 miles from #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}<br>".html_safe
                 = "IP: #{request.remote_ip.to_s}<br>".html_safe
-                = "Lat: #{get_lat_lon_from_ip()[0].to_s}<br>".html_safe
-                = "Lng: #{get_lat_lon_from_ip()[1].to_s}<br>".html_safe
-                = "Location: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}<br>".html_safe
-                = "Time Zone Info: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
+                = "#{t('lat').capitalize}: #{get_lat_lon_from_ip()[0].to_s}<br>".html_safe
+                = "#{t('lon').capitalize}: #{get_lat_lon_from_ip()[1].to_s}<br>".html_safe
+                = "#{t('location').capitalize}: #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['city']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['region']}, #{get_city_name_from_lat_lon(get_lat_lon_from_ip())[0]['country']}<br>".html_safe
+                = "#{t('time_zone').titleize}: #{get_time_zone_from_lat_lon(get_lat_lon_from_ip())['timezoneId']}"
           %div.panel-footer
             %span.pull-left
               = t('dont_see_a_concert')
               %br
               %br
-              = "Cities with shows listed within 50 miles:"
+              = "#{t('cities_with_shows').capitalize}:"
               %br
               - get_cities_within_range(get_lat_lon_from_ip(), 50).each do |v|
                 = "#{v.city}, #{v.region}, #{v.country} - #{number_with_precision(v.geo_distance, :precision => 2)} mi (#{(v.geo_distance.to_s + 'mi').convert_to('km').to_s('%0.2f')})<br>".html_safe
