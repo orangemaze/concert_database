@@ -10,7 +10,9 @@ class Venue < ActiveRecord::Base
     venues_name = ''
     if venue_names.present?
       venue_names.each do |f|
-        venues_name = venues_name + "<tr><td>#{f.venue_name.to_s}</td>\n<td>#{f.start_date.to_s}</td>\n<td>#{f.end_date.to_s}</td>\n<td>#{f.notes.to_s}</td>\n<td>#{f.capacity.to_s}</td>\n<td>#{f.street.to_s}</td>\n<td>#{f.wiki.to_s}</td>\n<td>#{f.url.to_s}</td>\n</tr>\n"
+	wiki = f.wiki.present? ? "<a href='https://en.wikipedia.org/wiki/#{f.wiki.to_s}' target='_blank'><i class='fa fa-wikipedia-w' aria-hidden='true'></i></a>" : ""
+
+        venues_name = venues_name + "<tr><td>#{f.venue_name.to_s}</td>\n<td>#{f.start_date.to_s}</td>\n<td>#{f.end_date.to_s}</td>\n<td>#{f.notes.to_s}</td>\n<td>#{f.capacity.to_s}</td>\n<td>#{f.street.to_s}</td>\n<td>#{wiki}</td>\n<td>#{f.url.to_s}</td>\n</tr>\n"
       end
     end
     venues_name.html_safe

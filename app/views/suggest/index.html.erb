@@ -21,11 +21,17 @@
        elsif @addl_action == 'city'
     %>{"id": "<%= suggestions.city_id %>","value": "<%= suggestions.city_name %>","label": "<%= suggestions.city_name %>"}
     <%
+       elsif @addl_action == 'member'
+    %>{"id": "<%= suggestions.member_id %>","value": "<%= suggestions.member_name %>","label": "<%= suggestions.member_name %>"}
+    <%
        elsif @addl_action == 'state'
     %>{"id": "<%= suggestions.state_id %>","value": "<%= suggestions.state_name %>","label": "<%= suggestions.state_name %>"}
     <%
        elsif @addl_action == 'flags'
     %>{"id": "<%= suggestions.flags_id %>","value": "<%= suggestions.country %>","label": "<%= suggestions.country %>"}
+    <%
+       elsif @addl_action == 'albums'
+    %>{"id": "<%= suggestions.id %>","value": "<%= suggestions.album_name %>","label": "<%= suggestions.album_name %>"}
     <%
        else
     %>{"id": "<%= suggestions.band_id %>","value": "<%= suggestions.band_name %>","label": "<%= suggestions.band_name %>"}

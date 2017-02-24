@@ -32,7 +32,12 @@ module SuggestHelper
     elsif search_action == 'flags'
       puts '--country--'.red
       @search_result = Country.select('flags_id, country').from('flags').where('country like ?',  "%#{input}%")
-
+    elsif search_action == 'member'
+      puts '--member--'.red
+      @search_result = Member.select("member_id, concat(member_fname, ' ',member_lname) as member_name").from('members').where("concat(member_fname, ' ',member_lname) like ?",  "%#{input}%")
+    elsif search_action == 'albums'
+      puts '--albums--'.red
+      @search_result = Album.select('id, album_name').from('albums').where('album_name like ?',  "%#{input}%")
     else
       puts '--else--'.red
       @suggest_result = Band.select('band_name.band_id, band_name.band_name').from('band_name').where('band_name.band_name like ?', "%#{input}%").group('band_name.band_name').order('band_name.band_name').limit(75)

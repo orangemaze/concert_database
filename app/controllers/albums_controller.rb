@@ -14,28 +14,11 @@ class AlbumsController < ApplicationController
 
   # GET /albums/new
   def new
-    if session[:admin].present?
-      if session[:admin].to_i < 5
-        @album = Album.new
-      else
-        redirect_to URI(request.referer).path
-      end
-    else
-      redirect_to URI(request.referer).path
-    end
+    @album = Album.new
   end
 
   # GET /albums/1/edit
   def edit
-    if session[:admin].present?
-      if session[:admin].to_i < 5
-        # nothing
-      else
-        redirect_to URI(request.referer).path
-      end
-    else
-      redirect_to URI(request.referer).path
-    end
   end
 
   # POST /albums

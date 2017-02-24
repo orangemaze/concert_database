@@ -90,6 +90,46 @@ class ToursController < ApplicationController
     redirect_to edit_tour_path(params[:id])
   end
 
+  def add_member_to_tour
+    member_tour = Hash.new
+    member_tour['tour_id'] = params[:id]
+    member_tour['member_name'] = params[:member_name]
+    member_id = Member.select('member_id').where("concat(member_fname,' ', member_lname) = ?", member_tour['member_name']).first
+    puts member_id['member_id'].to_s.red
+    sql = "replace into tour_members (member_id, tours_id, user_id) values ('#{member_id['id'].to_s}', '#{member_tour['tour_id']}', '#{session[:users_id]}')"
+    puts sql.red
+    ActiveRecord::Base.connection.execute(sql)
+    redirect_to :controller => 'tours', :action => 'edit', :id => params[:id] and return
+
+  end
+
+  def add_album_to_tour
+    album_tour = Hash.new
+    album_tour['tour_id'] = params[:id]
+    album_tour['album_name'] = params[:album_name]
+    album_id = Album.select('id').where('album_name = ?', album_tour['album_name']).first
+    puts album_id['id'].to_s.red
+    album_tour['album_id'] = album_id['id']	
+    sql = "replace into album_tours (album_id, tour_id, created_at, updated_at) values ('#{album_id['id'].to_s}', '#{album_tour['tour_id']}', NOW(), NOW())"
+    puts sql.red
+    ActiveRecord::Base.connection.execute(sql)
+    redirect_to :controller => 'tours', :action => 'edit', :id => params[:id] and return
+
+  end
+
+  def delete_tour_album
+    @album_tour = AlbumTour.where('tour_id = ? and album_id = ?', params[:id], params[:album_id]).first
+    @album_tour.destroy
+    redirect_to :controller => 'tours', :action => 'edit', :id => params[:id] and return
+  end
+
+  def delete_tour_member
+    @member_tour = TourMember.where('tours_id = ? and member_id = ?', params[:id], params[:member_id]).first
+    @member_tour.destroy
+    redirect_to :controller => 'tours', :action => 'edit', :id => params[:id] and return
+  end
+
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_band
@@ -99,6 +139,10 @@ class ToursController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
     params.require(:tours).permit(:tour_name, :start_date, :end_date, :band_id, :total_shows)
+  end
+
+  def album_tour_params
+    params.require(:album_tour).permit(:album_id, :tour_id)
   end
 
 

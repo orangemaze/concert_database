@@ -16,7 +16,11 @@ class RoiosController < ApplicationController
     else
 
       note = t('you_must_be_logged_in_to_add_a_roio')
-      redirect_to URI(request.referer).path + "?note=" + note
+      begin
+        redirect_to URI(request.referer).path + "?note=" + note
+      rescue
+        redirect_to :controller => 'index', :action => 'index' and return
+      end
     end
   end
 
@@ -36,17 +40,6 @@ class RoiosController < ApplicationController
 
   def edit
     @roio = Roio.find(params[:id])
-    puts 'edit'.blue
-    puts @roio.inspect.red
-    if @moderator_band_names.present?
-      if @moderator_band_names.has_value?(@roio.band_name[0]).present? or (session[:admin].to_i == 1)
-        @is_moderator = 'y'
-      else
-        redirect_to URI(request.referer).path
-      end
-    else
-      redirect_to URI(request.referer).path
-    end
   end
 
   def update

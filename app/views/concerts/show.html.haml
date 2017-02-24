@@ -23,7 +23,16 @@
           %div.clearfix
           %p
           %p.concert_details
-            = "#{t('concert').titleize}: #{@data_result.concert_date} #{is_band_moderator(@data_result.band_id.to_s) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_concert_path(@data_result.concert_id)) : ''} #{is_band_moderator(@data_result.concert_id) == 'y' ? "<i class='fa fa-times' aria-hidden='true'></i>".html_safe : ''}<br>#{t('time_of_show').titleize}: #{@data_result.time_of_show}<br>#{t('note').titleize.pluralize}: #{@data_result.notes}<br>".html_safe
+            = "<b>#{t('concert').titleize}</b>:".html_safe
+            = link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/concerts/#{@data_result.prev_concert}") 
+            = "#{@data_result.concert_date}".html_safe
+            = "#{is_band_moderator(@data_result.band_id.to_s) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_concert_path(@data_result.concert_id), :class => "admin_edit") : ''}".html_safe
+            = "#{is_band_moderator(@data_result.concert_id) == 'y' ? link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, concert_path(@data_result.concert_id), :class => "admin_edit") : ''}".html_safe
+            = link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/concerts/#{@data_result.next_concert}") 
+            %br
+            = "<b>#{t('time_of_show').titleize}</b>: #{@data_result.time_of_show}".html_safe
+            %br
+            = "<b>#{t('note').titleize.pluralize}</b>: #{@data_result.notes}<br>".html_safe
           %div.clearfix
 
     %div.col-lg-3.col-md-6
@@ -85,8 +94,11 @@
                       %br
                       %ul
                         %li
+                          - puts @data_result.prev_tour.magenta
+                          = link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.prev_tour}") 
                           = link_to @data_result.tour_name_plain.values[count_tour].to_s, tour_path(@data_result.tour_name_plain.keys[count_tour].to_s)
                           = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s), :class => "admin_edit") : ''
+                          = link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.next_tour}") 
                     %li
                       = "#{t('member').titleize}".html_safe
                       %br

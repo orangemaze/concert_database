@@ -30,6 +30,26 @@ class Tour < ActiveRecord::Base
     band_name
   end
 
+  def album_name
+    album_name = Array.new
+    if albums.present?
+      albums.each do |f|
+        album_name.push f.album_name.to_s
+      end
+    end
+    album_name
+  end
+
+  def album_amazon_ad
+    album_amazon_ad = Array.new
+    if albums.present?
+      albums.each do |f|
+        album_amazon_ad.push f.album_amazon_ad.to_s
+      end
+    end
+    album_amazon_ad
+  end
+
 
   def official_releases_info
     official_releases_info = ''

@@ -152,6 +152,15 @@
             });
         });
     });
+
+    function delete_tour_album(tour_id, album_id){
+      window.location.href = "/<%= I18n.locale %>/tours/delete_tour_album/"+tour_id+"?album_id="+album_id;
+    }
+
+    function delete_tour_member(tour_id, member_id){
+      window.location.href = "/<%= I18n.locale %>/tours/delete_tour_member/"+tour_id+"?member_id="+member_id;
+
+    }
 </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 %div.row.well
   %div.col-md-2= link_to(@data_result.concert_date, "/concerts/#{@data_result.concert_id}")
   %div.col-md-3
-    = get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal", @data_result.roio_image_count)
+    = get_image_location(@data_result.concert_date, @data_result.bootleg_id, @data_result.bootleg_name, "normal", @data_result.roio_image_count, @data_result.bootleg_image)
   %div.col-md-4
 
     %ul.list-unstyled

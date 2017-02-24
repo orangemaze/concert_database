@@ -24,7 +24,7 @@
 
         %p
           %strong Album amazon ad:
-          = @album.album_amazon_ad.html_safe
+          = @album.album_amazon_ad.present? ? @album.album_amazon_ad.html_safe : ""
 
         %p
           %strong Release Year:

@@ -1,0 +1,96 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+
+se:
+  about: "om"
+  admin_level: "admin nivå"
+  and_another: "och annan"
+  band: "grupp"
+  bibliography: "bibliografi"
+  by_cataloging_these: "genom katalogisering av dessa framträdanden kan vi studera hur musikstycken har utvecklats över tiden och notera även små nyansskillnader"
+  change_avatar: "byt avatar"
+  change_password: "byt lösenord"
+  comment: "kommentar"
+  concert: "konsert"
+  country: "land"
+  czech: "Tjeckiska"
+  dont_see_a_concert: "Hittar du inte en konsert du varit på? Logga in / Registrera och lägg till den, gå med i gemenskapen."
+  english: "Engelska"
+  hello: "Hej världen"
+  home: "hem"
+  language: "språk"
+  list_of_roios: "lista över roio"
+  login_sign_up: "logga in / registrera”
+  logout: "logga ut"
+  moderator_of_the_following: "moderator för följande grupper"
+  new_site_message: "det här är den nya versionen av sajten, den är fortfarande i högsta grad under konstruktion"
+  pig_latin: "Pig Latin"
+  roio: "roio"
+  roio_detail: "roio detaljer"
+  select_band: "välj grupp"
+  setting: "inställning"
+  spanish: "Spanska"
+  the_concert_database: "the concert database"
+  this_site_is: "this site is dedicated to sharing experiences of live performances and their incidental details such as tours programs, ticket stubs, photos, audio, video and more..."
+  user_profile: "användarprofil"
+  venue: "arena"
+  view_detail: "visa detalj"
+  were_you_there: "var du där"
+  title: "titel"
+  type: "typ"
+  format: "format"
+  label: "etikett"
+  recorder: "inspelare"
+  length: "längd"
+  disc: "disc"
+  taper: "bandare"
+  lineage: "härstamning"
+  equipment: "utrustning"
+  generation: "generation"
+  taper_location: "bandarens plats"
+  source_warning: "varning avseende källan"
+  added_to_the_database_by: "adderat till databasen av"
+  on: "den"
+  last_edited: "senast ändrad"
+  roio_rating: "roio_betyg"
+  image: "bild"
+  md5: "md5"
+  tracklist: "spårlista"
+  tour: "turne"
+  member: "medlem"
+  action: "Välj"
+  to_select_a_concert: "För att välja en konsert, välj 'Konserter' från 'Välj' menyn, och börja mata in ett datum. När så möjligt får du då förslag. Alla datum i databasen har följande formast are åååå-mm-dd."
+  to_select_a_venue: "För att välja en arena, välj 'Arenor' från 'Välj' menyn, och börja mata in ett datum. När så möjligt får du då förslag."
+  about_this_site: "Om"
+  add_roio: "Lägg till ROIO"
+  you_must_be_logged_in_to_add_a_roio: "Du måste vara inloggad för att lägga till en to ROIO"
+
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+
+
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M"
+

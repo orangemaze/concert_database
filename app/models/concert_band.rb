@@ -62,6 +62,14 @@ class ConcertBand < ActiveRecord::Base
     band_name.html_safe
   end
 
+  def tour_band_id
+    tour_band_id = ''
+    if  tour.present?
+        tour_band_id = tour['band_id'].to_s
+    end
+    tour_band_id.html_safe
+  end
+
   def tour_start_date
     tour_start_date = ''
     if  tour.present?

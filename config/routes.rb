@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   get ':locale/concerts/roio_details/:id' => 'concerts#roio_details'
   get ':locale/concerts/roio_add_comment/:id' => 'concerts#roio_add_comment'
   get ':locale/tour_member/delete_member_from_tour' => 'tour_member#delete_member_from_tour'
-  get 'review/:id' => 'review#testui_comments'
-  get 'testui' => 'testui#index'
-  get 'testui/:id' => 'testui#show'
+  get ':locale/review/:id' => 'review#testui_comments'
+  get ':locale/testui' => 'testui#index'
+  get ':locale/testui/:id' => 'testui#show'
   get 'suggest' => 'suggest#index'
   get ':locale/members/merge_members/:id' => 'members#merge_members'
 
@@ -22,13 +22,16 @@ Rails.application.routes.draw do
   get ':locale/logins/login' => 'logins#login'
 
   #admin type functions
-  get 'albums' => 'albums#index'
-  get 'users/change_language/:id' => 'users#change_language'
+  get ':locale/albums' => 'albums#index'
+  get ':locale/users/change_language/:id' => 'users#change_language'
   get ':locale/users/change_language/:id' => 'users#change_language'
   get ':locale/tours/add_remove_concert_to_tour/:id' => 'tours#add_remove_concert_to_tour'
 
   get ':locale/tours/push_members_to_all_shows_in_tour/:id' => 'tours#push_members_to_all_shows_in_tour'
-
+  get ':locale/tours/add_album_to_tour/:id' => 'tours#add_album_to_tour'
+  get ':locale/tours/add_member_to_tour/:id' => 'tours#add_member_to_tour'
+  get ':locale/tours/delete_tour_album/:id' => 'tours#delete_tour_album'
+  get ':locale/tours/delete_tour_member/:id' => 'tours#delete_tour_member'
 
   scope "/:locale" do
     resources :concerts
@@ -50,6 +53,7 @@ Rails.application.routes.draw do
     resources :tour_member
     resources :comments
     resources :logins
+    resources :album_tours
 
   end
 

@@ -28,11 +28,12 @@
                   = link_to "#{v.member_fname} #{v.member_lname}", member_path(v.member_id)
                   %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_member(#{v.tours_id}, #{v.member_id});", :style => 'cursor: pointer;'}
               %li
-                %a{:href =>'#'}
-                  = t('add_member').titleize.html_safe
-                  %i.fa.fa-plus{:aria_hidden =>"true"}
-                  %i.fa.fa-user{:aria_hidden =>"true"}
+                %form{:action => "/#{I18n.locale}/tours/add_member_to_tour/#{@tour.tours_id}", :method => 'get'}
+                  %input#addl_action{:type => 'hidden', :value => 'member', :name => 'member_tour[member_name]'}
+                  %input.suggest#member{:type => 'text', :name => 'member_name'}
+                  %input.btn.btn-primary.btn-xs.text-center{:type => 'submit', :value =>'Add Member to Tour'} 
         %div.row
+          %br
           %div.col-xs-4.text-center.vertical-align.inline
             %p= t('select_concert_to_add_to_tour').titleize.html_safe
           %div.col-md-2.text-center.center-block
@@ -74,7 +75,31 @@
               = counthis
 
         %div.row
-          %div.col-xs-10.text-left.vertical-align.inline
+          %div.col-xs-5.text-left.vertical-align.inline
+            %p 
+              %table
+                %thead
+                %tr
+                  %th Related Albums   
+                -if @tour.albums.present?
+                  -@tour.albums.order('release_year').each do |f|
+                    %tr
+                      %td
+                        =link_to f.album_name.to_s, album_path(:id => f.id)
+                        %i.fa.fa-times{:aria_hidden => 'true', :onclick => "delete_tour_album(#{@tour.tours_id}, #{f.id});", :style => 'cursor: pointer;'}
+                %tr
+                  %td
+                    %form{:action => "/#{I18n.locale}/tours/add_album_to_tour/#{@tour.tours_id}", :method => 'get'}
+                      %input#addl_action{:type => 'hidden', :value => 'albums', :name => 'album_tour[album_name]'}
+                      %input.suggest#albums{:type => 'text', :name => 'album_name'}
+                      %input.btn.btn-primary.btn-xs.text-center{:type => 'submit', :value =>'Add Album to Tour'}  
+
+
+
+        %br
+        %br
+        %div.row
+          %div.col-xs-4.text-left.vertical-align.inline
             = link_to t('Show').titleize.html_safe, @tour
             &nbsp;|&nbsp;
             = link_to t('Back').titleize.html_safe, tour_path
