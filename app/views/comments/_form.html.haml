@@ -1,0 +1,23 @@
+= form_for(@comment) do |f|
+  - if @comment.errors.any?
+    %div#error_explanation
+      %h2= "#{pluralize(@album_tour.errors.count, "error")} prohibited this album_tour from being saved:"
+
+      %ul
+        - @comment.errors.full_messages.each do |message|
+          %li= message
+
+
+  - puts @roio.inspect.magenta
+  - puts @comment.inspect.green
+  %div.field
+    %b= "#{@roio.concert_date} - #{(@roio.band_name).titleize} - #{(@roio.bootleg_name).titleize}"
+    %br
+    = hidden_field_tag 'comment[concert_id]', @roio.concert_id
+    = hidden_field_tag 'comment[bootleg_id]', @roio.bootleg_id
+    - comment_text = @comment.review.present? ? @comment.review.gsub(%r~<br\s*\/?>~, "\n") : @comment.review
+    = text_area_tag 'comment[review]', comment_text, {:style => 'width: 100%;', :rows => '20'}
+  %div.actions
+    = f.submit 'Submit Comment', :class => 'btn btn-primary btn-xs'
+
+

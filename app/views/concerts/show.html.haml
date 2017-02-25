@@ -23,16 +23,16 @@
           %div.clearfix
           %p
           %p.concert_details
-            = "<b>#{t('concert').titleize}</b>:".html_safe
+            = "<b>#{t('concert').titleize}</b>".html_safe
             = link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/concerts/#{@data_result.prev_concert}") 
             = "#{@data_result.concert_date}".html_safe
             = "#{is_band_moderator(@data_result.band_id.to_s) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_concert_path(@data_result.concert_id), :class => "admin_edit") : ''}".html_safe
             = "#{is_band_moderator(@data_result.concert_id) == 'y' ? link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, concert_path(@data_result.concert_id), :class => "admin_edit") : ''}".html_safe
             = link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/concerts/#{@data_result.next_concert}") 
             %br
-            = "<b>#{t('time_of_show').titleize}</b>: #{@data_result.time_of_show}".html_safe
+            = "<b>#{t('time_of_show').titleize}</b> #{@data_result.time_of_show}".html_safe
             %br
-            = "<b>#{t('note').titleize.pluralize}</b>: #{@data_result.notes}<br>".html_safe
+            = "<b>#{t('note').titleize.pluralize}</b> #{@data_result.notes}<br>".html_safe
           %div.clearfix
 
     %div.col-lg-3.col-md-6
@@ -82,17 +82,17 @@
               - @data_result.band_name_plain.each do |k, v|
 
                 %li
-                  = t('band').titleize
+                  = "<b>#{t('band').titleize}</b>".html_safe
                   = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_band_path(k), :class => "admin_edit") : ''
                   %br
                   = link_to "#{v}", band_path(k)
                   = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(k), :class => "admin_edit") : ''
                   = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, band_path(k.to_s), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "admin_edit") : ''
-                  %ul
+                  %ul.list-unstyled
                     %li
-                      = "#{t('tour').titleize}".html_safe
+                      = "<b>#{t('tour').titleize}</b>".html_safe
                       %br
-                      %ul
+                      %ul.list-unstyled
                         %li
                           - puts @data_result.prev_tour.magenta
                           = link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.prev_tour}") 
@@ -100,9 +100,9 @@
                           = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s), :class => "admin_edit") : ''
                           = link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.next_tour}") 
                     %li
-                      = "#{t('member').titleize}".html_safe
+                      = "<b>#{t('member').titleize}</b>".html_safe
                       %br
-                      %ul
+                      %ul.list-unstyled
                         - @data_result.band_member_names(k).each do |g, h|
                           %li
                             = link_to h.to_s, member_path(g.to_s)
@@ -138,10 +138,10 @@
               - v.users_info.each do |u|
                 - @there_user_id = u.user_id
                 - @user_there_id = v.user_there_id
-                = "<b>#{u.user_name}</b>:".html_safe
+                = "<b>#{u.user_name}</b>".html_safe
               = "#{v.user_comment}"
               %br
-              = "#{t('sec').titleize}: #{v.user_seat_section} #{t('row').titleize}: #{v.user_seat_row} #{t('seat').titleize}: #{v.user_seat}"
+              = "#{t('sec').titleize} #{v.user_seat_section} #{t('row').titleize} #{v.user_seat_row} #{t('seat').titleize} #{v.user_seat}"
               = session['users_id'].present? ? @there_user_id.present? ? session['users_id'] == @there_user_id ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_user_there_path(:id => @user_there_id), :class => "admin_edit") + link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, user_there_path(:id => @user_there_id), :class => "admin_edit") : '' : '' : ''
               %br 
           %div.clearfix
@@ -182,7 +182,8 @@
         <!-- /.panel-heading -->
         %div.panel-body
           %ul.timeline
-            = @data_result.get_ui_comments(cookies[:user_name]).html_safe
+            - puts session[:user_name].yellow
+            = @data_result.get_ui_comments(session[:user_name]).html_safe
         <!-- /.panel-body -->
       <!-- /.panel -->
     <!-- /.col-lg-8 -->

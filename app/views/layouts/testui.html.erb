@@ -46,8 +46,9 @@
 <%= javascript_include_tag 'dataTables.responsive' %>
 <%= javascript_include_tag 'jquery-ui-1.10.4.custom' %>
 <%= javascript_include_tag 'sb-admin-2' %>
-
+<%= javascript_include_tag 'jquery-te-1.4.0.min' %>
 <script>
+    $('.jqte-test').jqte();
     $(function() {
 
         $(".suggest").autocomplete({

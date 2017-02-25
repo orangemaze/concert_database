@@ -25,9 +25,9 @@ class ConcertVenue < ActiveRecord::Base
 	  wiki = wiki.present? ? "<a href='https://en.wikipedia.org/wiki/#{f.wiki.to_s}' target='_blank'><i class='fa fa-wikipedia-w' aria-hidden='true'></i></a>" : ""
           venue_name = "#{@venue_name.to_s}, #{city_name.to_s}, #{state_name.to_s} (#{state_abbr.to_s}), <a href='/countries/#{country_id.to_s}'
  class='flag flags flag-#{iso_codes.downcase.to_s}' title='#{country_name.to_s}'></a> #{destroyed}<br>
-<b>Wiki:</b> #{wiki}<br>
-<b>URL:</b> <a href='#{f.url}' target='_blank' >#{f.url}</a><br>
-<b>Capacity:</b> #{f.capacity}"
+<b>Wiki</b> #{wiki}<br>
+<b>URL</b> <a href='#{f.url}' target='_blank' >#{f.url}</a><br>
+<b>Capacity</b> #{f.capacity}"
         end
       end
       venue_name.html_safe

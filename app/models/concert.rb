@@ -286,7 +286,7 @@ class Concert < ActiveRecord::Base
         edit_this_comment = ''
         if user_name.present?
           if user_name == f.nick
-            edit_this_comment = "<a href='#'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>"
+            edit_this_comment = "<a href='/#{I18n.locale}/comments/#{f.review_id}/edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>"
           end
         end
 

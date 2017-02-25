@@ -1,0 +1,19 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-success"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %i.fa.fa-commenting-o{:aria_hidden => 'true'}
+              ="#{t('editing').titleize} #{t('comment').titleize}"
+            %p
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to "#{t('show').titleize}", @comment
+        |
+        = link_to "#{t('back').titleize}", concert_path(@comment.concert_id)

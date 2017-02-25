@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :years
     resources :tour_member
     resources :comments
+    resources :review
     resources :logins
     resources :album_tours
     resources :user_there
