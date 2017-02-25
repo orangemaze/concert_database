@@ -1,46 +1,39 @@
 = form_for(@user_there) do |f|
   - if @user_there.errors.any? 
     %div#error_explanation
-      %h2= "#{pluralize(@user_there.errors.count, "error")} prohibited this album from being saved:"
+      %h2= "#{pluralize(@user_there.errors.count, "error")} #{t('prohibited_this').titleize} #{t('entry').titleize} #{t('from_being_saved').titleize}"
 
       %ul
       - @user_there.errors.full_messages.each do |message|
         %li= message
 
   %div.panel.cold-md-12
-    %div.row
-      Concert Info
-
-    %div.field
-      = f.label :user_id
-      %br
-      = f.text_area :user_id 
   
     %div.field
-      = f.label :concert_id
+      = f.label "#{t('concert').titleize}"
       %br
-      = f.text_area :concert_id 
+      = f.text_area :concert_id, {:disabled => 'disabled'} 
   
     %div.field
-      = f.label :user_comment
+      = f.label "#{t('comment').titleize}"
       %br
       = f.text_area :user_comment 
   
       %div.field
-        = f.label "Section"
+        = f.label "#{t('section').titleize}"
         %br
         = f.text_area :user_seat_section 
 
       %div.field
-        = f.label "Row"
+        = f.label "#{t('row').titleize}"
         %br
         = f.text_area :user_seat_row 
 
       %div.field
-        = f.label "Seat"
+        = f.label "#{t('seat').titleize}"
         %br
         = f.text_area :user_seat 
 
     %div.actions
-      = f.submit
+      = f.submit "#{t('update').titleize} #{t('were_you_there').titleize}"
 

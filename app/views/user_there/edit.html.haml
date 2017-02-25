@@ -8,12 +8,12 @@
           %div.col-xs-10.text-left.vertical-align.inline
             %h2
               %i.fa.fa-ticket{:aria_hidden => 'true'}
-              ="Editing #{t('were_you_there').titleize}"
+              ="#{t('editing').titleize} #{t('were_you_there').titleize}"
             %p
       %div.panel-footer
 
         = render 'form'
 
-        = link_to 'Show', @user_there
+        = link_to "#{t('show').titleize}", @user_there
         |
-        = link_to 'Back', user_there_path
+        = link_to "#{t('back').titleize}", user_there_path

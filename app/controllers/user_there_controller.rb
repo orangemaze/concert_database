@@ -14,7 +14,7 @@ class UserThereController < ApplicationController
   end
 
   def new
-
+    @user_there = UserThere.new
   end
 
   def create

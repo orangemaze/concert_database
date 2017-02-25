@@ -39,8 +39,6 @@
           = @user_there['user_seat']
 
 
-        = link_to 'Edit', edit_user_there_path(@user_there)
+        = link_to t('edit').titleize, edit_user_there_path(@user_there)
         |
-        = link_to 'Back', user_there_index_path
-        |
-        = link_to 'New User There', new_user_there_path
+        = link_to t('back').titleize, user_there_index_path

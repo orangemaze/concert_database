@@ -141,7 +141,7 @@
                 = "<b>#{u.user_name}</b>:".html_safe
               = "#{v.user_comment}"
               %br
-              = "Sec: #{v.user_seat_section} Row: #{v.user_seat_row} Seat: #{v.user_seat}"
+              = "#{t('sec').titleize}: #{v.user_seat_section} #{t('row').titleize}: #{v.user_seat_row} #{t('seat').titleize}: #{v.user_seat}"
               = session['users_id'].present? ? @there_user_id.present? ? session['users_id'] == @there_user_id ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_user_there_path(:id => @user_there_id), :class => "admin_edit") + link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, user_there_path(:id => @user_there_id), :class => "admin_edit") : '' : '' : ''
               %br 
           %div.clearfix
