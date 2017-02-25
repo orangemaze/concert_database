@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :bands, :through => :moderators, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :user_trade_lists, :primary_key => 'user_id', :foreign_key => 'user_id'
   has_one :language, :primary_key => 'language_id', :foreign_key => 'language_id'
+  has_many :user_theres, :primary_key => 'user_id', :foreign_key => 'user_id'
 
   def band_name
     band_name = ''

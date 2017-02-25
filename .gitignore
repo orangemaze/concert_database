@@ -2,3 +2,8 @@ database.yml
 /log/*.log
 *.pid
 /app/controllers/logins_controller.rb
+Gemfile.lock
+log/*.log
+config/secrets.yml
+lib/
+tmp/cache/

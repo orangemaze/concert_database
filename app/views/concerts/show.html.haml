@@ -133,7 +133,17 @@
               %i.fa.fa-arrow-circle-right
           %div.clearfix
           %p
-          %p.there_details Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel imperdiet felis.
+          %p.there_details
+            - @data_result.were_you_there.each do |v|
+              - v.users_info.each do |u|
+                - @there_user_id = u.user_id
+                - @user_there_id = v.user_there_id
+                = "<b>#{u.user_name}</b>:".html_safe
+              = "#{v.user_comment}"
+              %br
+              = "Sec: #{v.user_seat_section} Row: #{v.user_seat_row} Seat: #{v.user_seat}"
+              = session['users_id'].present? ? @there_user_id.present? ? session['users_id'] == @there_user_id ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_user_there_path(:id => @user_there_id), :class => "admin_edit") + link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, user_there_path(:id => @user_there_id), :class => "admin_edit") : '' : '' : ''
+              %br 
           %div.clearfix
 
 

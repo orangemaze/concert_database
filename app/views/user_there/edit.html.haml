@@ -1,0 +1,19 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %i.fa.fa-ticket{:aria_hidden => 'true'}
+              ="Editing #{t('were_you_there').titleize}"
+            %p
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Show', @user_there
+        |
+        = link_to 'Back', user_there_path

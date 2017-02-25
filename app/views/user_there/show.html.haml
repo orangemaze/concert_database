@@ -1,0 +1,46 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %i.fa.fa-ticket{:aria_hidden => 'true'}
+              =t('were_you_there').titleize
+            %p
+      %div.panel-footer
+
+        %p#notice= notice
+
+        %p
+          %strong User:
+          = @user_there['user_id']
+
+        %p
+          %strong Concert:
+          = @user_there['concert_id']
+
+        %p
+          %strong Comment:
+          = @user_there['user_comment'].html_safe
+
+        %p
+          %strong Section:
+          = @user_there['user_seat_section']
+
+        %p
+          %strong Row:
+          = @user_there['user_seat_row']
+
+        %p
+          %strong Seat:
+          = @user_there['user_seat']
+
+
+        = link_to 'Edit', edit_user_there_path(@user_there)
+        |
+        = link_to 'Back', user_there_index_path
+        |
+        = link_to 'New User There', new_user_there_path

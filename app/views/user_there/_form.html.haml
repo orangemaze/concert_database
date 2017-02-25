@@ -1,0 +1,46 @@
+= form_for(@user_there) do |f|
+  - if @user_there.errors.any? 
+    %div#error_explanation
+      %h2= "#{pluralize(@user_there.errors.count, "error")} prohibited this album from being saved:"
+
+      %ul
+      - @user_there.errors.full_messages.each do |message|
+        %li= message
+
+  %div.panel.cold-md-12
+    %div.row
+      Concert Info
+
+    %div.field
+      = f.label :user_id
+      %br
+      = f.text_area :user_id 
+  
+    %div.field
+      = f.label :concert_id
+      %br
+      = f.text_area :concert_id 
+  
+    %div.field
+      = f.label :user_comment
+      %br
+      = f.text_area :user_comment 
+  
+      %div.field
+        = f.label "Section"
+        %br
+        = f.text_area :user_seat_section 
+
+      %div.field
+        = f.label "Row"
+        %br
+        = f.text_area :user_seat_row 
+
+      %div.field
+        = f.label "Seat"
+        %br
+        = f.text_area :user_seat 
+
+    %div.actions
+      = f.submit
+

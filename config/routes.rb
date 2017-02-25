@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :logins
     resources :album_tours
+    resources :user_there
 
   end
 

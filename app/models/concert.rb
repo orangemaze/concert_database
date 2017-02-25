@@ -10,6 +10,7 @@ class Concert < ActiveRecord::Base
   has_many :images, :through => :roios, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :bands, :through => :concert_bands, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :tours, :through => :concert_bands, :primary_key => 'tours_id', :foreign_key => 'tours_id'
+  has_many :user_there, :primary_key => 'concert_id', :foreign_key => 'concert_id'
 
   def this_test
     this_test = 'this test'
@@ -262,6 +263,10 @@ class Concert < ActiveRecord::Base
     tour_band_id.html_safe
   end
 
+  def were_you_there
+    were_you_there = user_there
+
+  end
 
   def tour_name
     tour_name = ''

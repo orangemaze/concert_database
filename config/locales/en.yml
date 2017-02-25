@@ -72,7 +72,7 @@ en:
   lat: "latitude"
   lon: "longitude"
   time_zone: "time zone"
-
+  were_you_there: "were you there?"
 
   date:
     formats:

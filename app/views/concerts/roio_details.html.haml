@@ -29,7 +29,9 @@
       %li= "#{t('last_edited').titleize}: #{@data_result.timeEntered}".html_safe
       %li= "#{t('roio_rating').titleize}: #{turn_to_ratings_stars(@data_result.roio_avg_rating.to_s)}".html_safe
       %li= "#{t('image').titleize.pluralize(@data_result.roio_image_count)}: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
-      %li= "#{t('md5').titleize}: #{@data_result.md5}".html_safe
+      %li
+        = "#{t('md5').titleize}:".html_safe
+        = @data_result.md5.present? ? "<i class='fa fa-download' aria-hidden='true'></i>".html_safe : "empty"
       %li
         - if cookies[:user_id].blank?
           = "<i class='fa fa-sign-in' aria-hidden='true' alt='Sign In' title='Sign In'></i> to see who has this, and to add it to your tradlist!".html_safe
