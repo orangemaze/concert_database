@@ -8,7 +8,7 @@ class Band < ActiveRecord::Base
   has_many :members, :through => :band_members, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :moderators, :foreign_key => 'band_id', :primary_key => 'band_id'
   has_many :users, :through => :moderators, :primary_key => 'user_id', :foreign_key => 'user_id'
-
+  has_many :band_albums, :primary_key => 'band_id', :foreign_key => 'band_id'
   # include ActionDispatch::Routing::UrlFor
   # include Rails.application.routes.url_helpers
   # include ActionView::Helpers::UrlHelper

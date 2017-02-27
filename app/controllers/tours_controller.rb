@@ -56,7 +56,7 @@ class ToursController < ApplicationController
     @tour = Tour.find(params[:id])
     respond_to do |format|
       if @tour.update(tour_params)
-        format.html { redirect_to @tour, :notice => 'Band was successfully updated.' }
+        format.html { redirect_to @tour, :notice => 'Tour was successfully updated.' }
         format.json { render :show, :status => :ok, :location => @tour }
       else
         format.html { render :edit }
@@ -138,7 +138,7 @@ class ToursController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
-    params.require(:tours).permit(:tour_name, :start_date, :end_date, :band_id, :total_shows)
+    params.require(:tour).permit(:tour_name, :start_date, :end_date, :band_id, :total_shows)
   end
 
   def album_tour_params

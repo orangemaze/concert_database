@@ -7,10 +7,10 @@
           %p#notice= notice
           %div.col-xs-10.text-left.vertical-align.inline
             %h2
-              %i.fa.fa-ticket{:aria_hidden => 'true'}
-              ="t('new').titleize #{t('were_you_there').titleize}"
+              %span.glyphicon.glyphicon-cd{:aria_hidden => "true"}
+              New Band Album
             %p
       %div.panel-footer
         = render 'form'
 
-        = link_to t('back').titleize, user_there_index_path
+        = link_to 'Back', band_albums_path

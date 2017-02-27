@@ -1,0 +1,16 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %i.fa.fa-ticket{:aria_hidden => 'true'}
+              ="#{t('new').titleize} #{t('were_you_there').titleize}".html_safe
+            %p
+      %div.panel-footer
+        = render 'form'
+
+        = link_to t('back').titleize, concert_path(@concert.concert_id)

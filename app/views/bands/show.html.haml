@@ -47,6 +47,13 @@
                 %br
                 %br Associated bands that members of #{@data_result.band_name} have played with
 
+
+                %br Albums
+                %ul
+                - BandAlbum.joins('join albums on band_albums.album_id = albums.id').where('band_id = ?', @data_result.band_id).order('albums.release_year').each do |v|
+                  %li
+                    = v.album.album_amazon_ad.html_safe
+                    = link_to v.album.album_name, album_path(v.album.id)
         %div.clearfix
 
 

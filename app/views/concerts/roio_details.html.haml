@@ -31,7 +31,7 @@
       %li= "#{t('image').titleize.pluralize(@data_result.roio_image_count)}: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
       %li
         = "#{t('md5').titleize}:".html_safe
-        = @data_result.md5.present? ? "<i class='fa fa-download' aria-hidden='true'></i>".html_safe : "empty"
+        = @data_result.md5.present? ? "<i class='fa fa-download' aria-hidden='true'></i>".html_safe : "Would you like to add a MD5?"
       %li
         - if cookies[:user_id].blank?
           = "<i class='fa fa-sign-in' aria-hidden='true' alt='Sign In' title='Sign In'></i> to see who has this, and to add it to your tradlist!".html_safe

@@ -1,0 +1,37 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %span.glyphicon.glyphicon-cd{:aria_hidden => "true"}
+              Band Albums
+            %p
+      %div.panel-footer
+        = link_to 'New Band Album', new_band_album_path
+        %div.table-responsive
+
+        %table.table.table-striped.table-bordered.table-hover.dataTables
+          %thead
+            %tr
+              %th Band Album id
+              %th Album 
+              %th Band
+              %th{:colspan =>"3"}
+
+          %tbody
+            - @band_albums.each do |band_album|
+              %tr
+                %td= band_album.id
+                %td= link_to band_album.album.album_name, album_path(band_album.album.id)
+                %td= link_to band_album.band.band_name, band_path(band_album.band.band_id)
+                %td= link_to 'Show', band_album
+                %td= link_to 'Edit', edit_band_album_path(band_album)
+                %td= link_to 'Destroy', band_album, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        %br
+
+        = link_to 'New Band Album', new_band_album_path

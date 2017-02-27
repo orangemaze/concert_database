@@ -41,4 +41,4 @@
 
         = link_to t('edit').titleize, edit_user_there_path(@user_there)
         |
-        = link_to t('back').titleize, user_there_index_path
+        = link_to t('back').titleize, concert_path(@user_there['concert_id'])

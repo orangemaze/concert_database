@@ -1,6 +1,7 @@
-class UserThereController < ApplicationController
+class UserTheresController < ApplicationController
   before_action :set_user_there, :only => [:show, :edit, :update, :destroy]
   layout 'testui'
+
   def index
     @user_there = UserThere.all
   end
@@ -14,15 +15,20 @@ class UserThereController < ApplicationController
   end
 
   def new
+    concert_id = params[:concert_id]
+    @concert = Concert.find(concert_id)
     @user_there = UserThere.new
+    puts @user_there.inspect
   end
 
   def create
     @user_there = UserThere.new(user_there_params)
-
+    @user_there.user_id = session[:users_id] 
+    @user_there.date_changed = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+    @user_there.date_added = Time.now.strftime("%Y-%m-%d %H:%M:%S")
     respond_to do |format|
       if @user_there.save
-        format.html { redirect_to @user_there, :notice => 'Album was successfully created.' }
+        format.html { redirect_to @user_there, :notice => 'successfully created.' }
         format.json { render :show, :status => :created, :location => @user_there }
       else
         format.html { render :new }
@@ -36,7 +42,7 @@ class UserThereController < ApplicationController
   def update
     respond_to do |format|
       if @user_there.update(user_there_params)
-        format.html { redirect_to @user_there, :notice => 'Album was successfully updated.' }
+        format.html { redirect_to @user_there, :notice => 'successfully updated.' }
         format.json { render :show, :status => :ok, :location => @user_there }
       else
         format.html { render :edit }
@@ -50,7 +56,7 @@ class UserThereController < ApplicationController
   def destroy
     @user_there.destroy
     respond_to do |format|
-      format.html { redirect_to user_there_url, :notice => 'Album was successfully destroyed.' }
+      format.html { redirect_to user_there_url, :notice => 'successfully destroyed.' }
       format.json { head :no_content }
     end
   end

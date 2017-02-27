@@ -55,8 +55,9 @@ Rails.application.routes.draw do
     resources :review
     resources :logins
     resources :album_tours
-    resources :user_there
-
+    resources :band_albums
+    # resources :user_there
+    resources :user_theres
   end
 
   match '*path', :via => :all, :to => redirect('/404')

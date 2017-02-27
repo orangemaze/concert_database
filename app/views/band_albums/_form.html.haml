@@ -1,0 +1,19 @@
+= form_for(@band_album) do |f| 
+  - if @band_album.errors.any?
+    %div#error_explanation
+    %h2= "#{pluralize(@band_album.errors.count, "error")} prohibited this band album from being saved:"
+    %ul
+      - @band_album.errors.full_messages.each do |message|
+        %li= message
+
+
+  %div.field
+    = f.label :band_id
+    %br
+    = text_area_tag 'band_name', @band_album.band.present? ? @band_album.band.band_name : ''
+  %div.field
+    = f.label :album_id
+    %br
+    = text_area_tag 'album_name', @band_album.album.present? ? @band_album.album.album_name : ''
+  %div.actions
+    = f.submit

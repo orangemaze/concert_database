@@ -22,12 +22,12 @@
           %tbody
             - @user_there.order('concert_id').each do |user_there|
               %tr
-                %td= user_there.user_id
-                %td= user_there.concert_id
+                %td= user_there.user.user_name
+                %td= user_there.concert.concert_date rescue ''
                 %td= user_there.user_comment.html_safe
                 %td= user_there.user_seat_section + ' / ' + user_there.user_seat_row + ' / ' + user_there.user_seat
                 %td= link_to "#{t('show').titleize}", user_there
                 %td= link_to "#{t('edit').titleize}", edit_user_there_path(user_there)
-                %td= link_to "#{t('delete').titleize}", user_there, :method => :delete, :data => { :confirm => "#{t('are_you_sure?').titleize}" }
+                %td= link_to "#{t('delete').titleize}", user_there, :method => :delete, :data => { :confirm => "#{t('are_you_sure').titleize}" }
         %br
 
