@@ -1,0 +1,7 @@
+%p
+  %select.btn-mini.word-wrap{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
+    - counthis = 0
+    - BandAlbum.joins('join albums on band_albums.album_id = albums.id').where('band_id = ?', params[:id]).order('albums.release_year').each do |v|
+      %option{:value => v.id}= "#{v.album.album_name} (#{v.album.release_year})"
+      - counthis = counthis + 1
+  = counthis

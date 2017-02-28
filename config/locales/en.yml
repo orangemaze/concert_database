@@ -50,7 +50,7 @@ en:
   member: "member"
   moderator_of_the_following: "moderator of the following bands"
   new: "new"
-  new_site_message: "this is the new version of the site, it is still very much under construction"
+  new_site_message: "Alpha<br>The new site is about 90% complete, I have been adding in a few new features, along with working to make it more mobile friendly"
   on: "on"
   pig_latin: "Pig Latin"
   prohibited_this: "prohibited this"
@@ -69,6 +69,7 @@ en:
   spanish: "Spanish"
   taper: "taper"
   taper_location: "taper location"
+  that_you_were_there: "that you were there"
   the_concert_database: "the concert database"
   this_site_is: "this site is dedicated to sharing experiences of live performances and their incidental details such as tours programs, ticket stubs, photos, audio, video and more..."
   time_zone: "time zone"  
@@ -89,8 +90,8 @@ en:
   year: 'year'
   you_must_be_logged_in_to_add_a_roio: "You must be logged in to add a ROIO"
   you_must_be_logged_in_to_add_a_review: "You must be logged in to add a Comment"
-
-
+  you_must_be_logged_in_to_add_a: "You must be logged in to add a "
+  you_must_be_logged_in_to_add: "You must be logged in to add "
   date:
     formats:
       default: "%Y-%m-%d"

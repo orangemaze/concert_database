@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   #admin type functions
   get ':locale/albums' => 'albums#index'
+  get ':locale/albums/add_remove_album_to_band/:id' => 'albums#add_remove_album_to_band'
   get ':locale/users/change_language/:id' => 'users#change_language'
   get ':locale/users/change_language/:id' => 'users#change_language'
   get ':locale/tours/add_remove_concert_to_tour/:id' => 'tours#add_remove_concert_to_tour'
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   get ':locale/tours/add_member_to_tour/:id' => 'tours#add_member_to_tour'
   get ':locale/tours/delete_tour_album/:id' => 'tours#delete_tour_album'
   get ':locale/tours/delete_tour_member/:id' => 'tours#delete_tour_member'
+  get ':locale/albums/albums_to/:id' => 'albums#albums_to'
 
   scope "/:locale" do
     resources :concerts

@@ -94,11 +94,11 @@
                       %br
                       %ul.list-unstyled
                         %li
-                          - puts @data_result.prev_tour.magenta
-                          = link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.prev_tour}") 
+                          - puts @data_result.prev_tour.to_s.magenta
+                          = @data_result.prev_tour.present? ? link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.prev_tour}") : ''
                           = link_to @data_result.tour_name_plain.values[count_tour].to_s, tour_path(@data_result.tour_name_plain.keys[count_tour].to_s)
                           = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s), :class => "admin_edit") : ''
-                          = link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.next_tour}") 
+                          = @data_result.next_tour.present? ? link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.next_tour}") : ''
                     %li
                       = "<b>#{t('member').titleize}</b>".html_safe
                       %br
@@ -136,10 +136,9 @@
           %p.there_details
             - @is_there = Array.new
             - @data_result.were_you_there.each do |v|
-              - v.users_info.each do |u|
-                - @there_user_id = u.user_id
-                - @user_there_id = v.user_there_id
-                = "<b>#{u.user_name}</b>".html_safe
+              - @there_user_id = v.user.user_id
+              - @user_there_id = v.user_there_id
+              = "<b>#{v.user.user_name}</b>".html_safe
               = "#{v.user_comment}"
               %br
               = "#{t('sec').titleize} #{v.user_seat_section} #{t('row').titleize} #{v.user_seat_row} #{t('seat').titleize} #{v.user_seat}"
@@ -155,6 +154,8 @@
                 = ''
               - else 
                 = link_to "<i class='fa fa-ticket' arai-hidden='true'></i> #{t('were_you_here').titleize}".html_safe, new_user_there_path(:concert_id => @data_result.concert_id)
+            - else
+              = link_to "<i class='fa fa-ticket' arai-hidden='true'></i> #{t('were_you_here').titleize}".html_safe, new_user_there_path(:concert_id => @data_result.concert_id)
             %br
           %div.clearfix
 

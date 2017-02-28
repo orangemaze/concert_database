@@ -15,19 +15,23 @@
           %thead
             %tr
               %th #{t('user').titleize}
+              %th #{t('band').titleize}
               %th #{t('concert').titleize}
               %th #{t('comment').titleize}
               %th="#{t('sec').titleize} / #{t('row').titleize} / #{t('seat').titleize}"
-              %th{:colspan =>"3"}
+              
+              = session[:admin] == 5 ? "<td colspan='3'>" : ''
           %tbody
             - @user_there.order('concert_id').each do |user_there|
               %tr
                 %td= user_there.user.user_name
+                %td= user_there.band.band_name rescue ''
                 %td= user_there.concert.concert_date rescue ''
-                %td= user_there.user_comment.html_safe
+                %td{:style => 'word-break:break-word;'}= user_there.user_comment.html_safe
                 %td= user_there.user_seat_section + ' / ' + user_there.user_seat_row + ' / ' + user_there.user_seat
-                %td= link_to "#{t('show').titleize}", user_there
-                %td= link_to "#{t('edit').titleize}", edit_user_there_path(user_there)
-                %td= link_to "#{t('delete').titleize}", user_there, :method => :delete, :data => { :confirm => "#{t('are_you_sure').titleize}" }
+                - if session[:admin] == 5
+                  %td= link_to "#{t('show').titleize}", user_there
+                  %td= link_to "#{t('edit').titleize}", edit_user_there_path(user_there)
+                  %td= link_to "#{t('delete').titleize}", user_there, :method => :delete, :data => { :confirm => "#{t('are_you_sure').titleize}" }
         %br
 

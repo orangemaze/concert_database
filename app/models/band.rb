@@ -24,6 +24,10 @@ class Band < ActiveRecord::Base
     tour_name
   end
 
+  def tour
+    tours.first
+  end
+
   def is_moderator
     #puts ' == mod squad =='.blue
     #puts band_id.to_s.red

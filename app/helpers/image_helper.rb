@@ -32,6 +32,32 @@ module ImageHelper
 
   end
 
+  def get_roio_image_location(concert_date, bootleg_id, bootleg_name, image_type, bootleg_image, image_id)
+    image_height = '300'
+    image_width = '300'
+
+
+    case bootleg_image  #.split(".")[1]
+      when /jpg/
+        image_format = 'jpg'
+      when /png/
+        image_format = 'png'
+      else
+        image_format = 'jpg'
+    end
+
+    if bootleg_image == 'no_art.jpg'
+      url = "http://www.concerts-db.com/images/no_art.jpg"
+    else
+      url = "http://www.concerts-db.com/art/#{concert_date[0..3]}/#{bootleg_id}/#{bootleg_id}#{image_id}.#{image_format}"
+    end
+
+    "<img src='#{url}' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
+
+  end
+
+
+
   def get_main_image
     begin
       main_image = MainImage.all # commented for testing
@@ -47,9 +73,9 @@ module ImageHelper
     if image_count.to_i == 0
       "No Images, would you like to add some?"
     elsif image_count.to_i == 1
-      "<i class='fa fa-film' aria-hidden='true'></i>"
+      "<i class='fa fa-film' aria-hidden='true' data-toggle='modal' data-target='#myModal'></i>"
     elsif image_count.to_i > 1
-      "<i class='fa fa-film fa-lg' aria-hidden='true'></i> <span class='badge'>#{image_count}</span>"
+      "<span data-toggle='modal' data-target='#myModal'><i class='fa fa-film fa-lg' aria-hidden='true'></i> <span class='badge'>#{image_count}</span></span>"
     else
       image_count.to_s
     end

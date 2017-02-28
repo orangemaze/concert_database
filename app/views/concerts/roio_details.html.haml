@@ -31,7 +31,7 @@
       %li= "#{t('image').titleize.pluralize(@data_result.roio_image_count)}: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
       %li
         = "#{t('md5').titleize}:".html_safe
-        = @data_result.md5.present? ? "<i class='fa fa-download' aria-hidden='true'></i>".html_safe : "Would you like to add a MD5?"
+        = @data_result.md5.present? ? "<i class='fa fa-download' aria-hidden='true' data-toggle='modal' data-target='#myModalMD5'></i>".html_safe : "Would you like to add a MD5?"
       %li
         - if cookies[:user_id].blank?
           = "<i class='fa fa-sign-in' aria-hidden='true' alt='Sign In' title='Sign In'></i> to see who has this, and to add it to your tradlist!".html_safe
@@ -53,3 +53,47 @@
           - if @is_moderator == 'y'
             %a.admin_edit{:href => "/tours/#{k}/edit"}
               %i.fa.fa-pencil-square-o{:aria_hidden => 'true'}
+
+
+
+%div.modal.fade#myModalMD5{:tabindex =>"-1", :role => "dialog", :aria_labelledby => "myModalLabel"}
+  %div.modal-dialog{:role => "document"}
+    %div.modal-content
+      %div.modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal", :aria_label => "Close"}
+          %span{:aria_hidden => "true"} &times;
+        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'')
+
+      %div.modal-body.text-left
+        = cookies[:user_id].present? ? @data_result.md5.gsub(/\\'/, '\'') : 'You must be logged in to view the MD5 information'
+        %br
+        %br
+      %div.modal-footer
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+
+
+
+
+
+%div.modal.fade#myModal{:tabindex =>"-1", :role => "dialog", :aria_labelledby => "myModalLabel"}
+  %div.modal-dialog{:role => "document"}
+    %div.modal-content
+      %div.modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal", :aria_label => "Close"}
+          %span{:aria_hidden => "true"} &times;
+        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'')
+
+      %div.modal-body.text-center
+        - image_count = 0
+        - @data_result.images.each do |v|
+          = @data_result.image_types[image_count]['image_type']
+          %br
+          = get_roio_image_location(@data_result.concert_date, v.bootleg_id, @data_result.bootleg_name.gsub(/\\'/, '\''), @data_result.image_types[image_count]['image_type'], v.bootleg_image, @data_result.image_types[image_count]['image_type_id'])
+          - image_count = image_count + 1
+          %br
+          %br
+      %div.modal-footer
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
+
+
+

@@ -11,18 +11,33 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    puts @comment.inspect.red
-    bootleg_id = @comment.bootleg_id
-    @roio = Roio.find(bootleg_id)
-
+    if cookies[:user_id].present?
+      puts @comment.inspect.red
+      bootleg_id = @comment.bootleg_id
+      @roio = Roio.find(bootleg_id)
+    else
+      note = "#{t('you_must_be_logged_in_to_add_a')} #{t('comment').titleize}"
+      begin
+        redirect_to URI(request.referer).path + "?note=" + note
+      rescue
+        redirect_to :controller => 'index', :action => 'index' and return
+      end
+    end
   end
 
   def new
-    bootleg_id = params[:roio_id]
-    @roio = Roio.find(bootleg_id)
-
-    @comment = Comment.new
-
+    if cookies[:user_id].present?
+      bootleg_id = params[:roio_id]
+      @roio = Roio.find(bootleg_id)
+      @comment = Comment.new
+    else
+      note = "#{t('you_must_be_logged_in_to_add_a')} #{t('comment').titleize}"
+      begin
+        redirect_to URI(request.referer).path + "?note=" + note
+      rescue
+        redirect_to :controller => 'index', :action => 'index' and return
+      end
+    end
   end
 
   def create

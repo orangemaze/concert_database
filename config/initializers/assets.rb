@@ -19,6 +19,7 @@ Rails.application.config.assets.precompile += %w( jquery.dataTables.min.js )
 Rails.application.config.assets.precompile += %w( dataTables.bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( dataTables.responsive.js )
 Rails.application.config.assets.precompile += %w( jquery-ui-1.10.4.custom.js )
+Rails.application.config.assets.precompile += %w( admin.js )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

@@ -1,0 +1,46 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left.vertical-align.inline
+            %i.fa.fa-microphone.fa-5x
+            %h3= "&nbsp;Add Albums to #{@band.band_name} &nbsp;".html_safe
+            - if @is_moderator == 'y'
+              = link_to "<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(@data_result.band_id), :class => "admin_edit reverse"
+      %div.panel-footer
+        %span.pull-left
+
+
+
+        %div.row
+          %div.col-xs-4.text-center.vertical-align.inline
+            %p
+              %select.btn-mini.word-wrap{:size => "25", :name => "concert_available_tour[]", :id => "concert_available_tour", :multiple => ""}
+                - counthis = 0
+                - Album.all.order('release_year').each do |v|
+                  %option{:value => v.id}= "#{v.album_name}  (#{v.release_year})"
+                  - counthis = counthis + 1
+              = counthis
+
+
+          %div.col-md-2.text-center.center-block
+            %input{:type => "hidden", :id => 'tours_id', :value => @band.tour.tours_id}
+            %br
+            %input{:type => "hidden", :id => 'band_id', :value => @band.band_id}
+            %br
+            %button.btn.btn-primary.btn-xs.text-center.center-block{ :type => "button", :name => "add selected", :value => "add selected >", :id => "add selected", :onclick => "add_remove_albums_to_band('add');"}= t('add_selected_>').titleize.html_safe
+            %br
+            %button.btn.btn-primary.btn-xs.text-center.center-block{:type => "button", :name => "remove selcted", :value => "< remove selcted", :id => "remove selcted", :onclick => "add_remove_albums_to_band('remove');"}= t('<_remove_selected').titleize.html_safe
+
+
+          %div.col-xs-5.text-center.vertical-align.inline#concerts_in_tour
+            %p
+              %select.btn-mini.word-wrap{:size => "25", :name => "concert_in_tour[]", :id => "concert_in_tour", :multiple => ""}
+                - counthis = 0
+                - BandAlbum.joins('join albums on band_albums.album_id = albums.id').where('band_id = ?', params[:id]).order('albums.release_year').each do |v|
+                  %option{:value => v.album.id}= "#{v.album.album_name} (#{v.album.release_year})"
+                  - counthis = counthis + 1
+              = counthis

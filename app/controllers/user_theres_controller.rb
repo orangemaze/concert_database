@@ -15,10 +15,20 @@ class UserTheresController < ApplicationController
   end
 
   def new
-    concert_id = params[:concert_id]
-    @concert = Concert.find(concert_id)
-    @user_there = UserThere.new
-    puts @user_there.inspect
+    if cookies[:user_id].present?
+      concert_id = params[:concert_id]
+      @concert = Concert.find(concert_id)
+      @user_there = UserThere.new
+      puts @user_there.inspect
+    else
+      note = "#{t('you_must_be_logged_in_to_add')} #{t('that_you_were_there')}"
+      begin
+        redirect_to URI(request.referer).path + "?note=" + note
+      rescue
+        redirect_to :controller => 'index', :action => 'index' and return
+      end
+    end
+
   end
 
   def create

@@ -13,33 +13,28 @@
       %div.panel-footer
         = link_to 'New Album', new_album_path
         %div.table-responsive
-
-
-
-
-
-        %table.table.table-striped.table-bordered.table-hover.dataTables
-          %thead
-            %tr
-              %th Album id
-              %th Album name
-              %th Album review
-              %th Album amazon ad
-              %th Album release year
-              %th{:colspan =>"3"}
-
-          %tbody
-            - @albums.order('release_year').each do |album|
+          %table.table.table-striped.table-bordered.table-hover.dataTables
+            %thead
               %tr
-                %td= album.id
-                %td= album.album_name
-                %td= album.album_review
-                %td= album.album_amazon_ad.html_safe
-                %td= album.release_year
-                %td= link_to 'Show', album
-                %td= link_to 'Edit', edit_album_path(album)
-                %td= link_to 'Destroy', album, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                %th Album id
+                %th Album name
+                %th Album review
+                %th Album amazon ad
+                %th Album release year
+                -if session[:admin].to_i > 3
+                  %th{:colspan =>"3"}
+            %tbody
+              - @albums.order('release_year').each do |album|
+                %tr
+                  %td= album.id
+                  %td= album.album_name
+                  %td= album.album_review
+                  %td= album.album_amazon_ad.html_safe
+                  %td= album.release_year
+                  - if session[:admin].to_i > 3
+                    %td= link_to 'Show', album
+                    %td= link_to 'Edit', edit_album_path(album)
+                    %td= link_to 'Destroy', album, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
         %br
-
         = link_to 'New Album', new_album_path

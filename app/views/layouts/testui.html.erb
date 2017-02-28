@@ -35,7 +35,6 @@
 
   <%= yield %>
 
-</div>
 <!-- /#wrapper -->
 
 <%= javascript_include_tag 'jquery.min' %>
@@ -47,6 +46,10 @@
 <%= javascript_include_tag 'jquery-ui-1.10.4.custom' %>
 <%= javascript_include_tag 'sb-admin-2' %>
 <%= javascript_include_tag 'jquery-te-1.4.0.min' %>
+<%- if session[:admin].to_i < 4 && cookies[:user_id].present? %>
+<%= javascript_include_tag 'admin' %>
+<%- end %>
+
 <script>
     $('.jqte-test').jqte();
     $(function() {

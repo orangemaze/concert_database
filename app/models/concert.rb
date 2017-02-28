@@ -185,27 +185,27 @@ class Concert < ActiveRecord::Base
   def prev_tour
     sql = "SELECT tours.tours_id FROM tours INNER JOIN `concert_band` ON `tours`.`tours_id` = `concert_band`.`tours_id` WHERE (concert_band.band_id = '#{tour_band_id.to_s}' and tours.start_date < '#{tour_start_date.to_s}') GROUP BY tours.tours_id  ORDER BY tours.start_date"
     prev_tour_s =  Tour.find_by_sql(sql).last
-    prev_tour = prev_tour_s['tours_id'].to_s
+    prev_tour = prev_tour_s['tours_id'].to_s rescue nil
   end
 
   def next_tour
     sql = "SELECT tours.tours_id FROM tours INNER JOIN `concert_band` ON `tours`.`tours_id` = `concert_band`.`tours_id` WHERE (concert_band.band_id = '#{tour_band_id.to_s}' and tours.start_date > '#{tour_start_date.to_s}') GROUP BY tours.tours_id  ORDER BY tours.start_date"
     next_tour_s =  Tour.find_by_sql(sql).first
-    next_tour = next_tour_s['tours_id'].to_s
+    next_tour = next_tour_s['tours_id'].to_s rescue nil
   end
 
   def prev_concert
     sql = "select concerts.concert_id, concerts.concert_date FROM concerts INNER JOIN `concert_band` ON `concerts`.`concert_id` = `concert_band`.`concert_id` WHERE (concert_band.band_id = '#{tour_band_id.to_s}' and concert_date < '#{concert_date.to_s}') GROUP BY concerts.concert_id  ORDER BY concerts.concert_date"
     puts sql.to_s.magenta
     prev_tour_s =  Concert.find_by_sql(sql).last
-    prev_concert = prev_tour_s['concert_id'].to_s
+    prev_concert = prev_tour_s['concert_id'].to_s rescue nil
   end
 
   def next_concert
     sql = "select concerts.concert_id, concerts.concert_date FROM concerts INNER JOIN `concert_band` ON `concerts`.`concert_id` = `concert_band`.`concert_id` WHERE (concert_band.band_id = '#{tour_band_id.to_s}' and concert_date > '#{concert_date.to_s}') GROUP BY concerts.concert_id  ORDER BY concerts.concert_date"
     puts sql.to_s.magenta
     prev_tour_s =  Concert.find_by_sql(sql).first
-    next_concert = prev_tour_s['concert_id'].to_s
+    next_concert = prev_tour_s['concert_id'].to_s rescue nil
   end
 
   def band_member_names(band_id)

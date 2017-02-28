@@ -61,6 +61,35 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def albums_to
+    if cookies[:user_id].present?
+      @band = Band.find(params[:id])
+    else
+      note = "#{t('you_must_be_logged_in_to_add_a')} #{t('comment').titleize}"
+      begin
+        redirect_to URI(request.referer).path + "?note=" + note
+      rescue
+        redirect_to :controller => 'index', :action => 'index' and return
+      end
+    end
+  end
+
+  def add_remove_album_to_band
+    band_id = (params[:id])
+    user_action = params[:user_action]
+    choice = params[:choice].split(',')
+
+    choice.each do |v|
+      if user_action == 'add'
+        sql = "replace into band_albums (band_id, album_id) values (#{band_id}, #{v})"
+      else
+        sql = "delete from band_albums where album_id = #{v} and band_id = #{band_id}"
+      end
+      ActiveRecord::Base.connection.execute(sql)
+    end
+    render :layout => false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
