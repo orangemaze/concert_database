@@ -1,0 +1,47 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %span.glyphicon.glyphicon-cd{:aria_hidden => "true"}
+              Songs
+            %p
+      %div.panel-footer
+
+        %p#notice= notice
+
+        %p
+          %strong Song name:
+          = @song.song_name
+          %br
+          %br
+          %div.table-responsive
+            %table.table.table-striped.table-bordered.table-hover.dataTables
+              %thead
+                %tr
+                  %td Date
+                  %td Band
+                  %td RoIO
+                  %td Format
+                  %td set position
+                  %td length
+              %tbody
+                - @song.roio_set_lists.each do |v|
+                  %tr
+                    %td= link_to v.concerts[0].concert_date.to_s, concert_path(v.concerts[0].concert_id.to_s)
+                    %td= v.roios[0].band.band_name rescue ''
+                    %td= v.roios[0].bootleg_name rescue ''
+                    %td= v.roios[0].roio_format rescue ''
+                    %td= v.set_position rescue ''
+                    %td= v.track_times rescue ''
+            %br
+
+        = link_to 'Edit', edit_song_path(@song)
+        |
+        = link_to 'Back', songs_path
+        |
+        = link_to 'New Song', new_song_path

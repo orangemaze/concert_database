@@ -18,9 +18,21 @@
             %thead
               %tr
                 %td Concert Date
+                %td Venue
                 %td Roio Name
             %tbody
-              = @data_result.tour_dates.html_safe
+              - @data_result.concerts.each do |f|
+                %tr
+                  %td.text-nowrap
+                    %ul
+                      %li.roio-details.list-group-item.text-nowrap= "#{link_to f.concert_date, "/#{I18n.locale}/concerts/#{f.concert_id}"}".html_safe
+                  %td
+                    %ul
+                      %li.roio-details.list-group-item= f.concert_venues[0].the_venue_address rescue ''
+                  %td
+                    %ul
+                      = "#{f.bootleg_name.gsub(/\\'/, '\'')}".html_safe rescue ''    
+              
         %div.clearfix
 
   %div.col-md-3

@@ -40,8 +40,10 @@ class Roio < ActiveRecord::Base
     roio_set_list = Hash.new
     if  roio_set_lists.present?
       roio_set_lists.order('set_position').each do |f|
-        roio_set_list[f.roio_set_list_id] = "#{f.set_position} <a href='/song/#{f.songs_id}'> #{f.song_name.to_s} </a>"
+        roio_set_list[f.roio_set_list_id] = "#{f.set_position} <a href='/#{I18n.locale}/songs/#{f.songs_id}'> #{f.song_name.to_s} </a>"
       end
+    else
+      roio_set_list[0] = "<a href='/#{I18n.locale}/roio_set_lists/new?roio_id=#{bootleg_id}'>Add Tracklist <i class='fa fa-plus' aria-hidden='true'></i></a>"
     end
     roio_set_list
   end

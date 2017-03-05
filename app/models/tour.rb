@@ -10,6 +10,7 @@ class Tour < ActiveRecord::Base
   # include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
 
+
   def tour_dates
     tour_dates = ''
     if  concert_bands.present?

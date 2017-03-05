@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     resources :band_albums
     # resources :user_there
     resources :user_theres
+    resources :songs
+    resources :roio_set_lists
+
   end
 
   match '*path', :via => :all, :to => redirect('/404')

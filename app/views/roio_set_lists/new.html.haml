@@ -1,0 +1,35 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %p#notice= notice
+          %div.col-xs-10.text-left.vertical-align.inline
+            %h2
+              %span.glyphicon.glyphicon-cd{:aria_hidden => "true"}
+              New Track List
+            %p
+      %div.panel-footer
+        %form
+          %div.row
+            %div.col-xs-5
+              %input{:type => 'hidden', :name => 'roio_id', :value => params[:roio_id]}
+              %h4 Set One
+              %textarea.full_width{:rows => 10, :name => 'set_1'}
+            %div.col-xs-5
+              %h4 Set Two
+              %textarea.full_width{:rows => 10, :name => 'set_2'}
+          %div.row
+            %div.col-xs-5
+              %h4 Encore
+              %textarea.full_width{:rows => 10, :name => 'set_e'}
+          %br
+          %input{:type => 'submit', :name => 'submit'}
+          %br
+          =# render 'form'
+
+          = link_to 'Show', @album
+          |
+          = link_to 'Back', albums_path
+

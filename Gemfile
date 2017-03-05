@@ -27,6 +27,7 @@ gem 'colorize'
 gem 'haml'
 gem 'routing-filter'
 gem 'ruby-units'
+gem 'similar_text'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

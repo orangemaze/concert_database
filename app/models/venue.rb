@@ -5,6 +5,7 @@ class Venue < ActiveRecord::Base
   has_one :state, :primary_key => 'venue_state_id', :foreign_key => 'state_id'
   has_one :country, :primary_key => 'venue_country_id', :foreign_key => 'flags_id'
   has_many :venue_names, :primary_key => 'venue_id', :foreign_key => 'venue_id'
+  has_many :concerts, :through => :concert_venues, :primary_key => 'concert_id', :foreign_key => 'concert_id'
 
   def venues_name
     venues_name = ''

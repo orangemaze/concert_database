@@ -11,10 +11,18 @@ class Concert < ActiveRecord::Base
   has_many :bands, :through => :concert_bands, :primary_key => 'band_id', :foreign_key => 'band_id'
   has_many :tours, :through => :concert_bands, :primary_key => 'tours_id', :foreign_key => 'tours_id'
   has_many :user_there, :primary_key => 'concert_id', :foreign_key => 'concert_id'
+  has_many :venues, :through => :concert_venues, :primary_key => 'venue_id', :foreign_key => 'venue_id'
 
   def this_test
     this_test = 'this test'
   end
+
+  def the_venue_name(reload=false)
+    #@the_venue_name = nil if reload
+    @the_venue_name = VenueName.where('venue_id = ?', concert_venues[0].venue_id)
+    #concert_venues[0].venue_id
+  end
+
 
   def bootleg_name
     if roios.present?
@@ -29,10 +37,10 @@ class Concert < ActiveRecord::Base
         band_name = f.band_name
         bootleg_image = f.bootleg_image
         roio_image = ApplicationController.helpers.get_image_location(concert_date, bootleg_id, bootleg_name, 'small', f.roio_image_count, bootleg_image)
-        data_holder = "#{data_holder.to_s} <a href='#' id='#{bootleg_id.to_s}' class='roio-details list-group-item'> #{roio_image}
+        data_holder = "#{data_holder.to_s} <li id='#{bootleg_id.to_s}' class='roio-details list-group-item'> #{roio_image}
         #{roio_type.to_s} #{band_name.to_s} #{ApplicationController.helpers.turn_to_ratings_stars(f.roio_avg_rating)} &middot; #{bootleg_name.to_s}
             <span class='pull-right text-muted small'><em>#{roio_format.to_s}</em></span>
-        </a>"
+        </li>"
 
       end
       data_holder.html_safe
