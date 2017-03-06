@@ -11,25 +11,70 @@
               New Track List
             %p
       %div.panel-footer
-        %form
-          %div.row
-            %div.col-xs-5
-              %input{:type => 'hidden', :name => 'roio_id', :value => params[:roio_id]}
-              %h4 Set One
-              %textarea.full_width{:rows => 10, :name => 'set_1'}
-            %div.col-xs-5
-              %h4 Set Two
-              %textarea.full_width{:rows => 10, :name => 'set_2'}
-          %div.row
-            %div.col-xs-5
-              %h4 Encore
-              %textarea.full_width{:rows => 10, :name => 'set_e'}
-          %br
-          %input{:type => 'submit', :name => 'submit'}
-          %br
-          =# render 'form'
+        - if params[:submit] == "Submit"
+          %form 
+            %h4
+              The best matches are pre-selected, but you can select another song name
+            %input{:type => 'hidden', :name => 'roio_set_list[roio_id]', :value => @roio.bootleg_id}
+            %input{:type => 'hidden', :name => 'roio_id', :value => @roio.bootleg_id}
+            %input{:type => 'hidden', :name => 'roio_set_list[concert_id]', :value => @roio.concert_id}
+            Set 1
+            - find_songs_options(params[:set_1]).each do |x, y|
+              %div.row
+                %div.col-xs-3
+                  = x
+                %div.col-xs-6
+                  %select.song_select{:name => 'songs_1[]'}
+                    - y.each do |a, b|
+                      = b.html_safe
+            %br 
+            Set 2
+            - find_songs_options(params[:set_2]).each do |x, y|
+              %div.row
+                %div.col-xs-3
+                  = x
+                %div.col-xs-6
+                  %select.song_select{:name => 'songs_2[]'}
+                    - y.each do |a, b|
+                      = b.html_safe
+            %br
+            Set E
+            - find_songs_options(params[:set_e]).each do |x, y|
+              %div.row
+                %div.col-xs-3
+                  = x
+                %div.col-xs-6
+                  %select.song_select{:name => 'songs_e[]'}
+                    - y.each do |a, b|
+                      = b.html_safe
 
-          = link_to 'Show', @album
-          |
-          = link_to 'Back', albums_path
+
+            %div.row
+              %div.col-xs-6
+                %input{:type => 'submit', :name => 'submit', :value => 'Confirm'}
+
+        - elsif params[:submit] == "Confirm"
+          = 'here'
+        - else
+          %form
+            %div.row
+              %div.col-xs-5
+                %input{:type => 'hidden', :name => 'roio_id', :value => params[:roio_id]}
+                %h4 Set One
+                %textarea.full_width{:rows => 10, :name => 'set_1'}
+              %div.col-xs-5
+                %h4 Set Two
+                %textarea.full_width{:rows => 10, :name => 'set_2'}
+            %div.row
+              %div.col-xs-5
+                %h4 Encore
+                %textarea.full_width{:rows => 10, :name => 'set_e'}
+            %br
+            %input{:type => 'submit', :name => 'submit', :value => 'Submit'}
+            %br
+            =# render 'form'
+
+            = link_to 'Show', @album
+            |
+            = link_to 'Back', albums_path
 
