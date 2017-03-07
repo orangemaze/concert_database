@@ -37,6 +37,13 @@
     .song_select{
       width: 100%;
     }
+.rating_stars{unicode-bidi:bidi-override;direction:rtl;font-size:12px}
+.rating_stars span.star{font-family:FontAwesome;font-weight:normal;font-style:normal;display:inline-block}
+.rating_stars span.star:hover{cursor:pointer}
+.rating_stars span.star:before{content:"\f006";padding-right:0px;color:#777}
+.rating_stars span.star:hover:before,.rating_stars span.star:hover~span.star:before{content:"\f005";color:#e3cf7a}
+
+
   </style>
 </head>
 
@@ -179,6 +186,10 @@
     function delete_tour_member(tour_id, member_id){
       window.location.href = "/<%= I18n.locale %>/tours/delete_tour_member/"+tour_id+"?member_id="+member_id;
 
+    }
+
+    function submit_ratings(rating){
+      alert("coming soon" + rating);
     }
 </script>
 </body>

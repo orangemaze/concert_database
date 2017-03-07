@@ -27,7 +27,13 @@
       %li= "#{t('source_warning').titleize}: #{@data_result.source_warning.to_s.gsub(/\\'/, '\'')}".html_safe
       %li= "#{t('added_to_the_database_by').titleize} #{@data_result.user_name} #{t('on')} #{@data_result.time_entered_2}".html_safe
       %li= "#{t('last_edited').titleize}: #{@data_result.timeEntered}".html_safe
-      %li= "#{t('roio_rating').titleize}: #{turn_to_ratings_stars(@data_result.roio_avg_rating.to_s)}".html_safe
+      %li
+        = "#{t('roio_rating').titleize}:"
+        - if @data_result.roio_ratings.count > 0
+          =" <span data-toggle='modal' data-target='#myModalRating'>#{turn_to_ratings_stars(@data_result.roio_avg_rating.to_s)}</span>".html_safe
+        - else
+          = "Would you like to add a rating?"
+
       %li= "#{t('image').titleize.pluralize(@data_result.roio_image_count)}: #{get_roio_image_count_icon(@data_result.roio_image_count)}".html_safe
       %li
         = "#{t('md5').titleize}:".html_safe
@@ -71,6 +77,40 @@
       %div.modal-footer
         %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
 
+
+
+%div.modal.fade#myModalRating{:tabindex =>"-1", :role => "dialog", :aria_labelledby => "myModalLabel"}
+  %div.modal-dialog{:role => "document"}
+    %div.modal-content
+      %div.modal-header
+        %button.close{:type => "button", "data-dismiss" => "modal", :aria_label => "Close"}
+          %span{:aria_hidden => "true"} &times;
+        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'')
+
+      %div.modal-body.text-left
+        - if cookies[:user_id].present?
+          - @data_result.roio_ratings.each do |v|
+            = turn_to_ratings_stars(v.rating).html_safe
+            = v.users[0]['user_name']
+            - if session[:users_id] == v.users[0]['user_id'] 
+              = link_to("<i class='fa fa-pencil-square-o admin_edit' aria-hidden='true'></i>".html_safe, edit_roio_rating_path(@data_result.bootleg_id))
+              = "<i class='fa fa-times admin_edit' aria-hidden='true'></i>".html_safe
+            %br
+
+          %span.rating_stars
+            %span.star{:onclick => "submit_ratings('4');"}
+            %span.star{:onclick => "submit_ratings('3');"}
+            %span.star{:onclick => "submit_ratings('2');"}
+            %span.star{:onclick => "submit_ratings('1');"}
+
+
+
+        - else
+          You must be logged In to view the rating details
+        %br
+        %br
+      %div.modal-footer
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal"} Close
 
 
 

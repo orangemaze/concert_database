@@ -11,6 +11,7 @@ class Roio < ActiveRecord::Base
   has_many :songs, :through => :roio_set_lists, :primary_key => 'songs_id', :foreign_key => 'songs_id'
   has_many :user_trade_lists, :primary_key => 'bootleg_id', :foreign_key => 'bootleg_id'
   has_many :image_types, :through => :images, :primary_key => 'image_type', :foreign_key => 'image_type'
+  has_many :users, :through => :roio_ratings, :primary_key => 'user_id', :foreign_key => 'user_id'
 
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
