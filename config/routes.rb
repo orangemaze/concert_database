@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get ':locale/tours/delete_tour_album/:id' => 'tours#delete_tour_album'
   get ':locale/tours/delete_tour_member/:id' => 'tours#delete_tour_member'
   get ':locale/albums/albums_to/:id' => 'albums#albums_to'
+  post ':locale/user_images/upload_images' => 'user_images#upload_images'
+
 
   scope "/:locale" do
     resources :concerts
@@ -63,6 +65,7 @@ Rails.application.routes.draw do
     resources :songs
     resources :roio_set_lists
     resources :roio_ratings
+    resources :user_images
   end
 
   match '*path', :via => :all, :to => redirect('/404')

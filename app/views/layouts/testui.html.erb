@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+
   <%= stylesheet_link_tag    'application' %>
   <%= favicon_link_tag 'favicon.ico' %>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +38,13 @@
     .song_select{
       width: 100%;
     }
+    .fileinput-button input{
+      font-size: 14px;
+      text-align: center;
+      opacity: 100;
+      position: static;
+    }
+
 .rating_stars{unicode-bidi:bidi-override;direction:rtl;font-size:12px}
 .rating_stars span.star{font-family:FontAwesome;font-weight:normal;font-style:normal;display:inline-block}
 .rating_stars span.star:hover{cursor:pointer}
@@ -58,12 +66,27 @@
 <!-- /#wrapper -->
 
 <%= javascript_include_tag 'jquery.min' %>
+<%= javascript_include_tag 'jquery.ui.widget' %>
+<%= javascript_include_tag 'tmpl.min' %>
+<%= javascript_include_tag 'load-image.all.min' %>
+<%= javascript_include_tag 'canvas-to-blob.min' %>
 <%= javascript_include_tag 'bootstrap.min' %>
 <%= javascript_include_tag 'metisMenu.min' %>
 <%= javascript_include_tag 'jquery.dataTables.min' %>
 <%= javascript_include_tag 'dataTables.bootstrap.min' %>
 <%= javascript_include_tag 'dataTables.responsive' %>
 <%= javascript_include_tag 'jquery-ui-1.10.4.custom' %>
+
+<%= javascript_include_tag 'jquery.blueimp-gallery.min' %>
+<%= javascript_include_tag 'jquery.iframe-transport' %>
+<%= javascript_include_tag 'jquery.fileupload' %>
+<%= javascript_include_tag 'jquery.fileupload-process' %>
+<%= javascript_include_tag 'jquery.fileupload-image' %>
+<%= javascript_include_tag 'jquery.fileupload-audio' %>
+<%= javascript_include_tag 'jquery.fileupload-video' %>
+<%= javascript_include_tag 'jquery.fileupload-validate' %>
+<%= javascript_include_tag 'jquery.fileupload-ui' %>
+<%= javascript_include_tag 'main' %>
 <%= javascript_include_tag 'sb-admin-2' %>
 <%= javascript_include_tag 'jquery-te-1.4.0.min' %>
 <%- if session[:admin].to_i < 4 && cookies[:user_id].present? %>

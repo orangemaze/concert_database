@@ -143,18 +143,21 @@
               = "#{v.user_comment}"
               %br
               = "#{t('sec').titleize} #{v.user_seat_section} #{t('row').titleize} #{v.user_seat_row} #{t('seat').titleize} #{v.user_seat}"
-              = session['users_id'].present? ? @there_user_id.present? ? session['users_id'] == @there_user_id ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_user_there_path(:id => @user_there_id), :class => "admin_edit") + link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, user_there_path(:id => @user_there_id), :class => "admin_edit", :method => :delete) : '' : '' : ''
+              = cookies['user_id'].present? ? @there_user_id.present? ? cookies['user_id'] == @there_user_id ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_user_there_path(:id => @user_there_id), :class => "admin_edit") + link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, user_there_path(:id => @user_there_id), :class => "admin_edit", :method => :delete) : '' : '' : ''
               %br
-              - session['users_id'].to_s == @there_user_id.to_s ? @is_there.push(false) : @is_there.push(true)
-
+              - cookies['user_id'].to_s == Digest::MD5.hexdigest(@there_user_id.to_s) ? @is_there.push(false) : @is_there.push(true)
+            
               - "<i class='fa fa-ticket' aria-hidden='true'></i>".html_safe
-              - puts session['users_id'].to_s
-              - puts @there_user_id.to_s
-            - if session['users_id'].present? 
+              - puts '---=>   <=---'
+              - puts cookies['user_id'].to_s.blue
+              - puts Digest::MD5.hexdigest(@there_user_id.to_s).red
+            - if cookies['user_id'].present? 
               - if @is_there.include?(false) 
                 = ''
               - else 
                 = link_to "<i class='fa fa-ticket' arai-hidden='true'></i> #{t('were_you_here').titleize}".html_safe, new_user_there_path(:concert_id => @data_result.concert_id)
+              %br= link_to "<i class='fa fa-camera' arai-hidden='true'></i> #{t('upload_images').titleize}".html_safe, new_user_image_path(:concert_id => @data_result.concert_id)
+
             - else
               = link_to "<i class='fa fa-ticket' arai-hidden='true'></i> #{t('were_you_here').titleize}".html_safe, new_user_there_path(:concert_id => @data_result.concert_id)
             %br
