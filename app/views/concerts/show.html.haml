@@ -96,7 +96,7 @@
                         %li
                           - puts @data_result.prev_tour.to_s.magenta
                           = @data_result.prev_tour.present? ? link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.prev_tour}") : ''
-                          = link_to @data_result.tour_name_plain.values[count_tour].to_s, tour_path(@data_result.tour_name_plain.keys[count_tour].to_s)
+                          = link_to @data_result.tours[count_tour].tour_name.to_s, tour_path(@data_result.tours[count_tour].tours_id.to_s)
                           = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s), :class => "admin_edit") : ''
                           = @data_result.next_tour.present? ? link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.next_tour}") : ''
                     %li
@@ -173,7 +173,7 @@
             %i.fa.fa-tasks.fa-fw
             = t('list_of_roios').pluralize.titleize.html_safe
           %span.pull-right
-            = link_to("#{t('add_roio').titleize.html_safe} <i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_roio_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.band_id}")
+            = link_to("#{t('add_roio').titleize.html_safe} <i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_roio_path + "?concert_id=#{@data_result.concert_id}&band_id=#{@data_result.concert_bands[0]['band_id']}")
           %div.clearfix
           <!-- /.panel-heading -->
         = @data_result.bootleg_name

@@ -53,7 +53,7 @@ class ConcertBand < ActiveRecord::Base
   <li>#{link_to band['band_name'].to_s, bands_path(band['band_id'])}</li>\n
   <li>Tour
     <ul class='li-no-style'>\n
-      <li>#{tour_name}</li>\n
+      <li>#{band_tour_name}</li>\n
     </ul>\n
   </li>\n
   #{bands_members.to_s}</ul>\n
@@ -119,7 +119,7 @@ class ConcertBand < ActiveRecord::Base
     band_name
   end
 
-  def tour_name
+  def band_tour_name
     tour_name = Hash.new
       tour_name[tour['tours_id']] = tour['tour_name'].to_s
     tour_name

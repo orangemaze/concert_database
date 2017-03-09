@@ -13,6 +13,7 @@ class RoiosController < ApplicationController
     if cookies[:user_id].present?
       puts 'new'.blue
       @roio = Roio.new
+      @concert_id = params[:concert_id]
     else
 
       note = t('you_must_be_logged_in_to_add_a_roio')
@@ -26,7 +27,6 @@ class RoiosController < ApplicationController
 
   def create
     @roio = Roio.new(roio_params)
-
     respond_to do |format|
       if @roio.save
         format.html { redirect_to @roio, :notice => 'ROIO was successfully created.' }
@@ -40,6 +40,7 @@ class RoiosController < ApplicationController
 
   def edit
     @roio = Roio.find(params[:id])
+    @concert_id = @roio.concert_id
   end
 
   def update

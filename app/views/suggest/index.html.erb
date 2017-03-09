@@ -7,7 +7,7 @@
    end
 
    if @search_action == 'Venues' or @addl_action == 'venue'
-%>{"id": "<%= suggestions.venue_id %>","value": "<%= suggestions.venue_name %>","label": "<%= suggestions.venue_name %>, <%= suggestions.city_name %>, <%= suggestions.state_name %>, <%= suggestions.country %>, <span class='flag flag-<%= suggestions.iso_codes.to_s.downcase %>'></span>","city_name": "<%= suggestions.city_name %>","state_name": "<%= suggestions.state_name %>","country_name": "<%= suggestions.country %>"}
+%>{"id": "<%= suggestions.venue_id %>","value": "<%= suggestions.venue_name %>","label": "<%= suggestions.venue_name %>, <%= suggestions.city_name %>, <%= suggestions.state_name %>, <%= suggestions.country %>","city_name": "<%= suggestions.city_name %>","state_name": "<%= suggestions.state_name %>","country_name": "<%= suggestions.country %>","city_id": "<%= suggestions.city_id %>","state_id": "<%= suggestions.state_id %>","flags_id": "<%= suggestions.flags_id %>","venue_names_id": "<%= suggestions.venue_names_id %>"}
     <%
        elsif @search_action == 'Concerts'
     %>{"id": "<%= suggestions.concert_id %>","value": "<%= suggestions.concert_date %>, <%= suggestions.band_name %>, <%= suggestions.venue_name %>","label": "<%= suggestions.concert_date %> <%= suggestions.band_name %>, <%= suggestions.venue_name %>"}

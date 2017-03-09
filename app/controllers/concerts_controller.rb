@@ -75,62 +75,76 @@ class ConcertsController < ApplicationController
 
   def create
     @concert = Concert.new(concert_params)
+    @concert.save
+    params[:concert][:concert_id] = @concert.concert_id
     puts @concert.inspect.green
-    concert_date = params[:concert_date]
-    venue_name = params[:venue_name]
-    city_name = params[:city_name]
-    state_name = params[:state_name]
-    country = params[:country]
-    time_of_show = params[:time_of_show]
-    no_known_recording = params[:no_known_recording]
-    notes = params[:notes]
-    band_name = params[:band_name]
-    tour_name = params[:tour_name]
+    concert_date = params[:concert][:concert_date]
+    venue_name = params[:concert][:venue_name]
+    city_name = params[:concert][:city_name]
+    state_name = params[:concert][:state_name]
+    country = params[:concert][:country]
+    time_of_show = params[:concert][:time_of_show]
+    no_known_recording = params[:concert][:no_known_recording]
+    notes = params[:concert][:notes]
+    band_name = params[:concert][:band_name]
+    params[:concert][:tour_name] = params[:concert][:tour_name_plain]
 
-    band_id = params[:band_id]
-    tours_id = params[:tours_id]
-    venue_id = params[:venue_id]
-    city_id = params[:city_id]
-    state_id = params[:state_id]
-    flags_id = params[:flags_id]
+    band_id = params[:concert][:band_id]
+    tours_id = params[:concert][:tours_id]
+    venue_id = params[:concert][:venue_id]
+    city_id = params[:concert][:city_id]
+    state_id = params[:concert][:state_id]
+    flags_id = params[:concert][:flags_id]
 
 
     if band_id.present?
       # nothing yet
     else
-      @concert.bands << Band.new(band_params)
+      @concert = Band.new(band_params)
+      @concert.save
       puts 'no band_id, band added'.blue
-      puts @concert.bands.inspect.green
+      puts @concert.inspect.green
     end
 
     if tours_id.present?
       # nothing yet
     else
-      @concert.tours << Tour.new(tour_params)
+      @concert = Tour.new(tour_params)
+      @concert.save
       puts 'no tour_id, tour added'.blue
-      puts @concert.tours.inspect.green
+      puts @concert.inspect.green
+      params[:concert][:tours_id] = @concert.tours_id
     end
 
-    @concert.concert_bands << ConcertBand.new(concert_band_params)
+    puts @concert.inspect.magenta
+    params[:concert][:band_position] = '10'
+    @concert = ConcertBand.new(concert_band_params)
+    @concert.save
+    puts @concert.inspect.blue
     puts 'then concert_band'.blue
+    puts @concert.inspect.green
 
 
     if venue_id.present?
-      # @concert.concert_venues << ConcertVenue.new(concert_venue_params)
+      @concert = ConcertVenue.new(concert_venue_params)
+      @concert.save 
       puts 'venue_id is present, added to concert_venue'.red
     else
       if city_id.blank?
-        # @concert.city << City.new(city_params)
+        @concert = City.new(city_params)
+        @concert.save   
         puts 'city_id is blank'.red
       end
 
       if state_id.blank?
-        # @concert.state << State.new(state_params)
+        @concert = State.new(state_params)
+        @concert.save
         puts 'state_id is blank'.red
       end
 
-      if city_id.blank?
-        # @concert.country << County.new(country_params)
+      if flags_id.blank?
+        @concert = County.new(country_params)
+        @concert.save
         puts 'flags_id is blank'.red
       end
       #@concert.venues << ConcertVenue.new(venue_params)
@@ -138,16 +152,7 @@ class ConcertsController < ApplicationController
       #@concert.venue_names << VenueName.new(venue_name_params)
     end
 
-    # redirect_to @concert
-    respond_to do |format|
-      if @concert.save
-        format.html { redirect_to @concert, :notice => 'Album was successfully created.' }
-        format.json { render :show, :status => :created, :location => @concert }
-      else
-        format.html { render :new }
-        format.json { render :json => @concert.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to concert_path(params[:concert][:concert_id]), :notice => 'concert was created'
   end
 
 

@@ -9,59 +9,78 @@
 
   %div.row
     %div.col-md-2
+      %strong= t('band').titleize.html_safe
+      %input{:type => 'hidden', :name => 'roio[concert_id]', :value => @concert_id, :id => 'concert_id'}
+      %input{:type => 'hidden', :name => 'roio[band_id]', :value => @roio.band_id, :id => 'band_id'}
+    %div.col-md-4= f.text_field :band_name, :class => 'suggest form-control', :id => 'band', :onblur => 'update_tour();'
+    %div.col-md-2
+      %strong= t('tour').titleize.html_safe
+    %div.col-md-4
+      %input{:type =>'text', :name => 'tour_name', :class => 'suggest form-control', :id => 'tour_name'}
+      %input{:type =>'hidden', :name => 'tour_id', :id => 'tour_id', :value => ''}
+  %div.row
+    %div.col-md-2
       %strong= t('title').titleize.html_safe
-    %div.col-md-4= f.text_area :bootleg_name
+    %div.col-md-4= f.text_area :bootleg_name, :class => 'form-control'
+    %div.col-md-2
+      %strong= t('start_date').titleize.html_safe
+    %div.col-md-4
+      %input{:type =>'text', :name => 'start_date', :class => 'suggest form-control', :id => 'start_date'}
   %div.row
     %div.col-md-2
       %strong= t('type').titleize.html_safe
-    %div.col-md-4= f.text_area :roio_type
+    %div.col-md-4= f.text_area :roio_type, :class => 'form-control'
+    %div.col-md-2
+      %strong= t('end_date').titleize.html_safe
+    %div.col-md-4
+      %input{:type =>'text', :name => 'end_date', :class => 'suggest form-control', :id => 'end_date'}
   %div.row
     %div.col-md-2
       %strong= t('label').titleize.html_safe
-    %div.col-md-4= f.text_area :release_label
+    %div.col-md-4= f.text_area :release_label, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('format').titleize.html_safe
-    %div.col-md-4= f.text_area :roio_format
+    %div.col-md-4= f.text_area :roio_format, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('md5').titleize.html_safe
-    %div.col-md-4= f.text_area :md5
+    %div.col-md-4= f.text_area :md5, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('recorder').titleize.html_safe
-    %div.col-md-4= f.text_area :recorder
+    %div.col-md-4= f.text_area :recorder, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('disc').titleize.pluralize.html_safe
-    %div.col-md-4= f.text_area :cd
+    %div.col-md-4= f.text_area :cd, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('length').titleize.html_safe
-    %div.col-md-4= f.text_area :length
+    %div.col-md-4= f.text_area :length, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('lineage').titleize.html_safe
-    %div.col-md-4= f.text_area :lineage
+    %div.col-md-4= f.text_area :lineage, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('taper').titleize.html_safe
-    %div.col-md-4= f.text_area :taper
+    %div.col-md-4= f.text_area :taper, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('equipment').titleize.html_safe
-    %div.col-md-4= f.text_area :equipment
+    %div.col-md-4= f.text_area :equipment, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('generation').titleize.html_safe
-    %div.col-md-4= f.text_area :generation
+    %div.col-md-4= f.text_area :generation, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('source_warning').titleize.html_safe
-    %div.col-md-4= f.text_area :source_warning
+    %div.col-md-4= f.text_area :source_warning, :class => 'form-control'
   %div.row
     %div.col-md-2
       %strong= t('taper_location').titleize.html_safe
-    %div.col-md-4= f.text_area :taper_location
+    %div.col-md-4= f.text_area :taper_location, :class => 'form-control'
   %div.row.actions
-    %div.col-md-6= f.submit
+    %div.col-md-6= f.submit 'Save RoIO', :class => 'form-control btn btn-primary btn-xs'

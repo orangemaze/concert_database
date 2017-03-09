@@ -10,7 +10,7 @@ module SuggestHelper
 
     if search_action == 'Venues' or search_action == 'venue'
       puts '--venues--'.red
-      @suggest_result = Band.select('venue.venue_id, venue_names.venue_name, city.city_name, states.state_name, states.state_abbr, flags.country, flags.iso_codes').from('venue_names').joins('left join venue on venue_names.venue_id = venue.venue_id').joins('left join city on venue.venue_city_id = city.city_id').joins('left join states on venue.venue_state_id = states.state_id').joins('left join flags on venue.venue_country_id = flags.flags_id').where('venue_names.venue_name like ?', "%#{input}%").group('venue_names.venue_name').order('venue_names.venue_name').limit(75)
+      @suggest_result = Band.select('venue.venue_id, venue_names.venue_name, city.city_name, states.state_name, states.state_abbr, flags.country, flags.iso_codes, city.city_id, states.state_id, flags.flags_id, venue_names.venue_names_id').from('venue_names').joins('left join venue on venue_names.venue_id = venue.venue_id').joins('left join city on venue.venue_city_id = city.city_id').joins('left join states on venue.venue_state_id = states.state_id').joins('left join flags on venue.venue_country_id = flags.flags_id').where('venue_names.venue_name like ?', "%#{input}%").group('venue_names.venue_name').order('venue_names.venue_name').limit(75)
 
     elsif search_action == 'Concerts'
       puts '--concerts--'.red

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get ':locale/tours/add_member_to_tour/:id' => 'tours#add_member_to_tour'
   get ':locale/tours/delete_tour_album/:id' => 'tours#delete_tour_album'
   get ':locale/tours/delete_tour_member/:id' => 'tours#delete_tour_member'
+  get ':locale/tours/get_tour' => 'tours#get_tour'
   get ':locale/albums/albums_to/:id' => 'albums#albums_to'
   post ':locale/user_images/upload_images' => 'user_images#upload_images'
 

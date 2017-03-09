@@ -105,7 +105,8 @@
                     data: {
                         term: request.term,
                         search_action: $("#action_button").val(),
-                        addl_action: $(this.element).prop("id")
+                        addl_action: $(this.element).prop("id"),
+                        concert_id: $("#concert_id").val()
                     },
                     success: function(data) {
                         response(data);
@@ -133,12 +134,21 @@
                     }
                 }
                 else{
-                    //alert(url);
                     if (addl_action == 'venue'){
+                        // alert(ui.item.city_name);
                         $("#city_name").val(ui.item.city_name);
                         $("#state_name").val(ui.item.state_name);
                         $("#country").val(ui.item.country_name);
                         $("#venue_id").val(ui.item.id);
+                        $("#city_id").val(ui.item.city_id);
+                        $("#state_id").val(ui.item.state_id);
+                        $("#flags_id").val(ui.item.flags_id);
+                        $("#venue_names_id").val(ui.item.venue_names_id);
+                    }
+                    else if(addl_action == 'band'){
+                        //alert(ui.item.label +" : "+ui.item.id);
+                        $("#band").val(ui.item.label);
+                        $("#band_id").val(ui.item.id);
                     }
                     else{
                         $( "#"+addl_action+"_id" ).val(url);
@@ -213,6 +223,20 @@
 
     function submit_ratings(rating){
       alert("coming soon" + rating);
+    }
+
+    function update_tour(){
+      var concert_id = $("#concert_id").val()
+      var band_id = $("#band_id").val()
+      // alert(concert_id + " : " + band_id);
+      $.getJSON("/<%= I18n.locale %>/tours/get_tour?concert_id="+concert_id+"&band_id="+band_id, function(data, status){
+          //alert("Data: " + data[0].id + "\nStatus: " + status);
+          $("#start_date").val(data[0].start_date);
+          $("#end_date").val(data[0].end_date);
+          $("#tour_name").val(data[0].tour_name);
+          $("#tour_id").val(data[0].id);
+      });
+
     }
 </script>
 </body>

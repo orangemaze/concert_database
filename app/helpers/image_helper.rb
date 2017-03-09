@@ -13,16 +13,22 @@ module ImageHelper
         image_width = '30'
     end
 
-    case bootleg_image.split(".")[1]
-      when /jpg/
-        image_format = 'jpg'
-      when /png/
-        image_format = 'png'
-      else
-        image_format = 'jpg'
+    begin
+      case bootleg_image.split(".")[1]
+        when /jpg/
+          image_format = 'jpg'
+        when /png/
+          image_format = 'png'
+        else
+          image_format = 'jpg'
+      end
+    rescue
+      image_format = 'jpg'
     end
 
     if bootleg_image == 'no_art.jpg'
+      url = "http://www.concerts-db.com/images/no_art.jpg"
+    elsif bootleg_image == nil
       url = "http://www.concerts-db.com/images/no_art.jpg"
     else
       url = "http://www.concerts-db.com/art/#{concert_date[0..3]}/#{bootleg_id}/#{concert_date}-cov.#{image_format}"

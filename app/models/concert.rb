@@ -175,21 +175,6 @@ class Concert < ActiveRecord::Base
     band_name
   end
 
-  def tour_name_plain
-    tour_name = Hash.new
-    if concert_bands.present?
-      concert_bands.order('band_position').each do |k ,v|
-        k.tour_name.each do |x, y|
-          # puts '== tour name =='
-          # puts x.to_s.blue
-          # puts y.inspect.to_s.red
-          tour_name[x] = y
-        end
-      end
-    end
-    tour_name
-  end
-
   def prev_tour
     sql = "SELECT tours.tours_id FROM tours INNER JOIN `concert_band` ON `tours`.`tours_id` = `concert_band`.`tours_id` WHERE (concert_band.band_id = '#{tour_band_id.to_s}' and tours.start_date < '#{tour_start_date.to_s}') GROUP BY tours.tours_id  ORDER BY tours.start_date"
     prev_tour_s =  Tour.find_by_sql(sql).last

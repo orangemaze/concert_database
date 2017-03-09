@@ -1,5 +1,6 @@
 class ToursController < ApplicationController
   layout 'testui'
+
   def index
     puts 'Roios'.blue
     @data_result = Tour.all.limit(200) # commented for testing
@@ -129,6 +130,14 @@ class ToursController < ApplicationController
     redirect_to :controller => 'tours', :action => 'edit', :id => params[:id] and return
   end
 
+  def get_tour
+    puts 'get tour'
+    concert_id = params[:concert_id]
+    band_id = params[:band_id]
+    @tour_data = ConcertBand.select('tours.tour_name, tours.tours_id, tours.start_date, tours.end_date').joins('left join tours on tours.tours_id = concert_band.tours_id').where('concert_band.concert_id = ? and concert_band.band_id = ?', concert_id, band_id).first
+
+    render :layout => false
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
