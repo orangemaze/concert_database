@@ -31,7 +31,7 @@ class Concert < ActiveRecord::Base
         # puts '=== here ==='
         roio_image = ''
         bootleg_id = f.bootleg_id
-        bootleg_name = f.bootleg_name.gsub(/\\'/, '\'')
+        bootleg_name = f.bootleg_name.gsub(/\\'/, '\'') rescue ''
         roio_type = ApplicationController.helpers.turn_roio_type_into_icon(f.roio_type, 'normal')
         roio_format = f.roio_format
         band_name = f.band_name
@@ -302,6 +302,10 @@ class Concert < ActiveRecord::Base
       end
     end
     get_ui_comments.html_safe
+  end
+
+  def no_known_recording_icon
+    "<span class='fa-stack' title='No Known Recording' alt='No Known Recording'><i class='fa fa-microphone fa-stack-1x'></i><i class='fa fa-ban fa-stack-2x text-danger'></i></span>"
   end
 
 end

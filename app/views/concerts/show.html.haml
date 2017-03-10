@@ -13,6 +13,7 @@
             %div.col-xs-9.text-right
               %h4= t('concert').titleize
               %div
+                = @data_result.no_known_recording == "y" ? @data_result.no_known_recording_icon.html_safe : ''
                 = "#{@data_result.concert_date} #{turn_to_ratings_stars(@data_result.concert_avg_rating)}".html_safe
 
         %div.panel-footer

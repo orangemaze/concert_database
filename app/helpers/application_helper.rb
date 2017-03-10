@@ -2,6 +2,7 @@ module ApplicationHelper
   require 'json'
   require 'open-uri'
 
+
   def fix_bad_dates_in_db(bad_date)
     # good_date = bad_date
     case bad_date.to_s

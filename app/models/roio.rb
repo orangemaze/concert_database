@@ -13,6 +13,7 @@ class Roio < ActiveRecord::Base
   has_many :image_types, :through => :images, :primary_key => 'image_type', :foreign_key => 'image_type'
   has_many :users, :through => :roio_ratings, :primary_key => 'user_id', :foreign_key => 'user_id'
 
+
   def concert_date
     concert.present? ? concert.concert_date.to_s : concert.inspect
   end

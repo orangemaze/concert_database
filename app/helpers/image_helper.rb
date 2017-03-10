@@ -1,6 +1,8 @@
 module ImageHelper
 
   def get_image_location(concert_date, bootleg_id, bootleg_name, image_size, image_count, bootleg_image)
+    roio_name = bootleg_name.gsub(/\\'/, '\'') rescue ''
+
     case image_size
       when /small/
         image_height = '30'
@@ -34,7 +36,7 @@ module ImageHelper
       url = "http://www.concerts-db.com/art/#{concert_date[0..3]}/#{bootleg_id}/#{concert_date}-cov.#{image_format}"
     end
 
-    "<img src='#{url}' height='#{image_height}' width='#{image_width}' alt='#{bootleg_name.gsub(/\\'/, '\'')}' title='#{bootleg_name.gsub(/\\'/, '\'')}'>".html_safe
+    "<img src='#{url}' height='#{image_height}' width='#{image_width}' alt='#{roio_name}' title='#{roio_name}'>".html_safe
 
   end
 

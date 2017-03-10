@@ -28,7 +28,7 @@ class ConcertVenue < ActiveRecord::Base
  class='flag flags flag-#{iso_codes.downcase.to_s}' title='#{country_name.to_s}'></a> #{destroyed}<br>
 <b>Wiki</b> #{wiki}<br>
 <b>URL</b> <a href='#{f.url}' target='_blank' >#{f.url}</a><br>
-<b>Capacity</b> #{f.capacity}"
+<b>Capacity</b> #{f.capacity}<br>"
         end
       end
       venue_name.html_safe

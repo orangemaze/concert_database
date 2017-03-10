@@ -72,9 +72,13 @@ class Band < ActiveRecord::Base
     else
       @min_qtys = 0
     end
-
-    @spread = @max_qty[1] - @min_qty[1]
-    if @spread == 0
+    
+    if @min_qty.present?
+      @spread = @max_qty[1] - @min_qty[1]
+      if @spread == 0
+        @spread = 1
+      end
+    else
       @spread = 1
     end
 

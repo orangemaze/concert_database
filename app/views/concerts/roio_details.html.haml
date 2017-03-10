@@ -68,7 +68,7 @@
       %div.modal-header
         %button.close{:type => "button", "data-dismiss" => "modal", :aria_label => "Close"}
           %span{:aria_hidden => "true"} &times;
-        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'')
+        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'') rescue ''
 
       %div.modal-body.text-left
         = cookies[:user_id].present? ? @data_result.md5.gsub(/\\'/, '\'') : 'You must be logged in to view the MD5 information'
@@ -85,7 +85,7 @@
       %div.modal-header
         %button.close{:type => "button", "data-dismiss" => "modal", :aria_label => "Close"}
           %span{:aria_hidden => "true"} &times;
-        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'')
+        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'') rescue ''
 
       %div.modal-body.text-left
         - if cookies[:user_id].present?
@@ -121,7 +121,7 @@
       %div.modal-header
         %button.close{:type => "button", "data-dismiss" => "modal", :aria_label => "Close"}
           %span{:aria_hidden => "true"} &times;
-        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'')
+        %h4.modal-title#myModalLabel= @data_result.bootleg_name.gsub(/\\'/, '\'') rescue ''
 
       %div.modal-body.text-center
         - image_count = 0
