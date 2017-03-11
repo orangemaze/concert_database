@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     resources :roio_set_lists
     resources :roio_ratings
     resources :user_images
+    resources :registers
   end
 
   match '*path', :via => :all, :to => redirect('/404')

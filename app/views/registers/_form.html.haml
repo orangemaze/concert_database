@@ -1,0 +1,44 @@
+= form_for(@register, url: registers_path) do |f|
+  - if @register.errors.any?
+    %div#error_explanation
+    - @register.errors.full_messages.each do |message|
+      %h4= message
+      %br
+  %div.row
+    %div.col-md-4= f.label :user_name
+    %div.col-md-4= f.text_field :user_name, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label 'Password'
+    %div.col-md-4= f.text_field :user_password, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label 'Password'
+    %div.col-md-4= f.text_field :user_password, :name => 'user[user_password2]', :class => 'form-control', :id => 'user_user_password2'
+  %div.row
+    %div.col-md-4= f.label :email
+    %div.col-md-4= f.text_field :email, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :f_name
+    %div.col-md-4= f.text_field :f_name, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :l_name
+    %div.col-md-4= f.text_field :l_name, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :city
+    %div.col-md-4= f.text_field :city, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :state
+    %div.col-md-4= f.text_field :state, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :country
+    %div.col-md-4= f.text_field :country, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :quote
+    %div.col-md-4= f.text_field :quote, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :url
+    %div.col-md-4= f.text_field :url, :class => 'form-control'
+  %div.row
+    %div.col-md-4= f.label :other
+    %div.col-md-4= f.text_field :other, :class => 'form-control'
+  %div.row
+    %div.col-md-8= f.submit 'Submit', :class => 'form-control btn btn-primary btn-xs'

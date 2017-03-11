@@ -59,7 +59,13 @@ class ApplicationController < ActionController::Base
 
   private
   def set_current_locale
-    I18n.locale = params[:locale]
+    puts I18n.available_locales.inspect.magenta
+    puts params[:locale].inspect.red
+    unless I18n.available_locales.include?(params[:locale])
+      I18n.locale = 'en'
+    else
+      I18n.locale = params[:locale]
+    end
   end
 
 

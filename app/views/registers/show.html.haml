@@ -1,0 +1,57 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left.vertical-align.inline
+            -# if @data_result.avatar_96.present?
+              =# "<img src='http://www.concerts-db.com/#{get_user_avatar(@data_result[0].user_name, @data_result[0].user_id, @data_result[0].avatar_24, @data_result[0].avatar_96, 'large')}'>".html_safe
+            -# else
+            %i.fa.fa-user.fa-5x
+
+
+            %h3= "&nbsp;Details about #{session[:user_name]} &nbsp;".html_safe
+      %div.panel-footer
+        - if @data_result.nil? 
+          %div.row
+            %div.col-md-8 Not Found
+      
+
+        - else
+          %div.row
+            %div.col-md-4 Username
+            %div.col-md-4= @data_result.user_name
+          %div.row
+            %div.col-md-4 Name
+            %div.col-md-4= "#{@data_result.f_name} #{@data_result.l_name}"
+          %div.row
+            %div.col-md-4 Email
+            %div.col-md-4= @data_result.email
+          %div.row
+            %div.col-md-4 City, State, Country
+            %div.col-md-4= "#{@data_result.city}, #{@data_result.state}, #{@data_result.country}"
+          %div.row
+            %div.col-md-4 Trader
+            %div.col-md-4= @data_result.trader
+          %div.row
+            %div.col-md-4 Quote
+            %div.col-md-4= @data_result.quote
+          %div.row
+            %div.col-md-4 Url
+            %div.col-md-4= @data_result.url
+          %div.row
+            %div.col-md-4 Other
+            %div.col-md-4= @data_result.other
+          %div.row
+            %div.col-md-4 Language
+            %div.col-md-4= @data_result.language_name
+          %div.row
+            %div.col-md-4 Avatar
+            %div.col-md-4
+              =# "<img src='http://www.concerts-db.com#{get_user_avatar(@data_result.user_name, @data_result[0].user_id, @data_result.avatar_24, @data_result.avatar_96, 'small')}'>".html_safe
+              =# "<img src='http://www.concerts-db.com#{get_user_avatar(@data_result.user_name, @data_result[0].user_id, @data_result.avatar_24, @data_result.avatar_96, 'large')}'>".html_safe
+
+
+          = link_to 'Edit', edit_register_path(@data_result.user_id)

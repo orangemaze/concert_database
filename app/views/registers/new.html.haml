@@ -1,0 +1,15 @@
+%div.row.well
+  %div.col-md-2
+  %div.col-md-6
+
+    %div{:class => "panel panel-yellow"}
+      %div.panel-heading
+        %div.row
+          %div.col-xs-9.text-left.vertical-align.inline
+            %i.fa.fa-user.fa-5x
+            %h4 &nbsp;Register
+      %div.panel-footer
+
+        = render 'form'
+
+        = link_to 'Back', registers_path

@@ -24,7 +24,8 @@
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu dropdown-user">
-            <li><%= link_to "<i class='fa fa-sign-in fa-fw'></i> #{t(:login_sign_up).titleize}".html_safe, logins_path %></li>
+            <li><%= link_to "<i class='fa fa-sign-in fa-fw'></i> #{t(:login).titleize}".html_safe, logins_path %></li>
+            <li><%= link_to "<i class='fa fa-sign-in fa-fw'></i> #{t(:register).titleize}".html_safe, new_register_path %></li>
           </ul>
           <!-- /.dropdown-user -->
         </li>
