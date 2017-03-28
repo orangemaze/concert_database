@@ -84,11 +84,11 @@
 
                 %li
                   = "<b>#{t('band').titleize}</b>".html_safe
-                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_band_path(k), :class => "admin_edit") : ''
+                  = is_logged_in == true ? is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_band_path(k), :class => "admin_edit") : '' : ''
                   %br
                   = link_to "#{v}", band_path(k)
-                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(k), :class => "admin_edit") : ''
-                  = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, band_path(k.to_s), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "admin_edit") : ''
+                  = is_logged_in == true ? is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_band_path(k), :class => "admin_edit") : '' : ''
+                  = is_logged_in == true ? is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-times' aria-hidden='true'></i>".html_safe, band_path(k.to_s), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "admin_edit") : '' : ''
                   %ul.list-unstyled
                     %li
                       = "<b>#{t('tour').titleize}</b>".html_safe
@@ -98,7 +98,7 @@
                           - puts @data_result.prev_tour.to_s.magenta
                           = @data_result.prev_tour.present? ? link_to("<i class='fa fa-arrow-circle-left' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.prev_tour}") : ''
                           = link_to @data_result.tours[count_tour].tour_name.to_s, tour_path(@data_result.tours[count_tour].tours_id.to_s)
-                          = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tour_name_plain.keys[count_tour].to_s), :class => "admin_edit") : ''
+                          = is_logged_in == true ? is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_tour_path(@data_result.tours[count_tour].tours_id.to_s), :class => "admin_edit") : '' : ''
                           = @data_result.next_tour.present? ? link_to("<i class='fa fa-arrow-circle-right' aria-hidden='true'></i>".html_safe, "/#{I18n.locale}/tours/#{@data_result.next_tour}") : ''
                     %li
                       = "<b>#{t('member').titleize}</b>".html_safe
@@ -107,8 +107,8 @@
                         - @data_result.band_member_names(k).each do |g, h|
                           %li
                             = link_to h.to_s, member_path(g.to_s)
-                            = is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_member_path(:id => g, :band_id => k), :class => "admin_edit") : ''
-                            = is_band_moderator(k) == 'y' ? "<i class='fa fa-times admin_edit' aria-hidden='true'></i>".html_safe : ''
+                            = is_logged_in == true ? is_band_moderator(k) == 'y' ? link_to("<i class='fa fa-pencil-square-o' aria-hidden='true'></i>".html_safe, edit_member_path(:id => g, :band_id => k), :class => "admin_edit") : '' : ''
+                            = is_logged_in == true ? is_band_moderator(k) == 'y' ? "<i class='fa fa-times admin_edit' aria-hidden='true'></i>".html_safe : '' : ''
 
 
 

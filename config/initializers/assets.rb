@@ -26,7 +26,6 @@ Rails.application.config.assets.precompile += %w( jquery.ui.widget.js )
 Rails.application.config.assets.precompile += %w( tmpl.min.js )
 Rails.application.config.assets.precompile += %w( load-image.all.min.js )
 Rails.application.config.assets.precompile += %w( canvas-to-blob.min.js )
-Rails.application.config.assets.precompile += %w( jquery.blueimp-gallery.min.js )
 Rails.application.config.assets.precompile += %w( jquery.iframe-transport.js )
 Rails.application.config.assets.precompile += %w( jquery.fileupload.js )
 Rails.application.config.assets.precompile += %w( jquery.fileupload-process.js )
@@ -36,7 +35,7 @@ Rails.application.config.assets.precompile += %w( jquery.fileupload-video.js )
 Rails.application.config.assets.precompile += %w( jquery.fileupload-validate.js )
 Rails.application.config.assets.precompile += %w( jquery.fileupload-ui.js )
 Rails.application.config.assets.precompile += %w( main.js )
-
+Rails.application.config.assets.precompile += %w( canvas-to-blob.min.js.map )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

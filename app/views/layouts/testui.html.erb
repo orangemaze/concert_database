@@ -52,6 +52,37 @@
 .rating_stars span.star:hover:before,.rating_stars span.star:hover~span.star:before{content:"\f005";color:#e3cf7a}
 
 
+    @media (min-width: 768px) {
+        .col-md-2 {
+            min-width: 270px !important;
+            padding-left: 270px !important;
+            width: 270px !important;
+            float: left;
+        }
+        .float-fix{
+            float: left;
+
+        }
+        .col-md-6 {
+            float: right;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-md-2 {
+            min-width: 270px !important;
+            padding-left: 270px !important;
+            width: 270px !important;
+            float: left;
+        }
+        .float-fix{
+            float: left;
+
+        }
+        .col-md-6 {
+            float: right;
+        }
+    }
   </style>
 </head>
 
@@ -64,7 +95,7 @@
   <%= yield %>
 
 <!-- /#wrapper -->
-
+</div>
 <%= javascript_include_tag 'jquery.min' %>
 <%= javascript_include_tag 'jquery.ui.widget' %>
 <%= javascript_include_tag 'tmpl.min' %>
@@ -76,8 +107,9 @@
 <%= javascript_include_tag 'dataTables.bootstrap.min' %>
 <%= javascript_include_tag 'dataTables.responsive' %>
 <%= javascript_include_tag 'jquery-ui-1.10.4.custom' %>
-
-<%= javascript_include_tag 'jquery.blueimp-gallery.min' %>
+  <%- if session[:admin].to_i < 4 && cookies[:user_id].present? %>
+      <%= javascript_include_tag 'admin' %>
+  <%- end %>
 <%= javascript_include_tag 'jquery.iframe-transport' %>
 <%= javascript_include_tag 'jquery.fileupload' %>
 <%= javascript_include_tag 'jquery.fileupload-process' %>
@@ -86,15 +118,12 @@
 <%= javascript_include_tag 'jquery.fileupload-video' %>
 <%= javascript_include_tag 'jquery.fileupload-validate' %>
 <%= javascript_include_tag 'jquery.fileupload-ui' %>
-<%= javascript_include_tag 'main' %>
+<%#= javascript_include_tag 'main' %>
 <%= javascript_include_tag 'sb-admin-2' %>
 <%= javascript_include_tag 'jquery-te-1.4.0.min' %>
-<%- if session[:admin].to_i < 4 && cookies[:user_id].present? %>
-<%= javascript_include_tag 'admin' %>
-<%- end %>
 
 <script>
-    $('.jqte-test').jqte();
+    // $('.jqte-test').jqte();
     $(function() {
 
         $(".suggest").autocomplete({

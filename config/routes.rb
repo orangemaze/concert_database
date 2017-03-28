@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   # filter :locale
-
   root 'index#index'
   get ':locale/index' => 'index#index'
   get ':locale/about' => 'index#about'

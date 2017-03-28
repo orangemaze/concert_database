@@ -30,6 +30,22 @@
           %strong Release Year:
           = @album.release_year
 
+        %p
+          %strong Release Date:
+          = @album.release_date
+
+        %p
+          %strong Country:
+          = @album.flags_id
+
+        %p
+          %strong Matrix:
+          = @album.matrix_code
+
+        %p
+          %strong Differences:
+          = @album.differences
+
         = link_to 'Edit', edit_album_path(@album)
         |
         = link_to 'Back', albums_path

@@ -1,27 +1,29 @@
 module AdminHelper
 
   def is_band_moderator(band_id)
-    is_moderator = ''
-    # puts '=== is moderator ==='.red
-
-    # puts session[:band_moderator].inspect.blue
-    if session[:admin].to_i == 1
-      is_moderator = 'y'
-    elsif @moderator_band_names.present?
-      # puts @moderator_band_names.inspect
-      # puts session[:admin].to_s.magenta
-      if @moderator_band_names.key(band_id).present? || session[:admin].to_i == 1
-        is_moderator = 'y'
+    is_moderator = 'n'
+    puts '=== is moderator ==='.red
+    if cookies[:user_id].present?
+      if @moderator_band_names.present?
+        if (@moderator_band_names.key(band_id).present?) or (session[:admin].to_i == 1)
+          is_moderator = 'y'
+        else
+          is_moderator = 'n'
+        end
       else
         is_moderator = 'n'
       end
     else
       is_moderator = 'n'
     end
-
-    #puts is_moderator.blue
+    puts is_moderator.blue
     is_moderator
   end
+
+  def is_logged_in
+    cookies[:user_id].present? ? true : false
+  end
+
 
   def admin_message(admin_level)
     if admin_level.present?

@@ -1,8 +1,7 @@
 %div.row.well
   %div.col-md-2
   %div.col-md-6
-
-    %div{:class => "panel panel-green"}
+    %div{:class => 'panel panel-green'}
       %div.panel-heading
         %div.row
           %div.col-xs-10.text-left.vertical-align.inline
@@ -14,7 +13,6 @@
             %h6 Names with a start date of 9999-12-31 means these are 'un-official' names or common misspellings of the venue name.
         %div.row
           %div.col-xs-10.text-left.vertical-align
-
       %div.panel-footer
         %span.pull-left
           %table.table.table-striped.table-bordered.table-hover
@@ -51,8 +49,4 @@
                   %td
                     %ul
                       = "#{f.bootleg_name.gsub(/\\'/, '\'')}".html_safe rescue ''
-
-
-
-
         %div.clearfix

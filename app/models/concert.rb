@@ -271,6 +271,7 @@ class Concert < ActiveRecord::Base
     tour_name.html_safe
   end
 
+
   def get_ui_comments(user_name)
     get_ui_comments = ''
 
@@ -305,7 +306,7 @@ class Concert < ActiveRecord::Base
   end
 
   def no_known_recording_icon
-    "<span class='fa-stack' title='No Known Recording' alt='No Known Recording'><i class='fa fa-microphone fa-stack-1x'></i><i class='fa fa-ban fa-stack-2x text-danger'></i></span>"
+    "<span class='fa-stack' title='No Known Recording' alt='No Known Recording'><i class='fa fa-microphone fa-stack-1x' title='No Known Recording' alt='No Known Recording'></i><i class='fa fa-ban fa-stack-2x text-danger' title='No Known Recording' alt='No Known Recording'></i></span>"
   end
 
 end

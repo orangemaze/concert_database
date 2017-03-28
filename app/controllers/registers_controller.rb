@@ -14,13 +14,19 @@ class RegistersController < ApplicationController
   def create
     @register = User.new(user_params)
     @register['activation_code'] = Digest::MD5.hexdigest(Time.now.to_s)
+    @register['user_password'] = params[:user][:user_password]
+
+
     respond_to do |format|
       begin
         if @register.save
-          format.html { redirect_to register_path(@register), :notice => 'User was successfully created.' }
+          puts '-=>  <=-'  
+          puts @register.inspect.magenta 
+          puts @register.user_id.inspect.magenta 
+          format.html { redirect_to register_path(Digest::MD5.hexdigest(@register.user_id.to_s)), :notice => 'User was successfully created.' }
           format.json { render :show, :status => :created, :location => @register }
         else
-          format.html { render :new => @register.errors }
+          format.html { render :action => "new", :params => @register.errors }
           format.json { render :json => @register.errors, :status => :unprocessable_entity }
         end
       rescue
@@ -45,7 +51,7 @@ class RegistersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:user_name, :user_password, :f_name, :l_name, :email, :url, :quote, :other, :language_id, :activation_code)
+    params.require(:user).permit(:user_name, :user_password, :user_password2, :f_name, :l_name, :email, :url, :quote, :other, :language_id, :activation_code, :city, :state, :country)
   end
 
 
